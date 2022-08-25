@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test1.Pages.ProfilePage"
+             Title="ProfilePage"
+             Shell.NavBarIsVisible="False">
+    <StackLayout>
+        <Image Source="Katty"  Aspect="AspectFill" HeightRequest="650"/>
+        <Frame HasShadow="False" CornerRadius="25" Margin="5,-400,5,10" VerticalOptions="FillAndExpand" Opacity="0.97">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto, Auto" ColumnDefinitions="*,*,*,*,*">
+                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Katty White" FontSize="25" FontAttributes="Bold" Margin="45,0,0,0"/>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Escuela: " FontSize="15" FontAttributes="Bold" Padding="20,10,0,0"/>
+                <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="Escuela" FontSize="15" Margin="0,1,0,10">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>ESCOM</x:String>
+                            <x:String>UPIITA</x:String>
+                            <x:String>ENCB</x:String>
+                            <x:String>ESIME</x:String>
+                            <x:String>ESIQUIE</x:String>
+                            <x:String>ESFM</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" BackgroundColor="Grey" Text="Modo Oscuro"></Button>
+                <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Favoritos" x:Name="FavoritosBtn" Clicked="FavoritosBtn_Clicked"></Button>
+                <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Pedidos Anteriores" x:Name="AnterioresBtn" Clicked="AnterioresBtn_Clicked"></Button>
+                <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Información" x:Name="Informacion" Clicked="Informacion_Clicked"></Button>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentPage>
