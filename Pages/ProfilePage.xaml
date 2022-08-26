@@ -5,12 +5,12 @@
              Title="ProfilePage"
              Shell.NavBarIsVisible="False">
     <StackLayout>
-        <Image Source="Katty"  Aspect="AspectFill" HeightRequest="650"/>
+        <Image Source="{Binding Url, Mode=OneWay}"  Aspect="AspectFill" HeightRequest="650"/>
         <Frame HasShadow="False" CornerRadius="25" Margin="5,-400,5,10" VerticalOptions="FillAndExpand" Opacity="0.97">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto, Auto" ColumnDefinitions="*,*,*,*,*">
-                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Katty White" FontSize="25" FontAttributes="Bold" Margin="45,0,0,0"/>
+                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NombreUsuario" Text="{Binding Nombre, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="45,0,0,0"/>
                 <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Escuela: " FontSize="15" FontAttributes="Bold" Padding="20,10,0,0"/>
-                <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="Escuela" FontSize="15" Margin="0,1,0,10">
+                <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="{Binding Escuela, Mode=OneWay}" FontSize="15" Margin="0,1,0,10">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>ESCOM</x:String>
