@@ -15,13 +15,13 @@
     <Application.MainPage>
         <Shell>
             <TabBar x:Name="MyTabBar">
-                <Tab Title="Home" Icon="home.png">
+                <Tab Title="Inicio" Icon="home.png">
                     <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
                 </Tab>
-                <Tab Title="Search" Icon="search.png">
+                <Tab Title="Buscar" Icon="search.png">
                     <ShellContent ContentTemplate="{DataTemplate local:SearchPage}"/>
                 </Tab>
-                <Tab Title="Profile" Icon="user.png">
+                <Tab Title="Perfil" Icon="user.png">
                     <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}"/>
                 </Tab>
             </TabBar>
