@@ -18,6 +18,7 @@ public static class MauiProgram
 		Routing.RegisterRoute("Favoritos", typeof(Favoritos));
         Routing.RegisterRoute("pedidosAnteriores", typeof(PedidosAnteriores));
         Routing.RegisterRoute("Informacion", typeof(Info));
+		Routing.RegisterRoute("Detalles", typeof(DetailsPage));
 
         return builder.Build();
 	}

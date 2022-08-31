@@ -73,15 +73,39 @@ public partial class HomePage : ContentPage
         Producto selectedItem = e.SelectedItem as Producto;
     }
 
-    private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+    private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        ((ListView)sender).SelectedItem = null;
-        Producto tappedItem = e.Item as Producto;
+        Producto publicacion = e.Item as Producto;
+        if (publicacion != null)
+        {
+            /*
+            var navParameter = new Dictionary<string, object> 
+            {
+                { "Product", publicacion }
+            };
+            */
+
+            //await Shell.Current.GoToAsync($"Detalles", navParameter);
+
+            await Navigation.PushAsync(new DetailsPage(publicacion));
+        }
     }
 
     async void RefreshView_Refreshing(object sender, EventArgs e)
     {
         await Task.Delay(3000);
         RefreshView.IsRefreshing = false;
+    }
+
+    async Task GoToDetailsAsync(Producto producto)
+    {
+        if (producto is null)
+            return;
+
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true, 
+            new Dictionary<string, object>
+            {
+                {"Producto", producto }
+            });
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test1.Cells.DetailsCard">
+    <VerticalStackLayout>
+        
+        <Label Margin="10,10,0,0"
+               Text="{Binding Name}"
+               FontAttributes="Bold"
+               FontSize="20"/>
+        
+        <Label Margin="10,5,0,10"
+               Text="Vendedor: Vendedor1"
+               FontSize="Micro"/>
+
+        <Image Margin="5,5,5,0"
+               Source="{Binding Url}"
+               MinimumHeightRequest="100"
+               MaximumHeightRequest="200"
+               Aspect="AspectFill"/>
+
+        <Label Margin="10,10,0,0"
+               Text="{Binding Precio, StringFormat=$ {0}}"
+               VerticalOptions="End"
+               FontSize="30"
+               FontAttributes="Bold" />
+
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*">
+            <Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="Blue" Text="Agregar al Carrito"></Button>
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="Grey" Text="Comprar ya"></Button>
+        </Grid>
+
+        <ScrollView Margin="10,10,10,0">
+            <Label Text="{Binding Info}"
+                   VerticalOptions="End"
+                   FontSize="Body"/>
+        </ScrollView>
+
+    </VerticalStackLayout>
+</ContentView>
