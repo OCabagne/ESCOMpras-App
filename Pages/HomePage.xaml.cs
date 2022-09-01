@@ -78,15 +78,6 @@ public partial class HomePage : ContentPage
         Producto publicacion = e.Item as Producto;
         if (publicacion != null)
         {
-            /*
-            var navParameter = new Dictionary<string, object> 
-            {
-                { "Product", publicacion }
-            };
-            */
-
-            //await Shell.Current.GoToAsync($"Detalles", navParameter);
-
             await Navigation.PushAsync(new DetailsPage(publicacion));
         }
     }
@@ -107,5 +98,10 @@ public partial class HomePage : ContentPage
             {
                 {"Producto", producto }
             });
+    }
+
+    private void CarritoBtn_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("Carrito");
     }
 }

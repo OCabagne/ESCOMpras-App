@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <x:String x:Key="IconCart">&#xf07a;</x:String>
         </ResourceDictionary>
     </Application.Resources>
 

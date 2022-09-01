@@ -34,6 +34,7 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\Images\shoppingcart.png" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -50,6 +51,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\shoppingcart.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\profile.jpg" />
 	  <None Remove="Resources\Images\search.png" />
@@ -61,6 +67,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Cells\ProductCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Cells\ProductCardSmall.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Carrito.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\DetailsPage.xaml">

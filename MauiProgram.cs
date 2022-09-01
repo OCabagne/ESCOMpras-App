@@ -13,12 +13,14 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("fa-solid-900.ttf", "FAS");
 			});
 
 		Routing.RegisterRoute("Favoritos", typeof(Favoritos));
         Routing.RegisterRoute("pedidosAnteriores", typeof(PedidosAnteriores));
         Routing.RegisterRoute("Informacion", typeof(Info));
 		Routing.RegisterRoute("Detalles", typeof(DetailsPage));
+        Routing.RegisterRoute("Carrito", typeof(Carrito));
 
         return builder.Build();
 	}

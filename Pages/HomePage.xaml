@@ -9,10 +9,15 @@
 
     <ScrollView BackgroundColor="GhostWhite">
         <VerticalStackLayout>
-            <Label Text="Cerca de ti" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5,0,0" FontSize="25" FontAttributes="Bold"/>
-            <Label Text="ESCOM" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,0" FontSize="15" FontAttributes="Bold" TextColor="#05629b"/>
-
-                <StackLayout Margin="0,10,0,0">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" Margin="0,10,0,0">
+                <Label Text="Cerca de ti" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"/>
+                <Label Text="ESCOM" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="#05629b"/>
+                <Button Grid.Column="2" Grid.RowSpan="2" HeightRequest="55" WidthRequest="55" Margin="60,0,0,0" 
+                        Text="{StaticResource IconCart}" FontFamily="FAS" FontSize="30" BackgroundColor="GhostWhite" TextColor="#05629b"
+                        x:Name="CarritoBtn" Clicked="CarritoBtn_Clicked"/>
+            </Grid>
+            
+            <StackLayout Margin="0,10,0,0">
                     <ListView CachingStrategy="RecycleElement"
                               ItemsSource="{Binding Productos}" 
                               HasUnevenRows="True" 
