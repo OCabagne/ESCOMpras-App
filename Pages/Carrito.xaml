@@ -17,16 +17,59 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Cells:ProductCardSmall/>
+                            <Frame CornerRadius="0">
+                                <StackLayout>
+                                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*">
+                                        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                   Source="{Binding Url}"
+                   Aspect="AspectFill"
+                   HeightRequest="110" />
+
+                                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                       Margin="10,0,0,0"
+                       Text="{Binding Name}"
+                       FontAttributes="Bold"
+                       FontSize="Body"/>
+
+                                        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                       Margin="10,0,0,0"
+                       Text="{Binding Info}"
+                       VerticalOptions="End" />
+
+                                        <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
+                       HorizontalOptions="End"
+                       Text="Cantidad"
+                       VerticalOptions="End" />
+
+                                        <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="1" HorizontalOptions="End" Margin="0,0,25,0">
+                                            <Picker.ItemsSource>
+                                                <x:Array Type="{x:Type x:Int16}">
+                                                    <x:Int16>0</x:Int16>
+                                                    <x:Int16>1</x:Int16>
+                                                    <x:Int16>2</x:Int16>
+                                                    <x:Int16>3</x:Int16>
+                                                </x:Array>
+                                            </Picker.ItemsSource>
+                                        </Picker>
+                                    </Grid>
+
+                                    <StackLayout VerticalOptions="Center">
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
 
-        <Grid RowDefinitions="*,*,*,*,*" Margin="10,10,0,0">
+        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
             
-            <Label Text="Total = $ 15.00" Grid.Column="0" Grid.Row="0" 
+            <Label Text="Total = $15.00" Grid.Column="0" Grid.Row="0" 
+                   FontAttributes="Bold" 
+                   FontSize="20"/>
+
+            <Label Text="{Binding total, Mode=OneWay}" Grid.Column="1" Grid.Row="0" 
                    FontAttributes="Bold" 
                    FontSize="20"/>
 
@@ -45,10 +88,18 @@
                    FontSize="15"
                    Margin="0,15,0,0"/>
 
-            <Label Text="18:00 - 18:30" Grid.Row="4" 
-                   FontAttributes="Bold" 
-                   FontSize="15"
-                   Margin="15,15,0,0"/>
+            <Picker Grid.Row="4" x:Name="picker" Title=""
+                    FontAttributes="Italic"
+                    FontSize="15"
+                    Margin="15,0,0,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>16:30</x:String>
+                        <x:String>18:00</x:String>
+                        <x:String>18:30</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
         </Grid>
 
 
