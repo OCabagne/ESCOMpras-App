@@ -35,4 +35,9 @@ public partial class Carrito : ContentPage
 
         BindingContext = this;
     }
+
+    private async void ComprarYa_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Comprar());
+    }
 }

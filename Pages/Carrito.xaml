@@ -104,7 +104,7 @@
 
 
         <Grid RowDefinitions="*,*" ColumnDefinitions="*" Margin="0,20,0,0">
-            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="SteelBlue" Text="Comprar ya"/>
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="SteelBlue" Text="Comprar ya" x:Name="ComprarYa" Clicked="ComprarYa_Clicked"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
