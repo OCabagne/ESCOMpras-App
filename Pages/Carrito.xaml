@@ -21,25 +21,25 @@
                                 <StackLayout>
                                     <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*">
                                         <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                   Source="{Binding Url}"
-                   Aspect="AspectFill"
-                   HeightRequest="110" />
+                                           Source="{Binding Url}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="110" />
 
                                         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                       Margin="10,0,0,0"
-                       Text="{Binding Name}"
-                       FontAttributes="Bold"
-                       FontSize="Body"/>
+                                           Margin="10,0,0,0"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="Body"/>
 
                                         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-                       Margin="10,0,0,0"
-                       Text="{Binding Info}"
-                       VerticalOptions="End" />
+                                           Margin="10,0,0,0"
+                                           Text="{Binding Info}"
+                                           VerticalOptions="End" />
 
                                         <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
-                       HorizontalOptions="End"
-                       Text="Cantidad"
-                       VerticalOptions="End" />
+                                           HorizontalOptions="End"
+                                           Text="Cantidad"
+                                           VerticalOptions="End" />
 
                                         <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="1" HorizontalOptions="End" Margin="0,0,25,0">
                                             <Picker.ItemsSource>
@@ -52,9 +52,6 @@
                                             </Picker.ItemsSource>
                                         </Picker>
                                     </Grid>
-
-                                    <StackLayout VerticalOptions="Center">
-                                    </StackLayout>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
@@ -64,7 +61,7 @@
         </StackLayout>
 
         <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
-            
+
             <Label Text="Total = $15.00" Grid.Column="0" Grid.Row="0" 
                    FontAttributes="Bold" 
                    FontSize="20"/>
@@ -77,7 +74,7 @@
                    FontAttributes="Bold" 
                    FontSize="15"
                    Margin="0,15,0,0"/>
-            
+
             <Label Text="ESCOM" Grid.Row="2" 
                    FontAttributes="Bold" 
                    FontSize="15"

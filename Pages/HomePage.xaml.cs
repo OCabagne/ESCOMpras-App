@@ -23,28 +23,28 @@ public partial class HomePage : ContentPage
         Productos.Add(new Producto
         {
             Id = 2,
-            Name = "Cubrebocas ESCOM",
-            Info = "Sale bandicta, volvieron los cubrebocas perrones. Tiren facha por solo $35, voy a dónde estén.",
-            Precio = 35,
-            Url = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/300965950_5297062457054189_9210136749168468353_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=O1ktXAeL30QAX89cvI5&_nc_ht=scontent.fmex31-1.fna&oh=00_AT_gMIXo8uOWOHC486CFFmdVPE01y8QDKNe90zMaw33n8g&oe=6308F91E"
+            Name = "Termos",
+            Info = "Pues miren aquí para platicarles que voy a estar vendiendo estos productos por la escuela así que pues si ahí les interesa alguno comentenme o tirenme mensajito y nada, aprovechen que ahorita voy a estar teniendo promos jaja",
+            Precio = 50,
+            Url = "https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-6/305043816_3345207999092244_5677156160535556282_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=mgaOTkrYLisAX9-avxM&tn=vUJWUoujA9494jkx&_nc_ht=scontent.fmex28-1.fna&oh=00_AT-Ft_eOPx6upX07BjfMM1Wdh4xBg0HxWJQxVEJzFM5EHw&oe=631F82C5"
         });
 
         Productos.Add(new Producto
         {
             Id = 3,
-            Name = "Cheesecake",
-            Info = "Que onda papis delicioso Cheesecake con frambuesa a $40 la rebanadota",
+            Name = "Muñecos Tejidos",
+            Info = "Aló, andamos vendiendo muñecos tejidos, con el diseño que les guste. Si quieren encargar manden dm:):)",
             Precio = 40,
-            Url = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/299205838_5342416545806462_4458316384765062868_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=GUuSqXwS0xAAX-G4rV3&_nc_ht=scontent.fmex31-1.fna&oh=00_AT9AVOYlieYhxKshQ6WysML7PWANuAxMSE2FEC5jbzVGYA&oe=6308F832"
+            Url = "https://scontent.fmex28-1.fna.fbcdn.net/v/t39.30808-6/306076645_3652070031694446_7758624579404017598_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=NY5jUOaBJDsAX9fGWPo&_nc_ht=scontent.fmex28-1.fna&oh=00_AT-pW6-P5H3OyEW-a4-cZ9dihS-MBp9RUpHehZpcEaA-Mg&oe=631FB4CC"
         });
 
         Productos.Add(new Producto
         {
             Id = 4,
-            Name = "Disco Duro",
-            Info = "Vendo disco duro en quince pesos y una galleta\r\n:v/",
-            Precio = 15,
-            Url = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/300375836_363294596011775_8020817456898374639_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=l4F7hXhfMr4AX9P3Tw5&tn=vUJWUoujA9494jkx&_nc_ht=scontent.fmex31-1.fna&oh=00_AT9YtXcdAXb9DPft7bYYDnR1ReSLZMRb8xsQHCy12F9Fhg&oe=63092C7B"
+            Name = "Stickers para laptop",
+            Info = "Banda, volvieron los stickers y llaveros. Estuve algo ocupado y apenas me desocupó. Stickers 5cu 3*10.  Llaveros 50cu 3*120.",
+            Precio = 5,
+            Url = "https://scontent.fmex27-1.fna.fbcdn.net/v/t39.30808-6/305343495_10229529123671625_6068792446806830454_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=Z77UyFl5pb0AX-QvVqE&tn=vUJWUoujA9494jkx&_nc_ht=scontent.fmex27-1.fna&oh=00_AT8pean6fKNEAOxCU0ZFcWTLtZADiayG0yFh6Qir9U-dRg&oe=631F585F"
         });
 
         Productos.Add(new Producto
@@ -53,7 +53,7 @@ public partial class HomePage : ContentPage
             Name = "Pan de muerto",
             Info = "Holi bandaaa. Ya llegaron los panes de muerto rellenos.",
             Precio = 15,
-            Url = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/301112414_5240589622733875_5002197853494165997_n.jpg?stp=cp1_dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=BK4ppB8rGdMAX-LHOQu&_nc_ht=scontent.fmex31-1.fna&oh=00_AT_ACqoU7xT6XXPb193tsf3Zcb4wAHuskvhWyKQylFBn3w&oe=6309EB9B"
+            Url = "https://scontent.fmex27-1.fna.fbcdn.net/v/t39.30808-6/305450747_5280053232120847_7852904774655662240_n.jpg?stp=cp1_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=NfyVpxXNC8sAX8HMwyo&_nc_ht=scontent.fmex27-1.fna&oh=00_AT-4Bwf53ugAyEb8z9OaiXH3IDGPetah8trxAAm8HQYoXg&oe=631FA99B"
         });
 
         Productos.Add(new Producto
@@ -62,7 +62,7 @@ public partial class HomePage : ContentPage
             Name = "Llaveros",
             Info = "Voy a estar vendiendo estos lindos llaveros de madera con grabado.También se pueden personalizar.",
             Precio = 30,
-            Url = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/299935994_3249092988663752_2287381679253637715_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=xG5Ix5Ob-d4AX_VSaSo&_nc_ht=scontent.fmex31-1.fna&oh=00_AT-Dh-Ib-1YYYvXEph_2JAUNTjEH41BRw5ghhlzy_SsQAg&oe=63086F39"
+            Url = "https://scontent.fmex27-1.fna.fbcdn.net/v/t39.30808-6/305617076_607513471085927_6765187087115279827_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=nC-1IuPHO5MAX9AyL9K&_nc_ht=scontent.fmex27-1.fna&oh=00_AT8FV0loWQ8taf8Gu8Wqx1LHw5MyEXMDl_9-cvLP_gcyYg&oe=6320214E"
         });
 
         BindingContext = this;
