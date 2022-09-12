@@ -64,6 +64,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Desktop\PostgresDBFirst\PostgresDBFirst.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Cells\DetailsCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
