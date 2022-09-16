@@ -5,7 +5,7 @@
     <VerticalStackLayout>
         
         <Label Margin="10,10,0,0"
-               Text="{Binding Name}"
+               Text="{Binding Nombre}"
                FontAttributes="Bold"
                FontSize="20"/>
         
@@ -14,15 +14,18 @@
                FontSize="Micro"/>
 
         <Image Margin="5,5,5,0"
-               Source="{Binding Url}"
+               Source="{Binding Imagen}"
                MinimumHeightRequest="100"
                MaximumHeightRequest="200"
                Aspect="AspectFill"/>
 
         <Label Margin="10,10,0,0"
-               Text="{Binding Precio, StringFormat=$ {0}}"
+               Text="{Binding Precio, StringFormat=${0}.00}"
                VerticalOptions="End"
                FontSize="30"
                FontAttributes="Bold" />
+
+        <Label Margin="10,5,0,10"
+               Text="{Binding Descripcion}"/>
     </VerticalStackLayout>
 </ContentView>

@@ -21,19 +21,19 @@
                                 <StackLayout>
                                     <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*">
                                         <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                                           Source="{Binding Url}"
+                                           Source="{Binding Imagen}"
                                            Aspect="AspectFill"
                                            HeightRequest="110" />
 
                                         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                                            Margin="10,0,0,0"
-                                           Text="{Binding Name}"
+                                           Text="{Binding Nombre}"
                                            FontAttributes="Bold"
                                            FontSize="Body"/>
 
                                         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                                            Margin="10,0,0,0"
-                                           Text="{Binding Info}"
+                                           Text="{Binding Descripcion}"
                                            VerticalOptions="End" />
 
                                         <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"

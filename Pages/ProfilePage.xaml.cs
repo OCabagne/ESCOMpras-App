@@ -3,9 +3,6 @@ namespace test1.Pages;
 
 public partial class ProfilePage : ContentPage
 {
-    static string BaseUrl = "https://escompras-api.herokuapp.com";
-
-    public Usuario User { get; private set; }
     public Cliente Cliente { get; private set; }
     public ProfilePage()
     {

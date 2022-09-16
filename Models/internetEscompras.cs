@@ -1,5 +1,5 @@
-﻿using System.Net.Http.Json;
-using System.Text.Json;
+﻿using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace ESCOMpras.Models
 {
@@ -15,23 +15,17 @@ namespace ESCOMpras.Models
             };
         }
 
-        
         public static async Task<Cliente> GetCliente(int id)
         {
-            //string jsonString = await client.GetStringAsync($"/cliente/{id}");
-            Cliente resultado = await client.GetFromJsonAsync<Cliente>($"/cliente/{id}");
-            //var result = JsonConvert.DeserializeObject<List<Cliente>>(json);
-            //Cliente result = JsonSerializer.Deserialize<Cliente>(jsonString);
+            Cliente resultado = await client.GetFromJsonAsync<Cliente>($"cliente/{id}");
             return resultado;
         }
         
-        /*
-        public static async Task<IEnumerable<Producto>> GetProductos()
+        public static async Task<List<Producto>> GetProductos()
         {
-            var json = await client.GetStringAsync("productos");
-            var result = JsonConvert.DeserializeObject<IEnumerable<Producto>>(json);
-            return result;
+            string json = await client.GetStringAsync("/productos");
+            List<Producto> productos = JsonConvert.DeserializeObject<List<Producto>>(json);
+            return productos;
         }
-        */
     }
 }
