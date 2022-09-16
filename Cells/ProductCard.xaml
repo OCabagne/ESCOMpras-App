@@ -2,25 +2,25 @@
 <Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Cells.ProductCard"
-             xmlns:models="clr-namespace:test1.Models"
+             xmlns:models="clr-namespace:ESCOMpras.Models"
              x:DataType="models:Producto"
              Padding="3">
     
     <Frame CornerRadius="0">
         <StackLayout>
             <Image Grid.RowSpan="2"
-                   Source="{Binding Url}"
+                   Source="{Binding Imagen}"
                    Aspect="AspectFill"
                    HeightRequest="130" />
             
             <StackLayout VerticalOptions="Center">
                 <Label Padding="5"
-                       Text="{Binding Name}"
+                       Text="{Binding Nombre}"
                        FontAttributes="Bold"
                        FontSize="Body"/>
 
                 <Label Padding="3"
-                       Text="{Binding Info}"
+                       Text="{Binding Descripcion}"
                        VerticalOptions="End" />
             </StackLayout>
         </StackLayout>
