@@ -36,8 +36,21 @@ public partial class Comprar : ContentPage
         BindingContext = this;
     }
 
+    public Comprar(Producto producto)
+    {
+        InitializeComponent();
+
+        Pedido = new List<Producto>();
+        Pedido.Add(producto);
+        foreach (var item in Pedido)
+            total += item.Precio;
+
+        BindingContext = this;
+    }
+
     private async void FinalizarPedido_Clicked(object sender, EventArgs e)
     {
+        // internet ESCOMpras para añadir un pedido nuevo
         await Navigation.PushAsync(new PedidoFinalizado());
     }
 }

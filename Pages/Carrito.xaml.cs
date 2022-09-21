@@ -5,12 +5,13 @@ namespace test1.Pages;
 public partial class Carrito : ContentPage
 {
     public IList<Producto> CarritoCompras { get; private set; }
-    public int total = 0;
+    private Producto producto { get ; set; }
+    private int total;
     public Carrito()
 	{
 		InitializeComponent();
         CarritoCompras = new List<Producto>();
-
+        /*
         CarritoCompras.Add(new Producto
         {
             Idproducto = 4,
@@ -22,14 +23,20 @@ public partial class Carrito : ContentPage
 
         foreach (var item in CarritoCompras)
             total += item.Precio;
-
+        */
         BindingContext = this;
     }
 
-    public Carrito(Producto producto)
+    public Carrito(Producto _producto)
     {
         InitializeComponent();
-        CarritoCompras.Add(producto);
+        producto = new Producto();
+        producto = _producto;
+        CarritoCompras = new List<Producto>
+        {
+            producto
+        };
+        total = 0;
         foreach (var item in CarritoCompras)
             total += item.Precio;
 
@@ -38,6 +45,6 @@ public partial class Carrito : ContentPage
 
     private async void ComprarYa_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Comprar());
+        await Navigation.PushAsync(new Comprar(producto));
     }
 }

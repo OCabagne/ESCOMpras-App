@@ -4,12 +4,31 @@ namespace test1.Pages;
 public partial class HomePage : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
+    public Cliente Cliente { get; private set; }
 	public HomePage()
 	{
 		InitializeComponent();
 
         Productos = new List<Producto>();
-        obtenerProductos();
+        Cliente = new Cliente();
+
+        //LogIn("OCabagne@outlook.com", "1Contraseña");
+
+        obtenerProductos(1);
+        //obtenerProductos(Cliente.EscuelaIdescuela);
+    }
+
+    private async void LogIn(string correo, string password)    // temporal function. This is gonna be an independent page "LogIn"
+    {
+        try 
+        {
+            //cliente = await internetEscompras.LogIn(correo, password);
+            Cliente = await internetEscompras.GetCliente(38);
+        }
+        catch (Exception e)
+        {
+            await DisplayAlert("Login", "Some errors ocurred", "OK");
+        }
     }
 
     private void productosLocal()
@@ -70,9 +89,9 @@ public partial class HomePage : ContentPage
 
         BindingContext = this;
     }
-    private async void obtenerProductos()
+    private async void obtenerProductos(int schoolId)
     {
-        Productos = await internetEscompras.GetProductos();
+        Productos = await internetEscompras.GetProductos();    // id para ESCOM = 1
         
         foreach (var item in Productos)
         {
@@ -98,7 +117,8 @@ public partial class HomePage : ContentPage
 
     async void RefreshView_Refreshing(object sender, EventArgs e)
     {
-        await Task.Delay(3000);
+        obtenerProductos(1);
+        //obtenerProductos(Cliente.EscuelaIdescuela);
         RefreshView.IsRefreshing = false;
     }
 

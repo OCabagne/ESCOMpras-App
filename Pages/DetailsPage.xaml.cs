@@ -4,6 +4,7 @@ namespace test1.Pages;
 
 public partial class DetailsPage : ContentPage
 {
+    private Producto seleccion { get; set; }
 	public DetailsPage()
 	{
 		InitializeComponent();
@@ -12,13 +13,15 @@ public partial class DetailsPage : ContentPage
     public DetailsPage(Producto productoSeleccionado)
     {
         InitializeComponent();
-        this.BindingContext = productoSeleccionado;
+        seleccion = productoSeleccionado;
+
+        this.BindingContext = seleccion;
     }
 
     private async void addToCart_Clicked(object sender, EventArgs e)
     {
-        // UPDATE DATABASE TABLE 'carrito' WITH THE CURRENT PRODUCT IN DETAIL VIEW
-        await Navigation.PushAsync(new Carrito());
+        //await Navigation.PushAsync(new Carrito());
+        await Navigation.PushAsync(new Carrito(seleccion));
     }
 
     private async void buyNow_Clicked(object sender, EventArgs e)

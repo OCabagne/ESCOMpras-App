@@ -19,7 +19,7 @@
                         <ViewCell>
                             <Frame CornerRadius="0">
                                 <StackLayout>
-                                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*">
+                                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
                                         <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
                                            Source="{Binding Imagen}"
                                            Aspect="AspectFill"
@@ -51,6 +51,11 @@
                                                 </x:Array>
                                             </Picker.ItemsSource>
                                         </Picker>
+
+                                        <Label Text="{Binding Precio, StringFormat=${0}.00, Mode=TwoWay}" Grid.Column="0" Grid.Row="3"
+                                               Margin="0,20,0,0"
+                                               FontAttributes="Bold" 
+                                               FontSize="20"/>
                                     </Grid>
                                 </StackLayout>
                             </Frame>
@@ -59,16 +64,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-
         <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
-
-            <Label Text="Total = $15.00" Grid.Column="0" Grid.Row="0" 
-                   FontAttributes="Bold" 
-                   FontSize="20"/>
-
-            <Label Text="{Binding total, Mode=OneWay}" Grid.Column="1" Grid.Row="0" 
-                   FontAttributes="Bold" 
-                   FontSize="20"/>
 
             <Label Text="Punto de entrega:" Grid.Row="1" 
                    FontAttributes="Bold" 
