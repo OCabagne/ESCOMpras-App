@@ -35,6 +35,7 @@ namespace ESCOMpras.Models
 
                     Barrel.Current.Add(key, json, TimeSpan.FromMinutes(mins));
                 }
+
                 return JsonConvert.DeserializeObject<T>(json);
             }
             catch (Exception ex)
@@ -59,14 +60,27 @@ namespace ESCOMpras.Models
         }
 
         public static Task<Cliente> LogIn(string correo, string password) =>
-            GetTAsync<Cliente>($"Login/{correo}/{password}","Login");
+            GetTAsync<Cliente>($"Login/{correo}/{password}", "Login");
 
         public static Task<Cliente> GetCliente(int id) =>
-            GetTAsync<Cliente>($"/cliente/{id}", "GetCliente");
+            GetTAsync<Cliente>($"/cliente/{id}", "GetCliente", 5);
 
         public static Task<List<Producto>> GetProductos() =>
-            GetTAsync<List<Producto>>("/productos", "GetProductos");
+            GetTAsync<List<Producto>>("/productos", "GetProductos", 5);
 
+        public static Task<Producto> GetProducto(int idProducto) =>
+            GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto");
+
+        /*
+        public static Task<List<Orden>> GetOrdenes(int idCliente) =>
+            GetTAsync<List<Orden>>($"/verOrdenes/{idCliente}", "GetPedidos");
+        */
+        public static Task<List<Orden>> GetOrdenes(int idCliente) =>
+            GetTAsync<List<Orden>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos");
+
+        public static Task<Compra> GetCompra(int idPedido) =>
+            GetTAsync<Compra>($"/verCompras/{idPedido}","GetCompras");
+            
         /*
         public static async Task<Cliente> LogIn(string correo, string password)
         {

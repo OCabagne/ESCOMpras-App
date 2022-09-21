@@ -4,7 +4,7 @@
              x:Class="test1.Pages.PedidosAnteriores"
              Title="Mis Pedidos"
              xmlns:pages="clr-namespace:test1.Pages"
-             xmlns:Cells="clr-namespace:test1.Cells">
+             xmlns:Cells="clr-namespace:ESCOMpras.Cells">
 
     <ScrollView BackgroundColor="GhostWhite">
         <VerticalStackLayout>
@@ -23,7 +23,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Cells:ProductCard/>
+                                <Cells:ResumeCard/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -42,7 +42,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Cells:ProductCard/>
+                                <Cells:ResumeCard/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

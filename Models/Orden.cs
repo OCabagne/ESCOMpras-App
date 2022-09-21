@@ -9,7 +9,7 @@ namespace ESCOMpras.Models
         }
 
         public int Idorden { get; set; }
-        public DateOnly Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public int Montototal { get; set; }
         public int ClienteIdcliente { get; set; }
         public int EscuelaIdescuela { get; set; }
@@ -19,5 +19,6 @@ namespace ESCOMpras.Models
         public virtual Escuela EscuelaIdescuelaNavigation { get; set; } = null!;
         public virtual Tiendum TiendaIdtiendaNavigation { get; set; } = null!;
         public virtual ICollection<Compra> Compras { get; set; }
+
     }
 }

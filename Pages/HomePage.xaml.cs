@@ -95,7 +95,8 @@ public partial class HomePage : ContentPage
         
         foreach (var item in Productos)
         {
-            item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
+            //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
+            item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
         }
         
         BindingContext = this;

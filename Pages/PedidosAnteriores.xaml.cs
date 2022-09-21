@@ -6,12 +6,44 @@ public partial class PedidosAnteriores : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
     public IList<Producto> Pendientes { get; private set; }
+    private IList<Orden> Ordenes { get; set; }
+    private IList<Compra> Compras { get; set; }
+    private int idCliente = 38;
     public PedidosAnteriores()
 	{
 		InitializeComponent();
 
         Productos = new List<Producto>();
+        //getProductosLocal();
+        getProductos(idCliente);
 
+    }
+
+    private async void getProductos(int idCliente)
+    { 
+        Ordenes = new List<Orden>();
+        Compras = new List<Compra>();
+
+        Ordenes = await internetEscompras.GetOrdenes(idCliente);
+        foreach (var orden in Ordenes)
+        {
+            Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+
+			Compras.Add(obj);
+        }
+
+        foreach (var compra in Compras)
+        {
+            Producto obj = await internetEscompras.GetProducto(compra.ProductoIdproducto);
+            obj.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+			Productos.Add(obj);
+        }
+
+        BindingContext = this;
+    }
+
+    private void getProductosLocal()
+    {
         Productos.Add(new Producto
         {
             Idproducto = 2,
