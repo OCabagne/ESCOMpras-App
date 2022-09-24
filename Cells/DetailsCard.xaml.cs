@@ -1,4 +1,4 @@
-namespace test1.Cells;
+namespace ESCOMpras.Cells;
 
 public partial class DetailsCard : ContentView
 {

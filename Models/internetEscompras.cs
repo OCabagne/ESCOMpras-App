@@ -79,8 +79,17 @@ namespace ESCOMpras.Models
             GetTAsync<List<Orden>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos");
 
         public static Task<Compra> GetCompra(int idPedido) =>
-            GetTAsync<Compra>($"/verCompras/{idPedido}","GetCompras");
-            
+            GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras");
+
+
+        public static Task<string> GetNombreEscuela(int idEscuela) =>
+            GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela");
+        public static Task<string> GetNombreCliente(int idCliente) =>
+            GetTAsync<string>($"/clienteNombre/{idCliente}", "GetNombreCliente");
+
+        public static Task<string> GetNombreTienda(int idTienda) =>
+            GetTAsync<string>($"/tiendaNombre/{idTienda}", "GetNombreTienda");
+
         /*
         public static async Task<Cliente> LogIn(string correo, string password)
         {

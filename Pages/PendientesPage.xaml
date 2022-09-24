@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESCOMpras.Pages.PendientesPage"
+             xmlns:Cells="clr-namespace:ESCOMpras.Cells"
+             Title="PendientesPage">
+    <VerticalStackLayout>
+        <StackLayout Margin="0,0,0,0">
+            <!--<Cells:DetailsCard/>-->
+            <VerticalStackLayout>
+
+                <Label Margin="10,10,0,0"
+                       Text="{Binding producto.Nombre}"
+                       FontAttributes="Bold"
+                       FontSize="20"/>
+
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Margin="10,5,10,5">
+                    <Label Grid.Column="0" Grid.Row="0"
+                           Text="{Binding nombreTienda, StringFormat=Vendedor: {0}}"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="0"
+                           Text="{Binding Idorden, StringFormat= No.Orden: {0}}"
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="0" Grid.Row="1"
+                           Text="{Binding nombreEscuela, StringFormat= Escuela: {0}}"
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="1"
+                           Text="{Binding Fecha, StringFormat= Fecha: {0}}"
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="2"
+                           Text="{Binding nombreCliente, StringFormat= Cliente: {0}}"
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+                </Grid>
+
+                <Image Margin="5,5,5,0"
+                       Source="{Binding producto.Imagen}"
+                       MinimumHeightRequest="100"
+                       MaximumHeightRequest="200"
+                       Aspect="AspectFill"/>
+
+                <Grid ColumnDefinitions="*,*,*" Margin="10,15,0,10">
+                    <Label Grid.Column="0"
+                           Text="{Binding producto.Precio, StringFormat=Precio: ${0}.00}" />
+
+                    <Label Grid.Column="1"
+                           Text="{Binding Cantidad, StringFormat=Cantidad: {0}}"/>
+
+                    <!--
+                    <Label Grid.Column="2"
+                           Text="{Binding Montototal, StringFormat=Total: ${0}.00}"/>
+                    -->
+
+                    <Label Grid.Column="2"
+                           Text="Total: $5.00"/>
+                </Grid>
+            </VerticalStackLayout>
+        </StackLayout>
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*">
+            <Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="DarkRed" Text="Reportar Problema" x:Name="reportarProblema" Clicked="reportarProblema_Clicked"></Button>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

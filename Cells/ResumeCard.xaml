@@ -6,19 +6,19 @@
         <StackLayout>
             <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
                 <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                                           Source="{Binding Imagen}"
+                                           Source="{Binding producto.Imagen}"
                                            Aspect="AspectFill"
                                            HeightRequest="110" />
 
                 <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                                            Margin="10,0,0,0"
-                                           Text="{Binding Nombre}"
+                                           Text="{Binding producto.Nombre}"
                                            FontAttributes="Bold"
                                            FontSize="Body"/>
 
                 <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                                            Margin="10,0,0,0"
-                                           Text="{Binding Descripcion}"
+                                           Text="{Binding producto.Descripcion}"
                                            VerticalOptions="End" />
 
                 <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
@@ -33,7 +33,7 @@
                        Margin="0,0,25,0"/>
 
 
-                <Label Text="{Binding Precio, StringFormat=${0}.00, Mode=TwoWay}" Grid.Column="0" Grid.Row="3"
+                <Label Text="{Binding producto.Precio, StringFormat=${0}.00, Mode=TwoWay}" Grid.Column="0" Grid.Row="3"
                                                Margin="0,20,0,0"
                                                FontAttributes="Bold" 
                                                FontSize="20"/>
