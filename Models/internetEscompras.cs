@@ -84,11 +84,12 @@ namespace ESCOMpras.Models
         public static Task<Compra> GetCompra(int idPedido) =>
             GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras");
 
-
+        public static Task<List<Escuela>> getEscuelas() =>
+            GetTAsync<List<Escuela>>("/escuelas","GetEscuelas");
         public static Task<string> GetNombreEscuela(int idEscuela) =>
-            GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela");
+            GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela", 0, true);
         public static Task<string> GetNombreCliente(int idCliente) =>
-            GetTAsync<string>($"/clienteNombre/{idCliente}", "GetNombreCliente");
+            GetTAsync<string>($"/clienteNombre/{idCliente}", "GetNombreCliente", 5, true);
 
         public static Task<string> GetNombreTienda(int idTienda) =>
             GetTAsync<string>($"/tiendaNombre/{idTienda}", "GetNombreTienda");
