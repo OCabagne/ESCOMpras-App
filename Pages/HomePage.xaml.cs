@@ -1,18 +1,17 @@
 using ESCOMpras.Models;
+using ESCOMpras.Pages;
+
 namespace test1.Pages;
 
 public partial class HomePage : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
-    public Cliente Cliente { get; private set; }
 	public HomePage()
 	{
 		InitializeComponent();
 
         Productos = new List<Producto>();
-        Cliente = new Cliente();
-
-        //LogIn("OCabagne@outlook.com", "1Contraseña");
+        LogIn("OCabagne@outlook.com", "1Contraseña");
 
         obtenerProductos(1);
         //obtenerProductos(Cliente.EscuelaIdescuela);
@@ -20,14 +19,18 @@ public partial class HomePage : ContentPage
 
     private async void LogIn(string correo, string password)    // temporal function. This is gonna be an independent page "LogIn"
     {
-        try 
+        await SecureStorage.Default.SetAsync("Logged", "False");
+
+        string logged = await SecureStorage.Default.GetAsync("Logged");
+
+        if (logged.Equals("False"))
         {
-            //cliente = await internetEscompras.LogIn(correo, password);
-            Cliente = await internetEscompras.GetCliente(38);
+            await Navigation.PushAsync(new LogIn());
+            //await DisplayAlert("Login", "El usuario no ha iniciado sesión :(", "Ok");
         }
-        catch (Exception e)
+        else if(logged.Equals("True"))
         {
-            await DisplayAlert("Login", "Some errors ocurred", "OK");
+            await DisplayAlert("Bienvenido", "El usuario ha iniciado sesión :D", "Ok");
         }
     }
 

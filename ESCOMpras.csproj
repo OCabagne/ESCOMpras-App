@@ -102,6 +102,9 @@
 	  <MauiXaml Update="Pages\Info.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\LogIn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PedidoFinalizado.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

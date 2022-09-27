@@ -1,4 +1,5 @@
-﻿using test1.Pages;
+﻿using ESCOMpras.Pages;
+using test1.Pages;
 
 namespace test1;
 
@@ -21,6 +22,7 @@ public static class MauiProgram
         Routing.RegisterRoute("Informacion", typeof(Info));
 		Routing.RegisterRoute("Detalles", typeof(DetailsPage));
         Routing.RegisterRoute("Carrito", typeof(Carrito));
+		Routing.RegisterRoute("Login", typeof(LogIn));
 
         return builder.Build();
 	}
