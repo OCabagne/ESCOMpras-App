@@ -63,10 +63,13 @@ namespace ESCOMpras.Models
             GetTAsync<Cliente>($"Login/{correo}/{password}", "Login");
 
         public static Task<Cliente> GetCliente(int id) =>
-            GetTAsync<Cliente>($"/cliente/{id}", "GetCliente", 5);
+            GetTAsync<Cliente>($"/cliente/{id}", "GetCliente", 0, true);
 
         public static Task<List<Producto>> GetProductos() =>
             GetTAsync<List<Producto>>("/productos", "GetProductos", 5);
+
+        public static Task<List<Producto>> RefreshProductos() =>
+            GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
 
         public static Task<Producto> GetProducto(int idProducto) =>
             GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto");
@@ -90,36 +93,18 @@ namespace ESCOMpras.Models
         public static Task<string> GetNombreTienda(int idTienda) =>
             GetTAsync<string>($"/tiendaNombre/{idTienda}", "GetNombreTienda");
 
-        /*
-        public static async Task<Cliente> LogIn(string correo, string password)
+        public async static void UpdateCliente(ClienteVM cliente)
         {
-            try
+            var json = JsonConvert.SerializeObject(cliente);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync("/clienteActualizar/38", content);
+
+            if(!response.IsSuccessStatusCode)
             {
-                Cliente usuario = await client.GetFromJsonAsync<Cliente>($"Login/{correo}/{password}");
-                return usuario;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return null;
+                Console.WriteLine(">: ERROR");
             }
         }
-        */
-        /*
-        public static async Task<Cliente> GetCliente(int id)
-        {
-            try
-            {
-                Cliente resultado = await client.GetFromJsonAsync<Cliente>($"cliente/{id}");
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return null;
-            }
-        }
-        */
+
         /*
         public static async Task<List<Producto>> GetProductos(int id)
         {

@@ -2,8 +2,120 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.Info"
-             Title="Favoritos">
-    <VerticalStackLayout>
-        <Label Text="Información" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="25" FontAttributes="Bold"/>
-    </VerticalStackLayout>
+             Title="Mi Información">
+    <ScrollView>
+        <StackLayout>
+            <Image Source="{Binding Url}"/>
+            <Grid ColumnDefinitions="*,*">
+                <Label Grid.Column="0" Margin="30,-45,0,0"
+                       HorizontalOptions="End"
+                       Text="Calificación: "
+                       TextColor="SteelBlue"
+                       FontSize="30"
+                       FontAttributes="Bold"/>
+
+                <Label Grid.Column="1" Margin="30,-45,0,0"
+                       Text="{Binding Calificacion, StringFormat= +{0}/5}"
+                       TextColor="SteelBlue"
+                       FontSize="30"
+                       FontAttributes="Bold"/>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*" Margin="30,10,0,20">
+                <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Nombre: "
+                   FontSize="Body"
+                   FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="0" HorizontalOptions="Start"
+                   x:Name="Nombre" 
+                   Text="{Binding Nombre}" 
+                   Placeholder="Nombre(s)"
+                   FontSize="Body"
+                   FontAttributes="Italic"
+                   ClearButtonVisibility="WhileEditing" 
+                   Keyboard="Plain"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Apellidos: "
+                   FontSize="Body"
+                   FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
+                   x:Name="Apellido" 
+                   Text="{Binding Apellidos}" 
+                   Placeholder="Apellidos"
+                   FontSize="Body"
+                   FontAttributes="Italic"
+                   ClearButtonVisibility="WhileEditing" 
+                   Keyboard="Plain"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Correo: "
+                   FontSize="Body"
+                   FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
+                   x:Name="Correo" 
+                   Text="{Binding Correo}" 
+                   Placeholder="Correo@ejemplo.com"
+                   FontSize="Small"
+                   FontAttributes="Italic"
+                   ClearButtonVisibility="WhileEditing" 
+                   Keyboard="Email"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Contraseña: "
+                   FontSize="Body"
+                   FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                   x:Name="Password"
+                   Placeholder="Contraseña"
+                   FontSize="Small"
+                   FontAttributes="Italic"
+                   ClearButtonVisibility="WhileEditing" 
+                   Keyboard="Plain"
+                   IsPassword="True"/>
+
+                <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Confirmar Contraseña: "
+                   FontSize="Small"
+                   FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                   x:Name="ConfirmPassword" 
+                   Placeholder="Confirmar Contraseña"
+                   FontSize="Small"
+                   FontAttributes="Italic"
+                   ClearButtonVisibility="WhileEditing" 
+                   Keyboard="Plain"
+                   IsPassword="True"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
+                   HorizontalOptions="End"
+                   Text="Cliente ID: "
+                   FontSize="Body"
+                   FontAttributes="Bold"/>
+
+                <Label Grid.Column="1" Grid.Row="5" Margin="0,10,30,0"
+                       HorizontalOptions="Start"
+                       Text="{Binding Idcliente}"
+                       FontSize="Body"
+                       FontAttributes="Italic"/>
+
+                <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"
+                        Margin="60,20,60,0"
+                        Text="Guardar Cambios"
+                        x:Name="SaveChanges"
+                        Clicked="SaveChanges_Clicked"
+                        BackgroundColor="SteelBlue"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

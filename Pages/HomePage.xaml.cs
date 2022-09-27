@@ -102,6 +102,19 @@ public partial class HomePage : ContentPage
         BindingContext = this;
     }
 
+    private async void refreshProductos(int schoolId, bool refresh)
+    {
+        Productos = await internetEscompras.RefreshProductos();    // id para ESCOM = 1
+
+        foreach (var item in Productos)
+        {
+            //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
+            item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+        }
+
+        BindingContext = this;
+    }
+
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         Producto selectedItem = e.SelectedItem as Producto;
@@ -116,9 +129,9 @@ public partial class HomePage : ContentPage
         }
     }
 
-    async void RefreshView_Refreshing(object sender, EventArgs e)
+    void RefreshView_Refreshing(object sender, EventArgs e)
     {
-        obtenerProductos(1);
+        refreshProductos(1, true);
         //obtenerProductos(Cliente.EscuelaIdescuela);
         RefreshView.IsRefreshing = false;
     }

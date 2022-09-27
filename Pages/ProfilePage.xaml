@@ -11,7 +11,7 @@
                 <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NombreUsuario" Text="{Binding Nombre, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="45,0,0,0" HorizontalOptions="Start"/>
                 <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" x:Name="ApellidoUsuario" Text="{Binding Apellidos, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="30,0,0,0" HorizontalOptions="Start"/>
                 <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Escuela: " FontSize="15" FontAttributes="Bold" Padding="20,10,0,0"/>
-                <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="{Binding EscuelaIdescuela, Mode=OneWay}" FontSize="15" Margin="0,1,0,10" HorizontalOptions="CenterAndExpand">
+                <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="{Binding nombreEscuela, Mode=OneWay}" FontSize="15" Margin="0,1,0,10" HorizontalOptions="CenterAndExpand">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>ESCOM</x:String>
