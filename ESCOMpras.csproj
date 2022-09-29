@@ -69,6 +69,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update=".xaml.cs">
+	    <DependentUpon>.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Cells\DetailsCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,4 +1,5 @@
 using ESCOMpras.Models;
+using ESCOMpras.Pages;
 
 namespace test1.Pages;
 
@@ -33,7 +34,7 @@ public partial class Info : ContentPage
         selectEscuela.ItemsSource = escuelasList;
     }
 
-    private void SaveChanges_Clicked(object sender, EventArgs e)
+    private async void SaveChanges_Clicked(object sender, EventArgs e)
     {
         bool flag;
         try
@@ -52,7 +53,7 @@ public partial class Info : ContentPage
                 else
                 {
                     flag = false;
-                    DisplayAlert("", "Las contraseñas no coinciden.", "Ok");
+                    await DisplayAlert("", "Las contraseñas no coinciden.", "Ok");
                 }
             }
             if (!selectEscuela.SelectedItem.Equals(Cliente.nombreEscuela))
@@ -63,14 +64,15 @@ public partial class Info : ContentPage
             if (flag)
             {
                 internetEscompras.UpdateCliente(Cliente);
-                DisplayAlert("", "Datos actualizados correctamente.", "Ok");
-                this.Navigation.PopAsync();
+                await SecureStorage.Default.SetAsync("idEscuela", Cliente.EscuelaIdescuela.ToString());
+                await DisplayAlert("", "Datos actualizados correctamente.", "Ok");
+
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            DisplayAlert("Error", ex.Message, "Ok");
+            await DisplayAlert("Error", ex.Message, "Ok");
         }
     }
 }

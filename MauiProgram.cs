@@ -23,6 +23,7 @@ public static class MauiProgram
 		Routing.RegisterRoute("Detalles", typeof(DetailsPage));
         Routing.RegisterRoute("Carrito", typeof(Carrito));
 		Routing.RegisterRoute("Login", typeof(LogIn));
+		Routing.RegisterRoute("Home", typeof(HomePage));
 
         return builder.Build();
 	}

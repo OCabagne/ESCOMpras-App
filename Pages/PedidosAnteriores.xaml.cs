@@ -10,7 +10,7 @@ public partial class PedidosAnteriores : ContentPage
     private IList<Orden> Ordenes { get; set; }
     //private IList<Compra> Compras { get; set; }
 
-    private int idCliente = 38;
+    private int idCliente;
     public PedidosAnteriores()
     {
         InitializeComponent();
@@ -21,47 +21,37 @@ public partial class PedidosAnteriores : ContentPage
 
     private async void getProductos(int idCliente)
     {
+        sinPedidos.IsVisible = false;
         Ordenes = new List<Orden>();
 
+        idCliente = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente"));
         Ordenes = await internetEscompras.GetOrdenes(idCliente);
-        Productos = new List<Producto>();
 
-        /*
-        Productos = new List<Producto>();
-        Compras = new List<Compra>();
-        foreach (var orden in Ordenes)
+        if (Ordenes.Count != 0)
         {
-            Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+            Productos = new List<Producto>();
+            PedidosPendientes = new List<PedidoPendiente>();
+            PedidoPendiente item;
 
-            Compras.Add(obj);
+            foreach (var orden in Ordenes)
+            {
+                Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+                //Compras.Add(obj);
+
+                Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
+                obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                Productos.Add(obj2);
+
+                item = new PedidoPendiente(obj.ProductoIdproducto, idCliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal);
+                PedidosPendientes.Add(item);
+            }
+
+            BindingContext = this;
         }
-
-        foreach (var compra in Compras)
+        else
         {
-            Producto obj = await internetEscompras.GetProducto(compra.ProductoIdproducto);
-            obj.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
-            Productos.Add(obj);
+            sinPedidos.IsVisible = true;
         }
-
-        */
-
-        PedidosPendientes = new List<PedidoPendiente>();
-        PedidoPendiente item;
-
-        foreach (var orden in Ordenes)
-        {
-            Compra obj = await internetEscompras.GetCompra(orden.Idorden);
-            //Compras.Add(obj);
-
-            Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
-            obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
-            Productos.Add(obj2);
-
-            item = new PedidoPendiente(obj.ProductoIdproducto, idCliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal);
-            PedidosPendientes.Add(item);
-        }
-
-        BindingContext = this;
     }
 
     private void getProductosLocal()

@@ -1,5 +1,7 @@
 ﻿using MonkeyCache.FileStore;
 namespace test1;
+using ESCOMpras.Pages;
+using test1.Pages;
 
 public partial class App : Application
 {
@@ -7,6 +9,5 @@ public partial class App : Application
 	{
 		InitializeComponent();
 		Barrel.ApplicationId = AppInfo.PackageName;
-		//MainPage = new AppShell();
 	}
 }

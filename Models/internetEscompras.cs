@@ -60,7 +60,10 @@ namespace ESCOMpras.Models
         }
 
         public static Task<Cliente> LogIn(string correo, string password) =>
-            GetTAsync<Cliente>($"Login/{correo}/{password}", "Login");
+            GetTAsync<Cliente>($"Login/{correo}/{password}", "Login", 0, true);
+
+        public static Task<Tiendum> LogInTienda(string correo, string password) =>
+            GetTAsync<Tiendum>($"LoginTienda/{correo}/{password}", "Login", 0, true);
 
         public static Task<Cliente> GetCliente(int id) =>
             GetTAsync<Cliente>($"/cliente/{id}", "GetCliente", 0, true);
@@ -106,10 +109,8 @@ namespace ESCOMpras.Models
             }
         }
 
-        /*
         public static async Task<List<Producto>> GetProductos(int id)
         {
-
             try
             {
                 List<Producto> obtenidos = new List<Producto>();
@@ -137,6 +138,5 @@ namespace ESCOMpras.Models
                 return null;
             }
         }
-        */
     }
 }

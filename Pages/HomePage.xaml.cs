@@ -6,31 +6,44 @@ namespace test1.Pages;
 public partial class HomePage : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
+    private int idEscuela;
+
 	public HomePage()
 	{
-		InitializeComponent();
-
         Productos = new List<Producto>();
-        LogIn("OCabagne@outlook.com", "1Contraseña");
-
-        obtenerProductos(1);
-        //obtenerProductos(Cliente.EscuelaIdescuela);
+        LogIn();
+        InitializeComponent();
     }
 
-    private async void LogIn(string correo, string password)    // temporal function. This is gonna be an independent page "LogIn"
+    private async Task<bool> loadData()
     {
-        await SecureStorage.Default.SetAsync("Logged", "False");
+        idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
+        nombreEscuela.Text = await internetEscompras.GetNombreEscuela(idEscuela);
+        return true;
+    }
+    private async void LogIn()
+    {
+        //await SecureStorage.Default.SetAsync("Logged", "False");    // temporal instruction for dev 
 
         string logged = await SecureStorage.Default.GetAsync("Logged");
+        if (logged == null || logged.Equals("False"))
+        {
+            await SecureStorage.Default.SetAsync("Logged", "False");
+            await SecureStorage.Default.SetAsync("idEscuela", "1");
+            await SecureStorage.Default.SetAsync("idCliente", "0");
+            await SecureStorage.Default.SetAsync("tipo", "Cliente");
+        }
 
         if (logged.Equals("False"))
         {
             await Navigation.PushAsync(new LogIn());
-            //await DisplayAlert("Login", "El usuario no ha iniciado sesión :(", "Ok");
+            await loadData();
+            obtenerProductos();
         }
         else if(logged.Equals("True"))
         {
-            await DisplayAlert("Bienvenido", "El usuario ha iniciado sesión :D", "Ok");
+            await loadData();
+            obtenerProductos();
         }
     }
 
@@ -92,7 +105,7 @@ public partial class HomePage : ContentPage
 
         BindingContext = this;
     }
-    private async void obtenerProductos(int schoolId)
+    private async void obtenerProductos()
     {
         Productos = await internetEscompras.GetProductos();    // id para ESCOM = 1
         
@@ -107,7 +120,8 @@ public partial class HomePage : ContentPage
 
     private async void refreshProductos(int schoolId, bool refresh)
     {
-        Productos = await internetEscompras.RefreshProductos();    // id para ESCOM = 1
+        //Productos = await internetEscompras.RefreshProductos();    // id para ESCOM = 1
+        Productos = await internetEscompras.GetProductos();
 
         foreach (var item in Productos)
         {
@@ -135,7 +149,8 @@ public partial class HomePage : ContentPage
     void RefreshView_Refreshing(object sender, EventArgs e)
     {
         refreshProductos(1, true);
-        //obtenerProductos(Cliente.EscuelaIdescuela);
+        //obtenerProductos(idEscuela);
+        loadData();
         RefreshView.IsRefreshing = false;
     }
 

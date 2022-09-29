@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESCOMpras.Pages.LogIn"
              Shell.NavBarIsVisible="False"
-             Title="LogIn">
+             Title="LogIn"
+             NavigationPage.HasBackButton="False">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+    
     <VerticalStackLayout>
         <Label Text="Iniciar Sesión" 
                Margin="0,30,0,0"

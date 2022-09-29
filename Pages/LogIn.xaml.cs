@@ -1,5 +1,5 @@
 using ESCOMpras.Models;
-
+using test1.Pages;
 namespace ESCOMpras.Pages;
 
 public partial class LogIn : ContentPage
@@ -13,20 +13,45 @@ public partial class LogIn : ContentPage
     {
         try
         {
+            //Correo.Text = "OCabagne@outlook.com";
+            //Password.Text = "1Contraseña";
+
             string correo = Correo.Text;
             string password = Password.Text;
             Cliente cliente = await internetEscompras.LogIn(correo, password);
-            //Cliente cliente = await internetEscompras.GetCliente(38);
+
             if (cliente != null)
             {
                 await DisplayAlert("Bienvenido!", $"Bienvenido a ESCOMpras {cliente.Nombre}!", "Iniciemos!");
+
                 await SecureStorage.Default.SetAsync("Logged", "True");
-                await this.Navigation.PopAsync();
+                await SecureStorage.Default.SetAsync("idEscuela", cliente.EscuelaIdescuela.ToString());
+                await SecureStorage.Default.SetAsync("idCliente", cliente.Idcliente.ToString());
+                await SecureStorage.Default.SetAsync("tipo", "Cliente");
+
+                await Navigation.PopAsync();
+                //await Navigation.PushModalAsync(new HomePage());
+            }
+            else
+            {
+                Tiendum tienda = await internetEscompras.LogInTienda(correo, password);
+                
+                if(tienda != null)
+                {
+                    await DisplayAlert("Vendedor!", $"Bienvenido a ESCOMpras {cliente.Nombre}!", "Iniciemos!");
+
+                    await SecureStorage.Default.SetAsync("Logged", "True");
+                    await SecureStorage.Default.SetAsync("idCliente", tienda.Idtienda.ToString());
+                    await SecureStorage.Default.SetAsync("tipo", "Tienda");
+
+                    await Navigation.PopAsync();
+                    //await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                }
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("", "Correo o contraseña incorrectos.", "OK");
+            await DisplayAlert("", ex.Message, "OK");
         }
     }
 }
