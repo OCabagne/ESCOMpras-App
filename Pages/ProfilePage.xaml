@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.ProfilePage"
+             Shell.BackgroundColor="SteelBlue"
              Title="ProfilePage"
              Shell.NavBarIsVisible="False">
     <RefreshView x:Name="refreshView"
@@ -16,13 +17,11 @@
                         <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" x:Name="ApellidoUsuario" Text="{Binding Apellidos, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="30,0,0,0" HorizontalOptions="Start"/>
                         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Escuela: " FontSize="15" FontAttributes="Bold" Padding="20,10,0,0"/>
                         <Label Grid.Row="1" Grid.Column="3" x:Name="EscuelaNombre" Text="{Binding nombreEscuela}" FontSize="15" Margin="0,10,0,20" HorizontalOptions="Start"/>
-                        
-                        
-                        
+
                         <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" BackgroundColor="Grey" Text="Modo Oscuro"></Button>
-                        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Favoritos" x:Name="FavoritosBtn" Clicked="FavoritosBtn_Clicked" BackgroundColor="#05629b"></Button>
-                        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Mis Pedidos" x:Name="AnterioresBtn" Clicked="AnterioresBtn_Clicked" BackgroundColor="#05629b"></Button>
-                        <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Información" x:Name="Informacion" Clicked="Informacion_Clicked" BackgroundColor="#05629b"></Button>
+                        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Mis Pedidos" x:Name="AnterioresBtn" Clicked="AnterioresBtn_Clicked" BackgroundColor="#05629b"></Button>
+                        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Información" x:Name="Informacion" Clicked="Informacion_Clicked" BackgroundColor="#05629b"></Button>
+                        <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" Text="Cerrar Sesión" x:Name="logOut" Clicked="logOut_Clicked" BackgroundColor="DarkRed"></Button>
                     </Grid>
                 </Frame>
             </StackLayout>

@@ -5,52 +5,63 @@ namespace test1.Pages;
 public partial class Comprar : ContentPage
 {
     public IList<Producto> Pedido { get; private set; }
-    public int total = 0;
-    public Comprar()
-	{
-		InitializeComponent();
-
-        Pedido = new List<Producto>();
-
-        Pedido.Add(new Producto
-        {
-            Idproducto = 4,
-            Nombre = "Disco Duro",
-            Descripcion = "Vendo disco duro en quince pesos y una galleta\r\n:v/",
-            Precio = 15,
-            Imagen = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/300375836_363294596011775_8020817456898374639_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=l4F7hXhfMr4AX9P3Tw5&tn=vUJWUoujA9494jkx&_nc_ht=scontent.fmex31-1.fna&oh=00_AT9YtXcdAXb9DPft7bYYDnR1ReSLZMRb8xsQHCy12F9Fhg&oe=63092C7B"
-        });
-
-        Pedido.Add(new Producto
-        {
-            Idproducto = 2,
-            Nombre = "Cubrebocas ESCOM",
-            Descripcion = "Sale bandicta, volvieron los cubrebocas perrones. Tiren facha por solo $35, voy a dónde estén.",
-            Precio = 35,
-            Imagen = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/300965950_5297062457054189_9210136749168468353_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=O1ktXAeL30QAX89cvI5&_nc_ht=scontent.fmex31-1.fna&oh=00_AT_gMIXo8uOWOHC486CFFmdVPE01y8QDKNe90zMaw33n8g&oe=6308F91E"
-        });
-
-        foreach (var item in Pedido)
-            total += item.Precio;
-
-        BindingContext = this;
-    }
-
+    //public IList<PedidoVM> PedidoVM { get; private set; }
+    public PedidoVM PedidoVM { get; private set; }
+    private int idEscuela;
     public Comprar(Producto producto)
     {
         InitializeComponent();
 
         Pedido = new List<Producto>();
         Pedido.Add(producto);
-        foreach (var item in Pedido)
-            total += item.Precio;
-
         BindingContext = this;
+    }
+
+    public Comprar(PedidoVM producto)
+    {
+        InitializeComponent();
+
+        //PedidoVM = new List<PedidoVM>();
+        //PedidoVM.Add(producto);
+        PedidoVM = producto;
+        loadData();
+        BindingContext = PedidoVM;
+    }
+    private async void loadData()
+    {
+        idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
+        nombreEscuela.Text = await internetEscompras.GetNombreEscuela(idEscuela);
     }
 
     private async void FinalizarPedido_Clicked(object sender, EventArgs e)
     {
         // internet ESCOMpras para añadir un pedido nuevo
-        await Navigation.PushAsync(new PedidoFinalizado());
+        Orden orden = new Orden
+        {
+            Fecha = DateTime.Now,
+            Montototal = PedidoVM.Total,
+            ClienteIdcliente = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente")),
+            EscuelaIdescuela = idEscuela,
+            TiendaIdtienda = PedidoVM.idTienda
+        };
+
+        int idOrden = internetEscompras.NuevaOrden(orden);  // revisar
+        if (idOrden == 0)
+        {
+            await DisplayAlert("", "Ha ocurrido un error.", "Ok");
+        }
+        else
+        {
+            Compra compra = new Compra
+            {
+                Cantidad = PedidoVM.Cantidad,
+                Detalles = null,
+                ProductoIdproducto = PedidoVM.idProducto,
+                OrdenIdorden = idOrden
+            };
+
+            await internetEscompras.NuevaCompra(compra);
+            await Navigation.PushAsync(new PedidoFinalizado());
+        }
     }
 }

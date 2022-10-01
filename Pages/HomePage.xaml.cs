@@ -21,26 +21,29 @@ public partial class HomePage : ContentPage
         nombreEscuela.Text = await internetEscompras.GetNombreEscuela(idEscuela);
         return true;
     }
+
     private async void LogIn()
     {
         //await SecureStorage.Default.SetAsync("Logged", "False");    // temporal instruction for dev 
 
         string logged = await SecureStorage.Default.GetAsync("Logged");
-        if (logged == null || logged.Equals("False"))
+        if (logged == null)
         {
             await SecureStorage.Default.SetAsync("Logged", "False");
             await SecureStorage.Default.SetAsync("idEscuela", "1");
             await SecureStorage.Default.SetAsync("idCliente", "0");
             await SecureStorage.Default.SetAsync("tipo", "Cliente");
+            logged = "False";
         }
 
         if (logged.Equals("False"))
         {
             await Navigation.PushAsync(new LogIn());
-            await loadData();
-            obtenerProductos();
+            if (await loadData())
+                obtenerProductos();
         }
-        else if(logged.Equals("True"))
+        
+        if(logged.Equals("True"))
         {
             await loadData();
             obtenerProductos();
@@ -150,7 +153,8 @@ public partial class HomePage : ContentPage
     {
         refreshProductos(1, true);
         //obtenerProductos(idEscuela);
-        loadData();
+        //loadData();
+        LogIn();
         RefreshView.IsRefreshing = false;
     }
 

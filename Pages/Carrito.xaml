@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.Carrito"
              xmlns:Cells="clr-namespace:test1.Cells"
+             Shell.BackgroundColor="SteelBlue"
              Title="Mi Carrito">
     <VerticalStackLayout>
         <Label Text="Tu pedido" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,20,0,10" FontSize="25" FontAttributes="Bold"/>
@@ -41,18 +42,23 @@
                                            Text="Cantidad"
                                            VerticalOptions="End" />
 
-                                        <Picker Grid.Row="1" Grid.Column="3" x:Name="picker" Title="1" HorizontalOptions="End" Margin="0,0,25,0">
+                                        <Picker Grid.Row="1" Grid.Column="3" x:Name="pickerCantidad" Title="1" HorizontalOptions="End" Margin="0,0,25,0">
                                             <Picker.ItemsSource>
-                                                <x:Array Type="{x:Type x:Int16}">
-                                                    <x:Int16>0</x:Int16>
-                                                    <x:Int16>1</x:Int16>
-                                                    <x:Int16>2</x:Int16>
-                                                    <x:Int16>3</x:Int16>
+                                                <x:Array Type="{x:Type x:Int32}">
+                                                    <x:Int32>1</x:Int32>
+                                                    <x:Int32>2</x:Int32>
+                                                    <x:Int32>3</x:Int32>
+                                                    <x:Int32>4</x:Int32>
                                                 </x:Array>
                                             </Picker.ItemsSource>
                                         </Picker>
 
-                                        <Label Text="{Binding Precio, StringFormat=${0}.00, Mode=TwoWay}" Grid.Column="0" Grid.Row="3"
+                                        <Label Text="Precio= $ " Grid.Column="0" Grid.Row="3"
+                                               Margin="0,20,0,0"
+                                               FontAttributes="Bold" 
+                                               FontSize="20"/>
+                                        
+                                        <Label Text="{Binding Precio}" Grid.Column="1" Grid.Row="3"
                                                Margin="0,20,0,0"
                                                FontAttributes="Bold" 
                                                FontSize="20"/>
@@ -71,7 +77,8 @@
                    FontSize="15"
                    Margin="0,15,0,0"/>
 
-            <Label Text="ESCOM" Grid.Row="2" 
+            <Label x:Name="escuelaActual"
+                   Text="escuela" Grid.Row="2" 
                    FontAttributes="Bold" 
                    FontSize="15"
                    Margin="15,15,0,0"/>
@@ -81,7 +88,7 @@
                    FontSize="15"
                    Margin="0,15,0,0"/>
 
-            <Picker Grid.Row="4" x:Name="picker" Title=""
+            <Picker Grid.Row="4" x:Name="pickerHorario" Title="Seleccionar"
                     FontAttributes="Italic"
                     FontSize="15"
                     Margin="15,0,0,0">

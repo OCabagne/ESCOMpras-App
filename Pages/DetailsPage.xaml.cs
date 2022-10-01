@@ -24,8 +24,10 @@ public partial class DetailsPage : ContentPage
         await Navigation.PushAsync(new Carrito(seleccion));
     }
 
+    /*
     private async void buyNow_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Comprar());
     }
+    */
 }

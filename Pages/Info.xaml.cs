@@ -66,7 +66,7 @@ public partial class Info : ContentPage
                 internetEscompras.UpdateCliente(Cliente);
                 await SecureStorage.Default.SetAsync("idEscuela", Cliente.EscuelaIdescuela.ToString());
                 await DisplayAlert("", "Datos actualizados correctamente.", "Ok");
-
+                await Navigation.PopAsync();
             }
         }
         catch (Exception ex)

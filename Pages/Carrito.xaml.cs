@@ -5,25 +5,12 @@ namespace test1.Pages;
 public partial class Carrito : ContentPage
 {
     public IList<Producto> CarritoCompras { get; private set; }
-    private Producto producto { get ; set; }
-    private int total;
+    private Producto producto { get; set; }
     public Carrito()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         CarritoCompras = new List<Producto>();
-        /*
-        CarritoCompras.Add(new Producto
-        {
-            Idproducto = 4,
-            Nombre = "Disco Duro",
-            Descripcion = "Vendo disco duro en quince pesos y una galleta\r\n:v/",
-            Precio = 15,
-            Imagen = "https://scontent.fmex31-1.fna.fbcdn.net/v/t39.30808-6/300375836_363294596011775_8020817456898374639_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=l4F7hXhfMr4AX9P3Tw5&tn=vUJWUoujA9494jkx&_nc_ht=scontent.fmex31-1.fna&oh=00_AT9YtXcdAXb9DPft7bYYDnR1ReSLZMRb8xsQHCy12F9Fhg&oe=63092C7B"
-        });
 
-        foreach (var item in CarritoCompras)
-            total += item.Precio;
-        */
         BindingContext = this;
     }
 
@@ -32,19 +19,28 @@ public partial class Carrito : ContentPage
         InitializeComponent();
         producto = new Producto();
         producto = _producto;
-        CarritoCompras = new List<Producto>
-        {
-            producto
-        };
-        total = 0;
-        foreach (var item in CarritoCompras)
-            total += item.Precio;
-
+        CarritoCompras = new List<Producto> { producto };
+        loadData();
         BindingContext = this;
+    }
+
+    private async void loadData()
+    {
+        int idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
+        escuelaActual.Text = await internetEscompras.GetNombreEscuela(idEscuela);
     }
 
     private async void ComprarYa_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Comprar(producto));
+        PedidoVM pedido = new PedidoVM();
+        pedido.NombreProducto = producto.Nombre;
+        pedido.PrecioProducto = producto.Precio;
+        //pedido.Cantidad = pickerCantidad.SelectedItem;
+        pedido.Cantidad = 2;
+        pedido.Total = pedido.PrecioProducto * pedido.Cantidad;
+        pedido.idTienda = producto.TiendaIdtienda;
+        pedido.Horario = pickerHorario.SelectedItem.ToString();
+
+        await Navigation.PushAsync(new Comprar(pedido));
     }
 }

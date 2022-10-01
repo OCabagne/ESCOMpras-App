@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESCOMpras.Pages.PendientesPage"
              xmlns:Cells="clr-namespace:ESCOMpras.Cells"
-             Title="PendientesPage">
+             Shell.BackgroundColor="SteelBlue"
+             Title="">
     <VerticalStackLayout>
         <StackLayout Margin="0,0,0,0">
             <!--<Cells:DetailsCard/>-->

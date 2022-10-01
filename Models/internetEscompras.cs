@@ -45,13 +45,29 @@ namespace ESCOMpras.Models
             }
         }
 
-        public static async Task NuevaOrden(Orden pedido)
+        public static async Task<int> NuevaOrden(Orden pedido)
         {
             try
             {
                 var pedidoJson = JsonConvert.SerializeObject(pedido, Formatting.Indented);
                 var content = new StringContent(pedidoJson);
-                await client.PostAsync("/nuevaOrden", content);
+                var id = client.PostAsync("/nuevaOrden", content);
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
+        public static async Task NuevaCompra(Compra compra)
+        {
+            try
+            {
+                var pedidoJson = JsonConvert.SerializeObject(compra, Formatting.Indented);
+                var content = new StringContent(pedidoJson);
+                await client.PostAsync("/nuevaCompra", content);
             }
             catch (Exception ex)
             {
@@ -90,7 +106,7 @@ namespace ESCOMpras.Models
         public static Task<List<Escuela>> getEscuelas() =>
             GetTAsync<List<Escuela>>("/escuelas","GetEscuelas");
         public static Task<string> GetNombreEscuela(int idEscuela) =>
-            GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela", 0, true);
+            GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela", 0);
         public static Task<string> GetNombreCliente(int idCliente) =>
             GetTAsync<string>($"/clienteNombre/{idCliente}", "GetNombreCliente", 5, true);
 

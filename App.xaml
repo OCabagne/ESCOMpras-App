@@ -15,7 +15,7 @@
     </Application.Resources>
 
     <Application.MainPage>
-        <Shell>
+        <Shell Shell.TabBarTitleColor="SteelBlue">
             <TabBar x:Name="MyTabBar">
                 <Tab Title="Inicio" Icon="home.png">
                     <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>

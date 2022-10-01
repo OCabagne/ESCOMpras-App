@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.Comprar"
              xmlns:Cells="clr-namespace:test1.Cells"
+             Shell.BackgroundColor="SteelBlue"
              Title="Finalizar Compra">
     <VerticalStackLayout>
         <Label Text="Tu pedido" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,20,0,10" FontSize="25" FontAttributes="Bold"/>
@@ -13,36 +14,19 @@
                 <Label Text="Producto" HorizontalOptions="Center" Margin="0,0,20,0"/>
                 <Label Text="Precio" HorizontalOptions="End" Margin="0,0,30,0"/>
             </Grid>
-            <ListView CachingStrategy="RecycleElement"
-                              ItemsSource="{Binding Pedido}" 
-                              HasUnevenRows="True" 
-                              SeparatorVisibility="None"
-                              x:Name="RefreshView">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame CornerRadius="0">
-                                <Cells:DetailsCardSmall/>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Cells:DetailsCardSmall/>
         </StackLayout>
 
         <StackLayout>
             <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
-                <Label Text="{Binding Precio, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" 
-                       FontAttributes="Bold" 
-                       FontSize="20"/>
 
                 <Label Text="Punto de entrega:" Grid.Row="1" 
                        FontAttributes="Bold" 
                        FontSize="15"
                        Margin="10,15,0,0"/>
 
-                <Label Text="ESCOM" Grid.Row="2" 
+                <Label x:Name="nombreEscuela"
+                       Text="{Binding idEscuela}" Grid.Row="2" 
                        FontAttributes="Bold" 
                        FontSize="15"
                        Margin="25,15,0,0"/>
@@ -53,7 +37,7 @@
                        FontSize="15"
                        Margin="0,15,0,0"/>
 
-                <Label  Text="16:30"  Grid.Row="2" x:Name="Horario"
+                <Label  Text="{Binding Horario}"  Grid.Row="2" x:Name="Horario"
                         Grid.Column="1"
                         FontAttributes="Italic"
                         FontSize="15"
