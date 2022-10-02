@@ -3,15 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.PedidoFinalizado"
              Shell.BackgroundColor="SteelBlue"
-             Title="PedidoFinalizado">
+             Title="Pedido Finalizado">
     <VerticalStackLayout>
         <Label Text="¡Gracias por tu compra!"  VerticalOptions="Center" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" Padding="30" TextColor="ForestGreen"/>
         <Image Margin="10,0,0,50"
                Source="pedidocorrecto.png"
                MinimumHeightRequest="100"
                MaximumHeightRequest="200"/>
-        <Label Text="PedidoID: 000001" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10" Margin="15,0,0,5"/>
-        <Label Text="Hola Oscar, gracias por realizar tu pedido en ESCOMpras." VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" Margin="15,0,15,15"/>
+        <Grid RowDefinitions="*,*,*">
+            <Label Text="PedidoID:" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10" Margin="15,0,0,5"/>
+            <Label Text="{Binding idOrden}" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10" Margin="65,0,0,5"/>
+            
+            <Label Text="Hola " Grid.Row="1" VerticalOptions="Center" FontSize="15" Margin="15,0,15,15"/>
+            <Label Text="Oscar" Grid.Row="1" VerticalOptions="Center" FontSize="15" Margin="50,0,15,15"/>
+            <Label Text="Gracias por realizar tu pedido en ESCOMpras." Grid.Row="2" VerticalOptions="Center" FontSize="15" Margin="15,0,0,15"/>
+        </Grid>
         <Label Text="Podrás ver el estado de tu pedido en Mis Pedidos Anteriores. Si detectas un error, por favor comunícalo a través de nuestro correo oficial: Ayuda_ESCOMpras@Gmail.com " VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" Margin="15,0,15,15"/>
     </VerticalStackLayout>
 </ContentPage>

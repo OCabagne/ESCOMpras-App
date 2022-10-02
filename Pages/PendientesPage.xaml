@@ -17,50 +17,78 @@
 
                 <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Margin="10,5,10,5">
                     <Label Grid.Column="0" Grid.Row="0"
-                           Text="{Binding nombreTienda, StringFormat=Vendedor: {0}}"
+                           Text="Vendedor:"
+                           FontSize="Micro"/>
+                    <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Margin="55,0,0,0"
+                           Text="{Binding nombreTienda}"
                            FontSize="Micro"/>
 
                     <Label Grid.Column="2" Grid.Row="0"
-                           Text="{Binding Idorden, StringFormat= No.Orden: {0}}"
+                           Text="No. Orden: "
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="0" Margin="55,0,0,0"
+                           Text="{Binding Idorden}"
                            VerticalOptions="End"
                            FontSize="Micro"/>
 
                     <Label Grid.Column="0" Grid.Row="1"
-                           Text="{Binding nombreEscuela, StringFormat= Escuela: {0}}"
+                           Text="Escuela: "
                            VerticalOptions="End"
                            FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="1"
-                           Text="{Binding Fecha, StringFormat= Fecha: {0}}"
+                    <Label Grid.Column="0" Grid.Row="1" Margin="55,0,0,0"
+                           Text="{Binding nombreEscuela}"
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="1" 
+                           Text="Fecha: "
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="1" Margin="35,0,0,0"
+                           Text="{Binding Fecha}"
                            VerticalOptions="End"
                            FontSize="Micro"/>
 
                     <Label Grid.Column="2" Grid.Row="2"
-                           Text="{Binding nombreCliente, StringFormat= Cliente: {0}}"
+                           Text="Cliente: "
+                           VerticalOptions="End"
+                           FontSize="Micro"/>
+
+                    <Label Grid.Column="2" Grid.Row="2" Margin="40,0,0,0"
+                           Text="{Binding nombreCliente}"
                            VerticalOptions="End"
                            FontSize="Micro"/>
                 </Grid>
 
-                <Image Margin="5,5,5,0"
+                <Image Margin="5,25,5,0"
                        Source="{Binding producto.Imagen}"
                        MinimumHeightRequest="100"
                        MaximumHeightRequest="200"
                        Aspect="AspectFill"/>
 
-                <Grid ColumnDefinitions="*,*,*" Margin="10,15,0,10">
+                <Grid ColumnDefinitions="*,*,*" Margin="10,20,0,10">
+
                     <Label Grid.Column="0"
-                           Text="{Binding producto.Precio, StringFormat=Precio: ${0}.00}" />
+                           Text="Precio: $" />
+
+                    <Label Grid.Column="0" Margin="55,0,0,0"
+                           Text="{Binding producto.Precio}" />
 
                     <Label Grid.Column="1"
-                           Text="{Binding Cantidad, StringFormat=Cantidad: {0}}"/>
+                           Text="Cantidad: "/>
 
-                    <!--
-                    <Label Grid.Column="2"
-                           Text="{Binding Montototal, StringFormat=Total: ${0}.00}"/>
-                    -->
+                    <Label Grid.Column="1" Margin="65,0,0,0"
+                           Text="{Binding Cantidad}"/>
 
                     <Label Grid.Column="2"
-                           Text="Total: $5.00"/>
+                           Text="Total: $"/>
+
+                    <Label Grid.Column="2" Margin="50,0,0,0"
+                           Text="{Binding Montototal}"/>
                 </Grid>
             </VerticalStackLayout>
         </StackLayout>

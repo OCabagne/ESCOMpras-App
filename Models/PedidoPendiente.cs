@@ -21,7 +21,7 @@ namespace ESCOMpras.Models
 
 		public PedidoPendiente() { }
 
-		public PedidoPendiente(int productoIdproducto, int clienteIdcliente, int escuelaIdescuela, int tiendaIdtienda, int idOrden, int cantidad, string detalles, DateTime fecha, int montoTotal)
+		public PedidoPendiente(int productoIdproducto, int clienteIdcliente, int escuelaIdescuela, int tiendaIdtienda, int idOrden, int cantidad, string detalles, DateTime fecha, int montoTotal, Producto producto)
 		{
 			this.ProductoIdproducto = productoIdproducto;
 			this.ClienteIdcliente = clienteIdcliente;
@@ -32,6 +32,7 @@ namespace ESCOMpras.Models
 			this.Detalles = detalles;
 			this.Fecha = fecha;
 			this.Montototal = montoTotal;
+			this.producto = producto;
 
 			Completar();
 		}

@@ -39,6 +39,7 @@ public partial class Carrito : ContentPage
         pedido.Cantidad = 2;
         pedido.Total = pedido.PrecioProducto * pedido.Cantidad;
         pedido.idTienda = producto.TiendaIdtienda;
+        pedido.idProducto = producto.Idproducto;
         pedido.Horario = pickerHorario.SelectedItem.ToString();
 
         await Navigation.PushAsync(new Comprar(pedido));

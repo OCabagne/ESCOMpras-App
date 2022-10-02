@@ -11,7 +11,7 @@
         <VerticalStackLayout>
             <StackLayout Margin="0,10,0,0">
                 
-                <Label Text="Pendidos Anteriores" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="20" FontAttributes="Bold"/>
+                <Label Text="Pedidos Anteriores" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="20" FontAttributes="Bold"/>
                 <ListView ItemsSource="{Binding PedidosPendientes}"
                               CachingStrategy="RecycleElement"
                               HasUnevenRows="True" 
@@ -19,6 +19,7 @@
                               ItemTapped="ListView_ItemTapped"
                               SeparatorVisibility="None"
                               IsPullToRefreshEnabled="False">
+                    
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -29,24 +30,6 @@
                 </ListView>
 
                 <Label x:Name="sinPedidos" Text="Aún no tienes pedidos :(" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="15" FontAttributes="Italic"/>
-                <!--
-                <Label Text="Pedidos Anteriores"  HorizontalOptions="Center" Margin="0,0,0,0" FontSize="20" FontAttributes="Bold"/>
-                <ListView ItemsSource="{Binding Productos}"
-                              CachingStrategy="RecycleElement"
-                              HasUnevenRows="True" 
-                              ItemSelected="ListView_ItemSelected" 
-                              ItemTapped="ListView_ItemTapped"
-                              SeparatorVisibility="None"
-                              IsPullToRefreshEnabled="False">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Cells:ResumeCard/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                -->
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

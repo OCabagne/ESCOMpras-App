@@ -1,7 +1,6 @@
 ﻿using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net.Http.Json;
 using System.Text;
 
 namespace ESCOMpras.Models
@@ -49,9 +48,17 @@ namespace ESCOMpras.Models
         {
             try
             {
-                var pedidoJson = JsonConvert.SerializeObject(pedido, Formatting.Indented);
-                var content = new StringContent(pedidoJson);
-                var id = client.PostAsync("/nuevaOrden", content);
+                var pedidoJson = JsonConvert.SerializeObject(pedido);
+                //var content = new StringContent(pedidoJson);
+                //var message = await client.PostAsync("/nuevaOrden", content);
+
+                //var message = await client.PostAsJsonAsync("/nuevaOrden", pedido);
+
+                var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("/nuevaOrden", content);
+
+                var message = await response.Content.ReadAsStringAsync();
+                int id = Int32.Parse(message);
                 return id;
             }
             catch (Exception ex)
@@ -65,8 +72,8 @@ namespace ESCOMpras.Models
         {
             try
             {
-                var pedidoJson = JsonConvert.SerializeObject(compra, Formatting.Indented);
-                var content = new StringContent(pedidoJson);
+                var pedidoJson = JsonConvert.SerializeObject(compra);
+                var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
                 await client.PostAsync("/nuevaCompra", content);
             }
             catch (Exception ex)
@@ -91,17 +98,13 @@ namespace ESCOMpras.Models
             GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
 
         public static Task<Producto> GetProducto(int idProducto) =>
-            GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto");
+            GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto", 0);
 
-        /*
-        public static Task<List<Orden>> GetOrdenes(int idCliente) =>
-            GetTAsync<List<Orden>>($"/verOrdenes/{idCliente}", "GetPedidos");
-        */
-        public static Task<List<Orden>> GetOrdenes(int idCliente) =>
-            GetTAsync<List<Orden>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos");
+        public static Task<List<OrdenVM>> GetOrdenes(int idCliente) =>
+            GetTAsync<List<OrdenVM>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos", 0);
 
         public static Task<Compra> GetCompra(int idPedido) =>
-            GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras");
+            GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras", 0);
 
         public static Task<List<Escuela>> getEscuelas() =>
             GetTAsync<List<Escuela>>("/escuelas","GetEscuelas");

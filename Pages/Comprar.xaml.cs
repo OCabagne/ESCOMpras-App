@@ -35,17 +35,18 @@ public partial class Comprar : ContentPage
 
     private async void FinalizarPedido_Clicked(object sender, EventArgs e)
     {
-        // internet ESCOMpras para añadir un pedido nuevo
         Orden orden = new Orden
         {
-            Fecha = DateTime.Now,
+            Fecha = DateTime.Now.ToUniversalTime(),
             Montototal = PedidoVM.Total,
             ClienteIdcliente = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente")),
             EscuelaIdescuela = idEscuela,
             TiendaIdtienda = PedidoVM.idTienda
         };
+        
+        //int idOrden = await internetEscompras.NuevaOrden(orden);
+        int idOrden = await internetEscompras.NuevaOrden(orden);
 
-        int idOrden = internetEscompras.NuevaOrden(orden);  // revisar
         if (idOrden == 0)
         {
             await DisplayAlert("", "Ha ocurrido un error.", "Ok");
@@ -61,7 +62,7 @@ public partial class Comprar : ContentPage
             };
 
             await internetEscompras.NuevaCompra(compra);
-            await Navigation.PushAsync(new PedidoFinalizado());
+            await Navigation.PushAsync(new PedidoFinalizado(idOrden));
         }
     }
 }

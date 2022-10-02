@@ -1,4 +1,6 @@
 ﻿
+using Newtonsoft.Json;
+
 namespace ESCOMpras.Models
 {
     public partial class Compra
@@ -8,7 +10,7 @@ namespace ESCOMpras.Models
         public int ProductoIdproducto { get; set; }
         public int OrdenIdorden { get; set; }
 
-        public virtual Orden OrdenIdordenNavigation { get; set; } = null!;
-        public virtual Producto ProductoIdproductoNavigation { get; set; } = null!;
+        [JsonIgnore] public virtual Orden OrdenIdordenNavigation { get; set; } = null!;
+        [JsonIgnore] public virtual Producto ProductoIdproductoNavigation { get; set; } = null!;
     }
 }
