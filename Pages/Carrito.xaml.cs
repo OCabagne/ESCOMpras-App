@@ -22,7 +22,7 @@ public partial class Carrito : ContentPage
     public Carrito(Producto _producto)
     {
         InitializeComponent();
-        carritoVacio.IsVisible = false;
+        sinPedidos.IsVisible = false;
         producto = new Producto();
         producto = _producto;
         CarritoCompras = new List<Producto> { producto };

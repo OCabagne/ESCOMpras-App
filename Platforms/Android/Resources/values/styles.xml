@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="MainTheme" parent="MainTheme.Base">
+  </style>
+
+  <style name="Maui.ESCOMprasSplash" parent="Maui.SplashTheme">
+    <item name="android:windowBackground">@drawable/escompras_splash</item>
+  </style>
+</resources>
