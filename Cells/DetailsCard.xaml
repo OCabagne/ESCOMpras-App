@@ -19,11 +19,19 @@
                MaximumHeightRequest="200"
                Aspect="AspectFill"/>
 
-        <Label Margin="10,10,0,0"
-               Text="{Binding Precio, StringFormat=${0}.00}"
+        <Grid>
+            <Label Margin="10,10,0,0"
+               Text="$"
                VerticalOptions="End"
                FontSize="30"
                FontAttributes="Bold" />
+            <Label Margin="30,10,0,0"
+               Text="{Binding Precio}"
+               VerticalOptions="End"
+               FontSize="30"
+               FontAttributes="Bold" />
+        </Grid>
+
 
         <Label Margin="10,5,0,10"
                Text="{Binding Descripcion}"/>

@@ -1,4 +1,6 @@
+using ESCOMpras.Cells;
 using ESCOMpras.Models;
+using test1.Cells;
 
 namespace test1.Pages;
 
@@ -9,7 +11,10 @@ public partial class Carrito : ContentPage
     public Carrito()
     {
         InitializeComponent();
-        CarritoCompras = new List<Producto>();
+
+        ProductosCarrito.IsVisible = false;
+        DetallesCarrito.IsVisible = false;
+        ComprarYa.IsVisible = false;
 
         BindingContext = this;
     }
@@ -17,6 +22,7 @@ public partial class Carrito : ContentPage
     public Carrito(Producto _producto)
     {
         InitializeComponent();
+        carritoVacio.IsVisible = false;
         producto = new Producto();
         producto = _producto;
         CarritoCompras = new List<Producto> { producto };
@@ -32,16 +38,27 @@ public partial class Carrito : ContentPage
 
     private async void ComprarYa_Clicked(object sender, EventArgs e)
     {
-        PedidoVM pedido = new PedidoVM();
-        pedido.NombreProducto = producto.Nombre;
-        pedido.PrecioProducto = producto.Precio;
-        //pedido.Cantidad = pickerCantidad.SelectedItem;
-        pedido.Cantidad = 2;
-        pedido.Total = pedido.PrecioProducto * pedido.Cantidad;
-        pedido.idTienda = producto.TiendaIdtienda;
-        pedido.idProducto = producto.Idproducto;
-        pedido.Horario = pickerHorario.SelectedItem.ToString();
+        if (pickerHorario.SelectedItem == null)
+        {
+            await DisplayAlert("", "Por favor selecciona un horario.", "Ok");
+        }
+        else if(pickerCantidad.SelectedItem == null)
+        {
+            await DisplayAlert("", "Por favor selecciona una cantidad.", "Ok");
+        }
+        else
+        {
+            PedidoVM pedido = new PedidoVM();
+            pedido.NombreProducto = producto.Nombre;
+            pedido.PrecioProducto = producto.Precio;
+            pedido.Cantidad = Int32.Parse(pickerCantidad.SelectedItem.ToString());
+            //pedido.Cantidad = 2;
+            pedido.Total = pedido.PrecioProducto * pedido.Cantidad;
+            pedido.idTienda = producto.TiendaIdtienda;
+            pedido.idProducto = producto.Idproducto;
+            pedido.Horario = pickerHorario.SelectedItem.ToString();
 
-        await Navigation.PushAsync(new Comprar(pedido));
+            await Navigation.PushAsync(new Comprar(pedido));
+        }
     }
 }

@@ -120,7 +120,7 @@ namespace ESCOMpras.Models
         {
             var json = JsonConvert.SerializeObject(cliente);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync("/clienteActualizar/38", content);
+            var response = await client.PutAsync($"/clienteActualizar/{cliente.Idcliente}", content);
 
             if(!response.IsSuccessStatusCode)
             {
