@@ -34,16 +34,22 @@ public partial class PedidosAnteriores : ContentPage
 
             foreach (var orden in Ordenes)
             {
-                Compra obj = await internetEscompras.GetCompra(orden.Idorden);
-                //Compras.Add(obj);
+                try
+                {
+                    Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+                    //Compras.Add(obj);
 
-                Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
-                obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
-                Productos.Add(obj2);
+                    Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
+                    obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                    Productos.Add(obj2);
 
-                item = new PedidoPendiente(obj.ProductoIdproducto, idCliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
-                PedidosPendientes.Add(item);
-                item = null;
+                    item = new PedidoPendiente(obj.ProductoIdproducto, idCliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
+                    PedidosPendientes.Add(item);
+                    item = null;
+                }
+                catch
+                { 
+                }
             }
 
             BindingContext = this;

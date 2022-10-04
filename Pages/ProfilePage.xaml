@@ -10,7 +10,7 @@
                  Refreshing="RefreshView_Refreshing">
         <ScrollView>
             <StackLayout>
-                <Image Source="{Binding Url, Mode=OneWay}"  Aspect="AspectFill" HeightRequest="650"/>
+                <Image Source="{Binding Url, Mode=OneWay}"  Aspect="AspectFill" Margin="0,0,0,20" HeightRequest="650"/>
                 <Frame HasShadow="False" CornerRadius="25" Margin="5,-400,5,10" VerticalOptions="FillAndExpand" Opacity="0.97">
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto, Auto" ColumnDefinitions="*,*,*,*,*">
                         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NombreUsuario" Text="{Binding Nombre, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="45,0,0,0" HorizontalOptions="Start"/>
