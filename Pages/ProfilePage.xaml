@@ -11,7 +11,7 @@
         <ScrollView>
             <StackLayout>
                 <Image Source="{Binding Url, Mode=OneWay}"  Aspect="AspectFill" Margin="0,0,0,20" HeightRequest="650"/>
-                <Frame HasShadow="False" CornerRadius="25" Margin="5,-400,5,10" VerticalOptions="FillAndExpand" Opacity="0.97">
+                <Frame HasShadow="True" CornerRadius="25" Margin="5,-400,5,10" VerticalOptions="FillAndExpand" Opacity="0.85">
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto, Auto" ColumnDefinitions="*,*,*,*,*">
                         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="NombreUsuario" Text="{Binding Nombre, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="45,0,0,0" HorizontalOptions="Start"/>
                         <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" x:Name="ApellidoUsuario" Text="{Binding Apellidos, Mode=OneWay}" FontSize="20" FontAttributes="Bold" Margin="30,0,0,0" HorizontalOptions="Start"/>

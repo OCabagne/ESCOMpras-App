@@ -30,6 +30,7 @@ public partial class HomePage : ContentPage
         if (logged == null)
         {
             await SecureStorage.Default.SetAsync("Logged", "False");
+            await SecureStorage.Default.SetAsync("Icon", "https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png");
             await SecureStorage.Default.SetAsync("idEscuela", "1");
             await SecureStorage.Default.SetAsync("idCliente", "0");
             await SecureStorage.Default.SetAsync("tipo", "Cliente");
@@ -38,15 +39,18 @@ public partial class HomePage : ContentPage
 
         if (logged.Equals("False"))
         {
+            if(await SecureStorage.Default.GetAsync("Icon") == null)
+                await SecureStorage.Default.SetAsync("Icon", "https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png");
+
             await Navigation.PushAsync(new LogIn());
             if (await loadData())
-                obtenerProductos();
+                obtenerProductos(idEscuela);
         }
         
         if(logged.Equals("True"))
         {
             await loadData();
-            obtenerProductos();
+            obtenerProductos(idEscuela);
         }
     }
 
@@ -121,10 +125,36 @@ public partial class HomePage : ContentPage
         BindingContext = this;
     }
 
-    private async void refreshProductos(int schoolId, bool refresh)
+    private async void obtenerProductos(int escuelaId)
+    {
+        Productos = await internetEscompras.GetProductos(escuelaId);    // id para ESCOM = 1
+
+        if (Productos.Count == 0)
+        {
+            sinProductos.IsVisible = true;
+            RecargarBtn.IsVisible = true;
+            conProductos.IsVisible = false;
+        }
+        else
+        {
+            sinProductos.IsVisible = false;
+            RecargarBtn.IsVisible = false;
+            conProductos.IsVisible = true;
+
+            foreach (var item in Productos)
+            {
+                //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
+                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+            }
+
+            BindingContext = this;
+        }
+    }
+
+    private async void refreshProductos()
     {
         //Productos = await internetEscompras.RefreshProductos();    // id para ESCOM = 1
-        Productos = await internetEscompras.GetProductos();
+        Productos = await internetEscompras.GetProductos(idEscuela);
 
         foreach (var item in Productos)
         {
@@ -151,7 +181,7 @@ public partial class HomePage : ContentPage
 
     void RefreshView_Refreshing(object sender, EventArgs e)
     {
-        refreshProductos(1, true);
+        refreshProductos();
         //obtenerProductos(idEscuela);
         //loadData();
         LogIn();
@@ -173,5 +203,11 @@ public partial class HomePage : ContentPage
     private void CarritoBtn_Clicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("Carrito");
+    }
+
+    private void RecargarBtn_Clicked(object sender, EventArgs e)
+    {
+        LogIn();
+        obtenerProductos(idEscuela);
     }
 }

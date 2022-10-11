@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="test1.Pages.HomePage"
-             Title="HomePage"
              Shell.NavBarIsVisible="False"
              xmlns:pages="clr-namespace:test1.Pages"
              xmlns:Cells="clr-namespace:test1.Cells">
@@ -16,8 +15,11 @@
                         Text="{StaticResource IconCart}" FontFamily="FAS" FontSize="30" BackgroundColor="GhostWhite" TextColor="#05629b"
                         x:Name="CarritoBtn" Clicked="CarritoBtn_Clicked"/>
             </Grid>
+
+            <Label x:Name="sinProductos" Text="No se encontraron productos :(" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,70,0,0" FontSize="15" FontAttributes="Italic"/>
+            <Button x:Name="RecargarBtn" Text="Recargar" Clicked="RecargarBtn_Clicked" Margin="70,25,70,5" BackgroundColor="#05629b"/>
             
-            <StackLayout Margin="0,10,0,0">
+            <StackLayout Margin="0,10,0,0" x:Name="conProductos">
                     <ListView CachingStrategy="RecycleElement"
                               ItemsSource="{Binding Productos}" 
                               HasUnevenRows="True" 

@@ -75,4 +75,9 @@ public partial class Info : ContentPage
             await DisplayAlert("Error", ex.Message, "Ok");
         }
     }
+
+    private async void changeImage_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Imagen());
+    }
 }

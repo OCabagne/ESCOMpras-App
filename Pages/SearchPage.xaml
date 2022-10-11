@@ -12,7 +12,10 @@
             <SearchBar Placeholder="Buscar" Margin="0,10,0,5" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
             <Label Text="Los más buscados" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,30,0,10" FontSize="20" FontAttributes="Bold"/>
 
-            <StackLayout Margin="5,10,5,10">
+            <Label x:Name="sinProductos" Text="No se encontraron productos :(" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,70,0,0" FontSize="15" FontAttributes="Italic"/>
+            <Button x:Name="RecargarBtn" Text="Recargar" Clicked="RecargarBtn_Clicked" Margin="70,25,70,5" BackgroundColor="#05629b"/>
+            
+            <StackLayout Margin="5,10,5,10" x:Name="conProductos">
                 <ListView ItemsSource="{Binding Productos}"
                           CachingStrategy="RecycleElement"
                           HasUnevenRows="True" 
@@ -20,9 +23,9 @@
                           ItemTapped="ListView_ItemTapped"
                           SeparatorVisibility="None"
                           IsPullToRefreshEnabled="True"
-                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          RefreshControlColor="SteelBlue">
+                          Refreshing="RefreshView_Refreshing"
+                          RefreshControlColor="SteelBlue"
+                          x:Name="RefreshView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

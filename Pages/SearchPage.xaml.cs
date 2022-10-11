@@ -71,18 +71,35 @@ public partial class SearchPage : ContentPage
 
         BindingContext = this;
     }
+
     private async void obtenerProductos()
     {
-        Productos = await internetEscompras.GetProductos();
+        int idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
 
-        foreach (var item in Productos)
+        Productos = await internetEscompras.GetProductos(idEscuela);    // id para ESCOM = 1
+
+        if (Productos.Count == 0)
         {
-            //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
-            item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+            sinProductos.IsVisible = true;
+            RecargarBtn.IsVisible = true;
+            conProductos.IsVisible = false;
         }
+        else
+        {
+            sinProductos.IsVisible = false;
+            RecargarBtn.IsVisible = false;
+            conProductos.IsVisible = true;
 
-        BindingContext = this;
+            foreach (var item in Productos)
+            {
+                //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
+                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+            }
+
+            BindingContext = this;
+        }
     }
+
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         Producto selectedItem = e.SelectedItem as Producto;
@@ -104,5 +121,16 @@ public partial class SearchPage : ContentPage
 
             await Navigation.PushAsync(new DetailsPage(publicacion));
         }
+    }
+
+    void RefreshView_Refreshing(object sender, EventArgs e)
+    {
+        obtenerProductos();
+        RefreshView.IsRefreshing = false;
+    }
+
+    private void RecargarBtn_Clicked(object sender, EventArgs e)
+    {
+        obtenerProductos();
     }
 }

@@ -144,10 +144,12 @@ namespace ESCOMpras.Models
 
                     productos1.Clear();     // Limpiamos la lista de productos obtenida
                 }
-                
+
                 //string json = await client.GetStringAsync("/productos");    // Obtiene TODOS los productos registrados
                 //List<Producto> productos = JsonConvert.DeserializeObject<List<Producto>>(json);
-                
+                var json = JsonConvert.SerializeObject(obtenidos);
+
+                Barrel.Current.Add("GetProductos", json, TimeSpan.FromMinutes(0));
 
                 return obtenidos;
             }

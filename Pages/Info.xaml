@@ -6,7 +6,17 @@
              Title="Mi Información">
     <ScrollView>
         <StackLayout>
-            <Image Source="{Binding Url}"/>
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                <Image Source="{Binding Url}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="500" Aspect="AspectFill"/>
+                <Button Grid.Column="2" VerticalOptions="Start" 
+                        HeightRequest="60"
+                        Margin="0,15,10,0"
+                        Background="#904682b4"
+                        Text="Cambiar Imagen"
+                        FontSize="Micro"
+                        x:Name="changeImage"
+                        Clicked="changeImage_Clicked"/>
+            </Grid>
             <Grid ColumnDefinitions="*,*">
                 <Label Grid.Column="0" Margin="30,-45,0,0"
                        HorizontalOptions="End"
