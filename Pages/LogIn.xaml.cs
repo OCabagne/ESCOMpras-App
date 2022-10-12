@@ -18,30 +18,34 @@ public partial class LogIn : ContentPage
 
             string correo = Correo.Text;
             string password = Password.Text;
-            Cliente cliente = await internetEscompras.LogIn(correo, password);
 
-            if (cliente != null)
+            try
             {
-                await DisplayAlert("Bienvenido!", $"Bienvenido a ESCOMpras {cliente.Nombre}!", "Iniciemos!");
+                Cliente cliente = await internetEscompras.LogIn(correo, password);
 
-                await SecureStorage.Default.SetAsync("Logged", "True");
-                await SecureStorage.Default.SetAsync("idEscuela", cliente.EscuelaIdescuela.ToString());
-                await SecureStorage.Default.SetAsync("idCliente", cliente.Idcliente.ToString());
-                await SecureStorage.Default.SetAsync("tipo", "Cliente");
+                if (cliente != null)
+                {
+                    await DisplayAlert("Bienvenido!", $"Bienvenido a ESCOMpras {cliente.Nombre}!", "Iniciemos!");
 
-                await Navigation.PopAsync();
-                //await Navigation.PushModalAsync(new HomePage());
+                    await SecureStorage.Default.SetAsync("Logged", "True");
+                    await SecureStorage.Default.SetAsync("idEscuela", cliente.EscuelaIdescuela.ToString());
+                    await SecureStorage.Default.SetAsync("idCliente", cliente.Idcliente.ToString());
+                    await SecureStorage.Default.SetAsync("tipo", "Cliente");
+
+                    await Navigation.PopAsync();
+                    //await Navigation.PushModalAsync(new HomePage());
+                }
             }
-            else
+            catch
             {
                 Tiendum tienda = await internetEscompras.LogInTienda(correo, password);
                 
                 if(tienda != null)
                 {
-                    await DisplayAlert("Vendedor!", $"Bienvenido a ESCOMpras {cliente.Nombre}!", "Iniciemos!");
+                    await DisplayAlert("Vendedor!", $"Bienvenido a ESCOMpras {tienda.Nombre}!", "Iniciemos!");
 
                     await SecureStorage.Default.SetAsync("Logged", "True");
-                    await SecureStorage.Default.SetAsync("idCliente", tienda.Idtienda.ToString());
+                    await SecureStorage.Default.SetAsync("idTienda", tienda.Idtienda.ToString());
                     await SecureStorage.Default.SetAsync("tipo", "Tienda");
 
                     await Navigation.PopAsync();

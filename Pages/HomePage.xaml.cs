@@ -7,18 +7,33 @@ public partial class HomePage : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
     private int idEscuela;
+    private int idTienda;
+    private bool tipo; // True -> Cliente; False -> Tienda
 
 	public HomePage()
 	{
+        InitializeComponent();
+        headerVendedor.IsVisible = false;
+        sinProductos.IsVisible = false;
+        RecargarBtn.IsVisible = false;
         Productos = new List<Producto>();
         LogIn();
-        InitializeComponent();
     }
 
     private async Task<bool> loadData()
     {
-        idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
-        nombreEscuela.Text = await internetEscompras.GetNombreEscuela(idEscuela);
+        if (tipo)
+        {
+            idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
+            nombreEscuela.Text = await internetEscompras.GetNombreEscuela(idEscuela);
+        }
+        else
+        {
+            idTienda = Int32.Parse(await SecureStorage.Default.GetAsync("idTienda"));
+            nombreTienda.Text = await internetEscompras.GetNombreTienda(idTienda);
+            headerVendedor.IsVisible = true;
+            headerCliente.IsVisible = false;
+        }
         return true;
     }
 
@@ -36,6 +51,9 @@ public partial class HomePage : ContentPage
             await SecureStorage.Default.SetAsync("tipo", "Cliente");
             logged = "False";
         }
+        string tipoUsuario = await SecureStorage.Default.GetAsync("tipo");
+        if (tipoUsuario.Equals("Cliente")) tipo = true;
+        else if (tipoUsuario.Equals("Tienda")) tipo = false;
 
         if (logged.Equals("False"))
         {
@@ -43,6 +61,7 @@ public partial class HomePage : ContentPage
                 await SecureStorage.Default.SetAsync("Icon", "https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png");
 
             await Navigation.PushAsync(new LogIn());
+
             if (await loadData())
                 obtenerProductos(idEscuela);
         }
@@ -127,8 +146,11 @@ public partial class HomePage : ContentPage
 
     private async void obtenerProductos(int escuelaId)
     {
-        Productos = await internetEscompras.GetProductos(escuelaId);    // id para ESCOM = 1
-
+        if (tipo)
+            Productos = await internetEscompras.GetProductos(escuelaId);    // Productos en modo Cliente
+        else
+            Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
+        
         if (Productos.Count == 0)
         {
             sinProductos.IsVisible = true;
@@ -149,12 +171,26 @@ public partial class HomePage : ContentPage
 
             BindingContext = this;
         }
+
+        if (tipo) // Si es Cliente
+        {
+            headerCliente.IsVisible = true;
+            headerVendedor.IsVisible = false;
+        }
+        else  // Si es Tienda
+        {
+            headerCliente.IsVisible = false;
+            headerVendedor.IsVisible = true;
+        }
     }
 
     private async void refreshProductos()
     {
-        //Productos = await internetEscompras.RefreshProductos();    // id para ESCOM = 1
-        Productos = await internetEscompras.GetProductos(idEscuela);
+
+        if (tipo)
+            Productos = await internetEscompras.GetProductos(idEscuela);    // Productos en modo Cliente
+        else
+            Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
 
         foreach (var item in Productos)
         {

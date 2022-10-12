@@ -7,9 +7,8 @@ public partial class PedidosAnteriores : ContentPage
     public IList<PedidoPendiente> PedidosPendientes { get; private set; }
     public IList<Producto> Productos { get; private set; }
     private IList<OrdenVM> Ordenes { get; set; }
-    //private IList<Compra> Compras { get; set; }
 
-    private int idCliente;
+    private int Id;
     public PedidosAnteriores()
     {
         InitializeComponent();
@@ -22,41 +21,82 @@ public partial class PedidosAnteriores : ContentPage
     {
         sinPedidos.IsVisible = false;
         Ordenes = new List<OrdenVM>();
+        string tipo = await SecureStorage.Default.GetAsync("tipo");
 
-        idCliente = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente"));
-        Ordenes = await internetEscompras.GetOrdenes(idCliente);
-
-        if (Ordenes.Count != 0)
+        if (tipo.Equals("Cliente"))
         {
-            Productos = new List<Producto>();
-            PedidosPendientes = new List<PedidoPendiente>();
-            PedidoPendiente item;
+            Id = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente"));
+            Ordenes = await internetEscompras.GetOrdenes(Id);
 
-            foreach (var orden in Ordenes)
+            if (Ordenes.Count != 0)
             {
-                try
+                Productos = new List<Producto>();
+                PedidosPendientes = new List<PedidoPendiente>();
+                PedidoPendiente item;
+
+                foreach (var orden in Ordenes)
                 {
-                    Compra obj = await internetEscompras.GetCompra(orden.Idorden);
-                    //Compras.Add(obj);
+                    try
+                    {
+                        Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+                        //Compras.Add(obj);
 
-                    Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
-                    obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
-                    Productos.Add(obj2);
+                        Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
+                        obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        Productos.Add(obj2);
 
-                    item = new PedidoPendiente(obj.ProductoIdproducto, idCliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
-                    PedidosPendientes.Add(item);
-                    item = null;
+                        item = new PedidoPendiente(obj.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
+                        PedidosPendientes.Add(item);
+                        item = null;
+                    }
+                    catch { }
                 }
-                catch
-                { 
-                }
+
+                BindingContext = this;
             }
-
-            BindingContext = this;
+            else
+            {
+                sinPedidos.IsVisible = true;
+            }
         }
-        else
+
+        else if (tipo.Equals("Tienda"))
         {
-            sinPedidos.IsVisible = true;
+            Id = Int32.Parse(await SecureStorage.Default.GetAsync("idTienda"));
+            Ordenes = await internetEscompras.GetOrdenesTienda(Id);
+
+            if (Ordenes.Count != 0)
+            {
+                Productos = new List<Producto>();
+                PedidosPendientes = new List<PedidoPendiente>();
+                PedidoPendiente item;
+
+                foreach (var orden in Ordenes)
+                {
+                    try
+                    {
+                        Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+                        //Compras.Add(obj);
+
+                        Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
+                        obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        Productos.Add(obj2);
+
+                        item = new PedidoPendiente(obj.ProductoIdproducto, orden.ClienteIdcliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
+                        PedidosPendientes.Add(item);
+                        item = null;
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                BindingContext = this;
+            }
+            else
+            {
+                sinPedidos.IsVisible = true;
+            }
         }
     }
 

@@ -6,21 +6,27 @@
              xmlns:pages="clr-namespace:test1.Pages"
              xmlns:Cells="clr-namespace:test1.Cells">
 
-    <ScrollView BackgroundColor="GhostWhite">
+    <ScrollView BackgroundColor="GhostWhite" x:Name="paginaInicio">
         <VerticalStackLayout>
-            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" Margin="0,10,0,0">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" Margin="0,10,0,0" x:Name="headerCliente">
                 <Label Text="Cerca de ti" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"/>
                 <Label Text="escuela" x:Name="nombreEscuela" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="#05629b"/>
                 <Button Grid.Column="2" Grid.RowSpan="2" HeightRequest="55" WidthRequest="55" Margin="60,0,0,0" 
                         Text="{StaticResource IconCart}" FontFamily="FAS" FontSize="30" BackgroundColor="GhostWhite" TextColor="#05629b"
                         x:Name="CarritoBtn" Clicked="CarritoBtn_Clicked"/>
             </Grid>
+            
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" Margin="0,10,0,0" x:Name="headerVendedor">
+                <Label Text="Tus Productos" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Start" FontSize="25" FontAttributes="Bold"/>
+                <Label Text="tienda" x:Name="nombreTienda" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="#05629b"/>
+            </Grid>
+            
 
             <Label x:Name="sinProductos" Text="No se encontraron productos :(" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,70,0,0" FontSize="15" FontAttributes="Italic"/>
             <Button x:Name="RecargarBtn" Text="Recargar" Clicked="RecargarBtn_Clicked" Margin="70,25,70,5" BackgroundColor="#05629b"/>
-            
+
             <StackLayout Margin="0,10,0,0" x:Name="conProductos">
-                    <ListView CachingStrategy="RecycleElement"
+                <ListView CachingStrategy="RecycleElement"
                               ItemsSource="{Binding Productos}" 
                               HasUnevenRows="True" 
                               ItemSelected="ListView_ItemSelected" 
@@ -30,16 +36,16 @@
                               Refreshing="RefreshView_Refreshing"
                               RefreshControlColor="SteelBlue"
                               x:Name="RefreshView">
-                    
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Cells:ProductCard/>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Cells:ProductCard/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -92,7 +92,7 @@ namespace ESCOMpras.Models
             GetTAsync<Cliente>($"/cliente/{id}", "GetCliente", 0, true);
 
         public static Task<List<Producto>> GetProductos() =>
-            GetTAsync<List<Producto>>("/productos", "GetProductos", 5);
+            GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
 
         public static Task<List<Producto>> RefreshProductos() =>
             GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
@@ -100,8 +100,14 @@ namespace ESCOMpras.Models
         public static Task<Producto> GetProducto(int idProducto) =>
             GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto", 0);
 
+        public static Task<List<Producto>> GetProductosByTienda(int idTienda) =>
+            GetTAsync<List<Producto>>($"/productoEscuela/{idTienda}", "GetProductosByTienda", 5, true);
+
         public static Task<List<OrdenVM>> GetOrdenes(int idCliente) =>
             GetTAsync<List<OrdenVM>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos", 0);
+
+        public static Task<List<OrdenVM>> GetOrdenesTienda(int idTienda) =>
+            GetTAsync<List<OrdenVM>>($"/verOrdenesTienda/{idTienda}", "GetPedidosTienda", 0);
 
         public static Task<Compra> GetCompra(int idPedido) =>
             GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras", 0);
@@ -115,6 +121,9 @@ namespace ESCOMpras.Models
 
         public static Task<string> GetNombreTienda(int idTienda) =>
             GetTAsync<string>($"/tiendaNombre/{idTienda}", "GetNombreTienda");
+
+        public static Task<Tiendum> GetTienda(int idTienda) =>
+            GetTAsync<Tiendum>($"/tienda/{idTienda}", "GetTienda", 0, true);
 
         public async static void UpdateCliente(ClienteVM cliente)
         {

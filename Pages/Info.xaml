@@ -6,56 +6,167 @@
              Title="Mi Información">
     <ScrollView>
         <StackLayout>
-            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
-                <Image Source="{Binding Url}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="500" Aspect="AspectFill"/>
-                <Button Grid.Column="2" VerticalOptions="Start" 
+
+            <StackLayout x:Name="versionVendedor">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                    <Image Source="{Binding Imagen}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="500" Aspect="AspectFill"/>
+                    <Button Grid.Column="2" VerticalOptions="Start" 
+                            HeightRequest="60"
+                            Margin="0,15,10,0"
+                            Background="#904682b4"
+                            Text="Cambiar Imagen"
+                            FontSize="Micro"
+                            x:Name="changeImage"
+                            Clicked="changeImage_Clicked"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label Grid.Column="0" Margin="30,-45,0,0"
+                           HorizontalOptions="End"
+                           Text="Calificación: "
+                           TextColor="SteelBlue"
+                           FontSize="30"
+                           FontAttributes="Bold"/>
+
+                    <Label Grid.Column="1" Margin="30,-45,0,0"
+                           Text="{Binding Calificacion, StringFormat= +{0}/5}"
+                           TextColor="SteelBlue"
+                           FontSize="30"
+                           FontAttributes="Bold"/>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*" Margin="30,10,0,20">
+
+                    <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                           HorizontalOptions="End"
+                           Text="Nombre: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
+                           x:Name="nombreTienda" 
+                           Text="{Binding Nombre}" 
+                           Placeholder="Nombre"
+                           FontSize="Body"
+                           FontAttributes="Italic"
+                           ClearButtonVisibility="WhileEditing" 
+                           Keyboard="Plain"/>
+
+
+                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                           HorizontalOptions="End"
+                           Text="Correo: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                           x:Name="correoTienda" 
+                           Text="{Binding Correo}" 
+                           Placeholder="Correo@ejemplo.com"
+                           FontSize="Small"
+                           FontAttributes="Italic"
+                           ClearButtonVisibility="WhileEditing" 
+                           Keyboard="Email"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                           HorizontalOptions="End"
+                           Text="Contraseña: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                           x:Name="passwordTienda"
+                           Placeholder="Contraseña"
+                           FontSize="Small"
+                           FontAttributes="Italic"
+                           ClearButtonVisibility="WhileEditing" 
+                           Keyboard="Plain"
+                           IsPassword="True"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
+                           HorizontalOptions="End"
+                           Text="Confirmar Contraseña: "
+                           FontSize="Small"
+                           FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start"
+                           x:Name="ConfirmarPasswordTienda" 
+                           Placeholder="Confirmar Contraseña"
+                           FontSize="Small"
+                           FontAttributes="Italic"
+                           ClearButtonVisibility="WhileEditing" 
+                           Keyboard="Plain"
+                           IsPassword="True"/>
+
+                    <Label Grid.Column="0" Grid.Row="6" Margin="0,10,30,0"
+                           HorizontalOptions="End"
+                           Text="Tienda ID: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                    <Label Grid.Column="1" Grid.Row="6" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="{Binding Idtienda}"
+                           FontSize="Body"
+                           FontAttributes="Italic"/>
+
+                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+                            Margin="60,20,60,0"
+                            Text="Guardar Cambios"
+                            Clicked="SaveChanges_Clicked"
+                            BackgroundColor="SteelBlue"/>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout x:Name="versionCliente">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                    <Image Source="{Binding Url}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="500" Aspect="AspectFill"/>
+                    <Button Grid.Column="2" VerticalOptions="Start" 
                         HeightRequest="60"
                         Margin="0,15,10,0"
                         Background="#904682b4"
                         Text="Cambiar Imagen"
                         FontSize="Micro"
-                        x:Name="changeImage"
                         Clicked="changeImage_Clicked"/>
-            </Grid>
-            <Grid ColumnDefinitions="*,*">
-                <Label Grid.Column="0" Margin="30,-45,0,0"
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label Grid.Column="0" Margin="30,-45,0,0"
                        HorizontalOptions="End"
                        Text="Calificación: "
                        TextColor="SteelBlue"
                        FontSize="30"
                        FontAttributes="Bold"/>
 
-                <Label Grid.Column="1" Margin="30,-45,0,0"
+                    <Label Grid.Column="1" Margin="30,-45,0,0"
                        Text="{Binding Calificacion, StringFormat= +{0}/5}"
                        TextColor="SteelBlue"
                        FontSize="30"
                        FontAttributes="Bold"/>
-            </Grid>
+                </Grid>
 
-            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*" Margin="30,10,0,20">
-                
-                <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*" Margin="30,10,0,20">
+
+                    <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Escuela: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Picker Grid.Column="1" Grid.Row="0"
+                    <Picker Grid.Column="1" Grid.Row="0"
                         x:Name="selectEscuela"
                         Title="{Binding nombreEscuela}"
                         FontSize="Body"
                         FontAttributes="Italic"
                         TitleColor="SteelBlue">
 
-                </Picker>
+                    </Picker>
 
-                <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Nombre: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
                    x:Name="Nombre" 
                    Text="{Binding Nombre}" 
                    Placeholder="Nombre(s)"
@@ -64,13 +175,13 @@
                    ClearButtonVisibility="WhileEditing" 
                    Keyboard="Plain"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Apellidos: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
                    x:Name="Apellido" 
                    Text="{Binding Apellidos}" 
                    Placeholder="Apellidos"
@@ -79,13 +190,13 @@
                    ClearButtonVisibility="WhileEditing" 
                    Keyboard="Plain"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Correo: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
                    x:Name="Correo" 
                    Text="{Binding Correo}" 
                    Placeholder="Correo@ejemplo.com"
@@ -94,13 +205,13 @@
                    ClearButtonVisibility="WhileEditing" 
                    Keyboard="Email"/>
 
-                <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Contraseña: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
                    x:Name="Password"
                    Placeholder="Contraseña"
                    FontSize="Small"
@@ -109,13 +220,13 @@
                    Keyboard="Plain"
                    IsPassword="True"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Confirmar Contraseña: "
                    FontSize="Small"
                    FontAttributes="Bold"/>
 
-                <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start"
                    x:Name="ConfirmarPassword" 
                    Placeholder="Confirmar Contraseña"
                    FontSize="Small"
@@ -124,25 +235,26 @@
                    Keyboard="Plain"
                    IsPassword="True"/>
 
-                <Label Grid.Column="0" Grid.Row="6" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="6" Margin="0,10,30,0"
                    HorizontalOptions="End"
                    Text="Cliente ID: "
                    FontSize="Body"
                    FontAttributes="Bold"/>
 
-                <Label Grid.Column="1" Grid.Row="6" Margin="0,10,30,0"
+                    <Label Grid.Column="1" Grid.Row="6" Margin="0,10,30,0"
                        HorizontalOptions="Start"
                        Text="{Binding Idcliente}"
                        FontSize="Body"
                        FontAttributes="Italic"/>
 
-                <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
                         Margin="60,20,60,0"
                         Text="Guardar Cambios"
                         x:Name="SaveChanges"
                         Clicked="SaveChanges_Clicked"
                         BackgroundColor="SteelBlue"/>
-            </Grid>
+                </Grid>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

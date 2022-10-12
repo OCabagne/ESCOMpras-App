@@ -6,8 +6,8 @@ public partial class SearchPage : ContentPage
 {
     public IList<Producto> Productos { get; private set; }
     public SearchPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
         Productos = new List<Producto>();
         obtenerProductos();
@@ -74,9 +74,17 @@ public partial class SearchPage : ContentPage
 
     private async void obtenerProductos()
     {
-        int idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
-
-        Productos = await internetEscompras.GetProductos(idEscuela);    // id para ESCOM = 1
+        string tipo = await SecureStorage.Default.GetAsync("tipo");
+        if (tipo.Equals("Cliente"))
+        {
+            int idEscuela = Int32.Parse(await SecureStorage.Default.GetAsync("idEscuela"));
+            Productos = await internetEscompras.GetProductos(idEscuela);    // id para ESCOM = 1
+        }
+        else if (tipo.Equals("Tienda"))
+        {
+            int idTienda = Int32.Parse(await SecureStorage.Default.GetAsync("idTienda"));
+            Productos = await internetEscompras.GetProductosByTienda(idTienda);
+        }
 
         if (Productos.Count == 0)
         {

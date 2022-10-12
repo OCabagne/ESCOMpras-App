@@ -1,12 +1,16 @@
 using ESCOMpras.Models;
 using ESCOMpras.Pages;
+using System.Runtime.CompilerServices;
 
 namespace test1.Pages;
 
 public partial class ProfilePage : ContentPage
 {
     public ClienteVM cliente { get; private set; }
-    private int idCliente;
+    public Tiendum Vendedor { get; private set; }
+
+    private int Id;
+    private string tipo;
     public ProfilePage()
     {
         InitializeComponent();
@@ -18,14 +22,32 @@ public partial class ProfilePage : ContentPage
     {
         try
         {
-            idCliente = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente"));
-            Cliente Cliente = await internetEscompras.GetCliente(idCliente);
-            cliente = new ClienteVM(Cliente.Idcliente, Cliente.Calificacion, Cliente.Nombre, Cliente.Apellidos, Cliente.Correo, Cliente.Password, Cliente.EscuelaIdescuela);
-            cliente.Url = await SecureStorage.Default.GetAsync("Icon");
+            tipo = await SecureStorage.Default.GetAsync("tipo");
+            if(tipo.Equals("Cliente"))
+            {
+                versionTienda.IsVisible = false;
+                versionCliente.IsVisible = true;
 
-            EscuelaNombre.Text = await internetEscompras.GetNombreEscuela(cliente.EscuelaIdescuela);
+                Id = Int32.Parse(await SecureStorage.Default.GetAsync("idCliente"));
+                Cliente Cliente = await internetEscompras.GetCliente(Id);
+                cliente = new ClienteVM(Cliente.Idcliente, Cliente.Calificacion, Cliente.Nombre, Cliente.Apellidos, Cliente.Correo, Cliente.Password, Cliente.EscuelaIdescuela);
+                cliente.Url = await SecureStorage.Default.GetAsync("Icon");
 
-            BindingContext = cliente;
+                EscuelaNombre.Text = await internetEscompras.GetNombreEscuela(cliente.EscuelaIdescuela);
+
+                BindingContext = cliente;
+            }
+            else if(tipo.Equals("Tienda"))
+            {
+                versionTienda.IsVisible = true;
+                versionCliente.IsVisible = false;
+                Id = Int32.Parse(await SecureStorage.Default.GetAsync("idTienda"));
+                Vendedor = await internetEscompras.GetTienda(Id);
+                Vendedor.Imagen = await SecureStorage.Default.GetAsync("Icon");
+
+                BindingContext = Vendedor;
+            }
+
         }
         catch
         {
@@ -44,7 +66,11 @@ public partial class ProfilePage : ContentPage
 
     private async void Informacion_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Info(cliente));
+        if (tipo.Equals("Cliente"))
+            await Navigation.PushAsync(new Info(cliente));
+
+        else if (tipo.Equals("Tienda"))
+            await Navigation.PushAsync(new Info(Vendedor));
         //Shell.Current.GoToAsync("Informacion");
     }
 
@@ -62,5 +88,10 @@ public partial class ProfilePage : ContentPage
         await SecureStorage.Default.SetAsync("tipo", "Cliente");
 
         await Navigation.PushAsync(new LogIn());
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

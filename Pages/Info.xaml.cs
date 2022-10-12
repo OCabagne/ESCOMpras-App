@@ -6,6 +6,7 @@ namespace test1.Pages;
 public partial class Info : ContentPage
 {
     ClienteVM Cliente;
+    Tiendum Vendedor;
     private IList<Escuela> escuelas;
     public Info()
     {
@@ -18,6 +19,15 @@ public partial class Info : ContentPage
         Cliente = cliente;
         BindingContext = Cliente;
         obtenerEscuelas();
+        versionVendedor.IsVisible = false;
+    }
+
+    public Info(Tiendum vendedor)
+    {
+        InitializeComponent();
+        Vendedor = vendedor;
+        BindingContext = Vendedor;
+        versionCliente.IsVisible = false;
     }
 
     private async void obtenerEscuelas()
