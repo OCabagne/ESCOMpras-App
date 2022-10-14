@@ -14,8 +14,13 @@ public partial class DetailsPage : ContentPage
     {
         InitializeComponent();
         seleccion = productoSeleccionado;
-
+        Load();
         this.BindingContext = seleccion;
+    }
+
+    private async void Load()
+    {
+        seleccion.nombreTienda = await internetEscompras.GetNombreTienda(seleccion.TiendaIdtienda);
     }
 
     private async void addToCart_Clicked(object sender, EventArgs e)

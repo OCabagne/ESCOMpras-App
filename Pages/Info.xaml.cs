@@ -66,9 +66,12 @@ public partial class Info : ContentPage
                     await DisplayAlert("", "Las contraseñas no coinciden.", "Ok");
                 }
             }
-            if (!selectEscuela.SelectedItem.Equals(Cliente.nombreEscuela))
+            if (selectEscuela.SelectedItem != null)
             {
-                Cliente.EscuelaIdescuela = escuelas[selectEscuela.SelectedIndex].Idescuela;
+                if (!selectEscuela.SelectedItem.Equals(Cliente.nombreEscuela))
+                {
+                    Cliente.EscuelaIdescuela = escuelas[selectEscuela.SelectedIndex].Idescuela;
+                }
             }
 
             if (flag)

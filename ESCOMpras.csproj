@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Cells\ResumeCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AgregarProducto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Carrito.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

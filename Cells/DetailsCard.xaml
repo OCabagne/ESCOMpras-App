@@ -8,11 +8,16 @@
                Text="{Binding Nombre}"
                FontAttributes="Bold"
                FontSize="20"/>
-        
-        <Label Margin="10,5,0,10"
-               Text="Vendedor: Vendedor1"
-               FontSize="Micro"/>
 
+        <Grid >
+            <Label Margin="10,5,0,10"
+                   Text="Vendedor: "
+                   FontSize="Micro"/>
+
+            <Label Margin="65,5,0,10"
+                   Text="{Binding nombreTienda}"
+                   FontSize="Micro"/>
+        </Grid>
         <Image Margin="5,5,5,0"
                Source="{Binding Imagen}"
                MinimumHeightRequest="100"

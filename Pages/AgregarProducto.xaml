@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESCOMpras.Pages.AgregarProducto"
+             Shell.BackgroundColor="SteelBlue"
+             Title="Agregar Producto">
+    
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Por el momento se agregan imagenes Default." VerticalOptions="Center" HorizontalOptions="Center" Margin="0,70,0,0" FontSize="15" FontAttributes="Italic"/>
+
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*" Margin="30,30,0,20">
+                <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="Nombre: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start" Grid.ColumnSpan="2"
+                           x:Name="nombreProducto" 
+                           Placeholder="Producto Fantástico"
+                           FontSize="Body"
+                           FontAttributes="Italic"
+                           ClearButtonVisibility="WhileEditing" 
+                           Keyboard="Plain"/>
+
+                <Editor Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
+                        x:Name="descripcionProducto"
+                        Placeholder="Descripción del producto"
+                        HeightRequest="150"
+                        FontSize="Body"/>
+
+                <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="Precio: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                           x:Name="precioProducto" 
+                           Placeholder="5.00"
+                           FontSize="Body"
+                           FontAttributes="Italic"
+                           Keyboard="Numeric"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="Cantidad: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start" Grid.ColumnSpan="2"
+                           x:Name="cantidadProducto"
+                           Placeholder="Unidades Disponibles"
+                           FontSize="Body"
+                           FontAttributes="Italic"
+                           Keyboard="Numeric"/>
+
+                <Label Grid.Column="0" Grid.Row="6" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="Tienda ID: "
+                           FontSize="Body"
+                           FontAttributes="Bold"/>
+
+                <Label Grid.Column="1" Grid.Row="6" Margin="0,10,30,0"
+                           HorizontalOptions="Start"
+                           Text="{Binding Idtienda}"
+                           FontSize="Body"
+                           FontAttributes="Italic"/>
+
+                <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
+                        Margin="90,30,90,0"
+                        x:Name="guardarProducto"
+                        Text="Guardar Producto"
+                        Clicked="guardarProducto_Clicked"
+                        BackgroundColor="SteelBlue"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

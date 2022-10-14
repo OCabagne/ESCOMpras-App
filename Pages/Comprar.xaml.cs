@@ -53,16 +53,23 @@ public partial class Comprar : ContentPage
         }
         else
         {
-            Compra compra = new Compra
+            try
             {
-                Cantidad = PedidoVM.Cantidad,
-                Detalles = null,
-                ProductoIdproducto = PedidoVM.idProducto,
-                OrdenIdorden = idOrden
-            };
+                Compra compra = new Compra
+                {
+                    Cantidad = PedidoVM.Cantidad,
+                    Detalles = null,
+                    ProductoIdproducto = PedidoVM.idProducto,
+                    OrdenIdorden = idOrden
+                };
 
-            await internetEscompras.NuevaCompra(compra);
-            await Navigation.PushAsync(new PedidoFinalizado(idOrden));
+                await internetEscompras.NuevaCompra(compra);
+                await Navigation.PushAsync(new PedidoFinalizado(idOrden));
+            }
+            catch
+            {
+                await DisplayAlert("", "Ha ocurrido un error.", "Ok");
+            }
         }
     }
 }

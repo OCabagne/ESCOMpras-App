@@ -82,6 +82,20 @@ namespace ESCOMpras.Models
             }
         }
 
+        public static async Task NuevoProducto(ProductoVM producto)
+        {
+            try
+            {
+                var Json = JsonConvert.SerializeObject(producto);
+                var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                await client.PostAsync("/nuevoProducto", content);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static Task<Cliente> LogIn(string correo, string password) =>
             GetTAsync<Cliente>($"Login/{correo}/{password}", "Login", 0, true);
 
