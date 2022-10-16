@@ -68,20 +68,37 @@ namespace ESCOMpras.Models
             }
         }
 
-        public static async Task NuevaCompra(Compra compra)
+        public static async Task<bool> NuevaCompra(Compra compra)
         {
             try
             {
                 var pedidoJson = JsonConvert.SerializeObject(compra);
                 var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
-                await client.PostAsync("/nuevaCompra", content);
+                var response = await client.PostAsync("/nuevaCompra", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return false;
+                }
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return false;
             }
         }
 
+        public static async Task BorrarOrden(int idOrden)
+        {
+            try
+            {
+                var cmd = await client.DeleteAsync($"/borrarOrden/{idOrden}");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         public static async Task NuevoProducto(ProductoVM producto)
         {
             try
@@ -127,7 +144,7 @@ namespace ESCOMpras.Models
             GetTAsync<Compra>($"/verCompras/{idPedido}", "GetCompras", 0);
 
         public static Task<List<Escuela>> getEscuelas() =>
-            GetTAsync<List<Escuela>>("/escuelas","GetEscuelas");
+            GetTAsync<List<Escuela>>("/escuelas", "GetEscuelas");
         public static Task<string> GetNombreEscuela(int idEscuela) =>
             GetTAsync<string>($"/escuelaNombre/{idEscuela}", "GetNombreEscuela", 0);
         public static Task<string> GetNombreCliente(int idCliente) =>
@@ -145,7 +162,7 @@ namespace ESCOMpras.Models
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PutAsync($"/clienteActualizar/{cliente.Idcliente}", content);
 
-            if(!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(">: ERROR");
             }
@@ -156,23 +173,35 @@ namespace ESCOMpras.Models
             try
             {
                 List<Producto> obtenidos = new List<Producto>();
+                List<int> idTiendas = new List<int>();
                 string json1 = await client.GetStringAsync($"/tiendaEscuela/{id}"); // Obtiene los Id de las tiendas que ofrecen servicio a la escuela (id)
                 List<Horaservicio> lista = JsonConvert.DeserializeObject<List<Horaservicio>>(json1);// Deserializar para obtener los idTienda
                 foreach (Horaservicio horservicio in lista)
                 {
                     int idTienda = horservicio.TiendaIdtienda;  // id de una tienda que ofrece servicio la escuela
-                    string json2 = await client.GetStringAsync($"/productoEscuela/{idTienda}"); // Obtiene los productos vendidos por una tienda especifica
-                    List<Producto> productos1 = JsonConvert.DeserializeObject<List<Producto>>(json2);   // Deserializa los productos vendidos por la tienda buscada
-                    obtenidos.AddRange(productos1); // Añadimos los productos obtenidos a la lista final
+                    if (!idTiendas.Contains(idTienda))
+                    {
+                        idTiendas.Add(idTienda);
+                        string json2 = await client.GetStringAsync($"/productoEscuela/{idTienda}"); // Obtiene los productos vendidos por una tienda especifica
+                        List<Producto> productos1 = JsonConvert.DeserializeObject<List<Producto>>(json2);   // Deserializa los productos vendidos por la tienda buscada
+                        foreach (Producto producto in productos1)
+                        {
+                            if (obtenidos.Contains(producto))
+                            {
+                                productos1.Remove(producto);
+                            }
+                        }
+                        obtenidos.AddRange(productos1); // Añadimos los productos obtenidos a la lista final
 
-                    productos1.Clear();     // Limpiamos la lista de productos obtenida
+                        productos1.Clear();     // Limpiamos la lista de productos obtenida
+                    }
                 }
 
                 //string json = await client.GetStringAsync("/productos");    // Obtiene TODOS los productos registrados
                 //List<Producto> productos = JsonConvert.DeserializeObject<List<Producto>>(json);
                 var json = JsonConvert.SerializeObject(obtenidos);
 
-                Barrel.Current.Add("GetProductos", json, TimeSpan.FromMinutes(0));
+                //Barrel.Current.Add("GetProductos", json, TimeSpan.FromMinutes(0));
 
                 return obtenidos;
             }

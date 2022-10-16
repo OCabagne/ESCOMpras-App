@@ -49,22 +49,36 @@ public partial class Comprar : ContentPage
 
         if (idOrden == 0)
         {
-            await DisplayAlert("", "Ha ocurrido un error.", "Ok");
+            await DisplayAlert("Orden", "Ha ocurrido un error.", "Ok");
         }
         else
         {
             try
             {
+                Producto _producto = await internetEscompras.GetProducto(PedidoVM.idProducto);
+
                 Compra compra = new Compra
                 {
                     Cantidad = PedidoVM.Cantidad,
-                    Detalles = null,
-                    ProductoIdproducto = PedidoVM.idProducto,
+                    descripcionproducto = _producto.Descripcion,
+                    Detalles = "",
+                    nombreproducto = _producto.Nombre,
+                    precioproducto = _producto.Precio,
+                    promocion = _producto.Promocion,
+                    unidad = _producto.Unidad,
+                    ProductoIdproducto = _producto.Idproducto,
                     OrdenIdorden = idOrden
                 };
 
-                await internetEscompras.NuevaCompra(compra);
-                await Navigation.PushAsync(new PedidoFinalizado(idOrden));
+                if (await internetEscompras.NuevaCompra(compra))
+                {
+                    await Navigation.PushAsync(new PedidoFinalizado(idOrden));
+                }
+                else
+                {
+                    await DisplayAlert("Compra", "Ha ocurrido un error.", "Ok");
+                    await internetEscompras.BorrarOrden(idOrden);
+                }
             }
             catch
             {
