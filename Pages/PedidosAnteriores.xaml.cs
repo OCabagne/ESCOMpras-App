@@ -38,14 +38,27 @@ public partial class PedidosAnteriores : ContentPage
                 {
                     try
                     {
-                        Compra obj = await internetEscompras.GetCompra(orden.Idorden);
+                        Compra compra = await internetEscompras.GetCompra(orden.Idorden);
                         //Compras.Add(obj);
 
-                        Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
-                        obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
-                        Productos.Add(obj2);
+                        //Producto obj2 = await internetEscompras.GetProducto(compra.ProductoIdproducto);
+                        //obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        //Productos.Add(obj2);
 
-                        item = new PedidoPendiente(obj.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
+                        Producto _producto = new Producto
+                        {
+                            Idproducto = compra.ProductoIdproducto,
+                            Descripcion = compra.descripcionproducto,
+                            Nombre = compra.nombreproducto,
+                            Precio = compra.precioproducto,
+                            Promocion = compra.promocion,
+                            Unidad = compra.unidad,
+                            TiendaIdtienda = orden.TiendaIdtienda,
+                            Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg"
+                        };
+                        Productos.Add(_producto);
+
+                        item = new PedidoPendiente(compra.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, compra.Cantidad, compra.Detalles, orden.Fecha, orden.Montototal, _producto);
                         PedidosPendientes.Add(item);
                         item = null;
                     }

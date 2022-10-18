@@ -5,26 +5,53 @@
     <Frame CornerRadius="0">
         <StackLayout>
             <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-                                           Source="{Binding producto.Imagen}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="110" />
+                <Image Grid.Row="0" Grid.Column="0" 
+                       Grid.RowSpan="3"
+                       Source="{Binding producto.Imagen}"
+                       Aspect="AspectFill"
+                       HeightRequest="110" />
 
-                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                                           Margin="10,0,0,0"
-                                           Text="{Binding producto.Nombre}"
-                                           FontAttributes="Bold"
-                                           FontSize="Body"/>
+                <Label Grid.Row="0" Grid.Column="1" 
+                       Grid.ColumnSpan="2"
+                       Margin="10,0,0,0"
+                       Text="{Binding producto.Nombre}"
+                       FontAttributes="Bold"
+                       FontSize="Body"/>
 
-                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-                                           Margin="10,0,0,0"
-                                           Text="{Binding Detalles}"
-                                           VerticalOptions="End" />
+                <Label Grid.Row="1" Grid.Column="1"
+                       Margin="10,0,0,0"
+                       Text="{Binding nombreEscuela}"/>
 
-                <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
-                                           HorizontalOptions="End"
-                                           Text="Cantidad"
-                                           VerticalOptions="End" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       x:Name="vendedorInfo"
+                       Margin="10,0,0,0"
+                       IsVisible="false"
+                       Text="Vendedor: "/>
+
+                <Label Grid.Row="2" Grid.Column="2" 
+                       Margin="10,0,0,0"
+                       x:Name="vendedorNombre"
+                       Text="{Binding nombreTienda}"
+                       IsVisible="false"/>
+                    
+
+                <Label Grid.Row="2" Grid.Column="1" 
+                       Margin="10,0,0,0"
+                       x:Name="clienteInfo"
+                       Text="Cliente: "
+                       IsVisible="false"/>
+
+                <Label Grid.Row="2" Grid.Column="2" 
+                       Margin="10,0,0,0"
+                       x:Name="clienteNombre"
+                       Text="{Binding nombreCliente}"
+                       IsVisible="false"/>
+
+                <Label Grid.Row="0" Grid.Column="3" 
+                       Grid.ColumnSpan="2"
+                       HorizontalOptions="End"
+                       Text="Cantidad"
+                       VerticalOptions="End" />
 
                 <Label Grid.Row="1" Grid.Column="3"
                        Text="{Binding Cantidad}"
@@ -32,15 +59,17 @@
                        HorizontalOptions="End" 
                        Margin="0,0,25,0"/>
 
-                <Label Text="Total = $" Grid.Column="0" Grid.Row="3"
-                                               Margin="0,20,0,0"
-                                               FontAttributes="Bold" 
-                                               FontSize="20"/>
+                <Label Text="Total = $" Grid.Column="0" 
+                       Grid.Row="3"
+                       Margin="0,20,0,0"
+                       FontAttributes="Bold" 
+                       FontSize="20"/>
                 
-                <Label Text="{Binding Montototal}" Grid.Column="1" Grid.Row="3"
-                                               Margin="0,20,0,0"
-                                               FontAttributes="Bold" 
-                                               FontSize="20"/>
+                <Label Text="{Binding Montototal}" Grid.Column="1" 
+                       Grid.Row="3"
+                       Margin="0,20,0,0"
+                       FontAttributes="Bold" 
+                       FontSize="20"/>
             </Grid>
         </StackLayout>
     </Frame>

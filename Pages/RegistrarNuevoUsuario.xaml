@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESCOMpras.Pages.RegistrarNuevoUsuario"
+             Shell.BackgroundColor="SteelBlue"
+             Title="Registrarme">
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout x:Name="versionVendedor">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                    <Image Source="{Binding Imagen}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="150" Aspect="AspectFill"/>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*" Margin="30,10,0,20">
+
+                    <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Tipo: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Picker Grid.Column="1" Grid.Row="0"
+                            x:Name="selectTipo"
+                            Title="Elegir"
+                            FontSize="Body"
+                            FontAttributes="Italic"
+                            TitleColor="SteelBlue">
+                    </Picker>
+
+                    <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Nombre: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
+                       x:Name="NombreVendedor" 
+                       Placeholder="ESCOMpras Corp"
+                       FontSize="Body"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Correo: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
+                       x:Name="CorreoVendedor" 
+                       Placeholder="Correo@ejemplo.com"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Email"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Contraseña: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                       x:Name="PasswordVendedor"
+                       Placeholder="Contraseña"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"
+                       IsPassword="True"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Confirmar Contraseña: "
+                       FontSize="Small"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                       x:Name="ConfirmarPasswordVendedor" 
+                       Placeholder="Confirmar Contraseña"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"
+                       IsPassword="True"/>
+
+                    <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+                            Margin="60,20,60,0"
+                            Text="Registrar mi Tienda"
+                            x:Name="RegistrarVendedor"
+                            Clicked="RegistrarVendedor_Clicked"
+                            BackgroundColor="SteelBlue"/>
+
+                    <CheckBox Grid.Column="0" Grid.Row="6" Margin="0,10,50,0"
+                              HorizontalOptions="End"
+                              x:Name="aceptoTerminosVendedor"
+                              Color="SteelBlue"/>
+
+                    <Label Grid.Column="1" Grid.Row="6" Margin="-50,20,0,0"
+                           HorizontalOptions="Start"
+                           Text="Acepto los términos y condiciones."
+                           FontSize="Micro"/>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout x:Name="versionCliente">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                    <Image Source="{Binding Url}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="150" Aspect="AspectFill"/>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="30,10,0,20">
+
+                    <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Escuela: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Picker Grid.Column="1" Grid.Row="0"
+                            x:Name="selectEscuela"
+                            Title="Elegir"
+                            FontSize="Body"
+                            FontAttributes="Italic"
+                            TitleColor="SteelBlue">
+
+                    </Picker>
+
+                    <Label Grid.Column="0" Grid.Row="1" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Nombre: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"
+                       x:Name="Nombre" 
+                       Placeholder="Nombre(s)"
+                       FontSize="Body"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Apellidos: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
+                       x:Name="Apellido"  
+                       Placeholder="Apellidos"
+                       FontSize="Body"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Correo: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                       x:Name="Correo" 
+                       Placeholder="Correo@ejemplo.com"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Email"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Contraseña: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                       x:Name="Password"
+                       Placeholder="Contraseña"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"
+                       IsPassword="True"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Confirmar Contraseña: "
+                       FontSize="Small"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start"
+                       x:Name="ConfirmarPassword" 
+                       Placeholder="Confirmar Contraseña"
+                       FontSize="Small"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"
+                       IsPassword="True"/>
+
+                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+                            Margin="60,20,60,0"
+                            Text="Crear mi cuenta"
+                            x:Name="RegistrarCliente"
+                            Clicked="RegistrarCliente_Clicked"
+                            BackgroundColor="SteelBlue"/>
+
+                    <CheckBox Grid.Column="0" Grid.Row="8" Margin="0,10,50,0"
+                              HorizontalOptions="End"
+                              x:Name="aceptoTerminos"
+                              Color="SteelBlue"/>
+
+                    <Label Grid.Column="1" Grid.Row="8" Margin="-50,20,0,0"
+                           HorizontalOptions="Start"
+                           Text="Acepto los términos y condiciones."
+                           FontSize="Micro"/>
+                </Grid>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

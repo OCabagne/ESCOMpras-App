@@ -12,17 +12,34 @@
                    Source="{Binding Imagen}"
                    Aspect="AspectFill"
                    HeightRequest="130" />
-            
-            <StackLayout VerticalOptions="Center">
-                <Label Padding="5"
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="0,15,0,0">
+
+                <Label Padding="5" Grid.Row="0" Grid.ColumnSpan="2"
                        Text="{Binding Nombre}"
                        FontAttributes="Bold"
                        FontSize="Body"/>
 
-                <Label Padding="3"
+                <Label Padding="3" Grid.Row="1"
                        Text="{Binding Descripcion}"
                        VerticalOptions="End" />
-            </StackLayout>
+                
+                <Label Grid.Column="1" Grid.RowSpan="2"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       Text="$"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       Margin="0,0,60,0"/>
+
+                <Label Grid.Column="1" Grid.RowSpan="2"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Text="{Binding Precio}"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       Margin="0,0,20,0"/>
+            </Grid>
         </StackLayout>
     </Frame>
 </Grid>

@@ -58,4 +58,9 @@ public partial class LogIn : ContentPage
             await DisplayAlert("", ex.Message, "OK");
         }
     }
+
+    private async void crearCuentaBtn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CrearCuenta());
+    }
 }
