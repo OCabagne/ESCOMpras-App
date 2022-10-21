@@ -58,7 +58,7 @@ public partial class PedidosAnteriores : ContentPage
                         };
                         Productos.Add(_producto);
 
-                        item = new PedidoPendiente(compra.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, compra.Cantidad, compra.Detalles, orden.Fecha, orden.Montototal, _producto);
+                        item = new PedidoPendiente(compra.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, compra.Cantidad, compra.Detalles, orden.Fecha, orden.Montototal, _producto, _producto.Promocion);
                         PedidosPendientes.Add(item);
                         item = null;
                     }
@@ -95,7 +95,7 @@ public partial class PedidosAnteriores : ContentPage
                         obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
                         Productos.Add(obj2);
 
-                        item = new PedidoPendiente(obj.ProductoIdproducto, orden.ClienteIdcliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2);
+                        item = new PedidoPendiente(obj.ProductoIdproducto, orden.ClienteIdcliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2, obj2.Promocion);
                         PedidosPendientes.Add(item);
                         item = null;
                     }

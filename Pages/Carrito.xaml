@@ -86,10 +86,18 @@
                 </Picker>
             </Grid>
         </StackLayout>
-        
-        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0"
-              x:Name="DetallesCarrito">
 
+        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*" Margin="10,10,0,0"
+              x:Name="DetallesCarrito">
+            
+            <Label Grid.Row="1" Grid.Column="2"
+                   HorizontalOptions="Center"
+                   x:Name="promocion"
+                   Margin="0,15,0,0"
+                   Padding="2"
+                   BackgroundColor="SteelBlue"
+                   TextColor="White"/>
+            
             <Label Text="Punto de entrega:" Grid.Row="1" 
                    FontAttributes="Bold" 
                    FontSize="15"

@@ -18,7 +18,7 @@
         </StackLayout>
 
         <StackLayout>
-            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
+            <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,*" Margin="10,10,0,0">
 
                 <Label Text="Punto de entrega:" Grid.Row="1" 
                        FontAttributes="Bold" 
@@ -42,6 +42,22 @@
                         FontAttributes="Italic"
                         FontSize="15"
                         Margin="15,15,0,0"/>
+
+                <Label Grid.Row="3" Grid.Column="0"
+                       Text="Notas: "
+                       FontAttributes="Bold" 
+                       FontSize="15"
+                       Margin="10,15,0,0"/>
+
+                <Entry Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                       HorizontalOptions="Start" 
+                       Margin="10,5,10,0"
+                       x:Name="Detalles" 
+                       Placeholder="Ejemplo: Te veo en el salón 4CV12"
+                       FontSize="Body"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"/>
             </Grid>
         </StackLayout>
         

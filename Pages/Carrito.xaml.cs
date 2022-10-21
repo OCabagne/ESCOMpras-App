@@ -15,7 +15,6 @@ public partial class Carrito : ContentPage
         ProductosCarrito.IsVisible = false;
         DetallesCarrito.IsVisible = false;
         ComprarYa.IsVisible = false;
-
         BindingContext = this;
     }
 
@@ -23,6 +22,10 @@ public partial class Carrito : ContentPage
     {
         InitializeComponent();
         sinPedidos.IsVisible = false;
+        if (_producto.Promocion.Equals(""))
+            promocion.IsVisible = false;
+        else
+            promocion.Text = _producto.Promocion;
         producto = new Producto();
         producto = _producto;
         CarritoCompras = new List<Producto> { producto };

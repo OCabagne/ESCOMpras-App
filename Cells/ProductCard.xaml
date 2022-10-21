@@ -13,7 +13,7 @@
                    Aspect="AspectFill"
                    HeightRequest="130" />
 
-            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="0,15,0,0">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" Margin="0,15,0,0">
 
                 <Label Padding="5" Grid.Row="0" Grid.ColumnSpan="2"
                        Text="{Binding Nombre}"
@@ -39,6 +39,14 @@
                        FontSize="Large"
                        FontAttributes="Bold"
                        Margin="0,0,20,0"/>
+
+                <Label Grid.Column="1" Grid.Row="2"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       Text="{Binding Promocion}"
+                       TextColor="White"
+                       Padding="2"
+                       BackgroundColor="SteelBlue"/>
             </Grid>
         </StackLayout>
     </Frame>

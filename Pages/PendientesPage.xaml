@@ -70,7 +70,7 @@
                        MaximumHeightRequest="200"
                        Aspect="AspectFill"/>
 
-                <Grid ColumnDefinitions="*,*,*" Margin="10,20,0,10">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" Margin="10,20,0,10">
 
                     <Label Grid.Column="0"
                            Text="Precio: $" />
@@ -89,11 +89,36 @@
 
                     <Label Grid.Column="2" Margin="50,0,0,0"
                            Text="{Binding Montototal}"/>
+
+                    <Label Grid.Column="1" Grid.Row="1"
+                           x:Name="promocionTexto"
+                           Margin="0,10,0,0"
+                           BackgroundColor="SteelBlue"
+                           TextColor="White"
+                           Text="Promoción: "/>
+
+                    <Label Grid.Column="2" Grid.Row="1"
+                           x:Name="promocionValor"
+                           Margin="0,10,0,0"
+                           HorizontalOptions="Start"
+                           BackgroundColor="SteelBlue"
+                           TextColor="White"
+                           Text="{Binding Promocion}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2"
+                           Margin="0,10,0,0"
+                           Text="Detalles: "/>
+
+                    <Label Grid.Column="1" Grid.Row="2"
+                           Margin="0,10,0,0"
+                           HorizontalOptions="Start"
+                           Text="{Binding Detalles}"/>
                 </Grid>
             </VerticalStackLayout>
         </StackLayout>
         <Grid RowDefinitions="*,*" ColumnDefinitions="*">
-            <Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" Margin="10,10,10,0" BackgroundColor="DarkRed" Text="Reportar Problema" x:Name="reportarProblema" Clicked="reportarProblema_Clicked"></Button>
+            <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="SteelBlue" Text="Finalizar Orden" x:Name="finalizarOrden" Clicked="finalizarOrden_Clicked"/>
+            <Button Grid.Row="1" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Reportar Problema" x:Name="reportarProblema" Clicked="reportarProblema_Clicked"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

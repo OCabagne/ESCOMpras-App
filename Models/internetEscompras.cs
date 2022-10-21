@@ -168,6 +168,17 @@ namespace ESCOMpras.Models
             }
         }
 
+        public async static void UpdateProducto(Producto _producto)
+        {
+            var json = JsonConvert.SerializeObject(_producto);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/actualizarProducto/{_producto.Idproducto}", content);
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(">: ERROR");
+            }
+        }
+
         public static async Task<List<Producto>> GetProductos(int id)
         {
             try
@@ -197,11 +208,7 @@ namespace ESCOMpras.Models
                     }
                 }
 
-                //string json = await client.GetStringAsync("/productos");    // Obtiene TODOS los productos registrados
-                //List<Producto> productos = JsonConvert.DeserializeObject<List<Producto>>(json);
                 var json = JsonConvert.SerializeObject(obtenidos);
-
-                //Barrel.Current.Add("GetProductos", json, TimeSpan.FromMinutes(0));
 
                 return obtenidos;
             }

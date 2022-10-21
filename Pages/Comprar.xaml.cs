@@ -61,7 +61,6 @@ public partial class Comprar : ContentPage
                 {
                     Cantidad = PedidoVM.Cantidad,
                     descripcionproducto = _producto.Descripcion,
-                    Detalles = "",
                     nombreproducto = _producto.Nombre,
                     precioproducto = _producto.Precio,
                     promocion = _producto.Promocion,
@@ -69,7 +68,10 @@ public partial class Comprar : ContentPage
                     ProductoIdproducto = _producto.Idproducto,
                     OrdenIdorden = idOrden
                 };
-
+                if (Detalles.Text == null)
+                    compra.Detalles = "Entrada principal";
+                else
+                    compra.Detalles = Detalles.Text;
                 if (await internetEscompras.NuevaCompra(compra))
                 {
                     await Navigation.PushAsync(new PedidoFinalizado(idOrden));

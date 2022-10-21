@@ -147,7 +147,7 @@ public partial class HomePage : ContentPage
     private async void obtenerProductos(int escuelaId)
     {
         if (tipo)
-            Productos = await internetEscompras.GetProductos(escuelaId);    // Productos en modo Cliente
+            Productos = await internetEscompras.GetProductos();    // Productos en modo Cliente
         else
             Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
         
@@ -188,7 +188,7 @@ public partial class HomePage : ContentPage
     {
 
         if (tipo)
-            Productos = await internetEscompras.GetProductos(idEscuela);    // Productos en modo Cliente
+            Productos = await internetEscompras.GetProductos();    // Productos en modo Cliente
         else
             Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
 

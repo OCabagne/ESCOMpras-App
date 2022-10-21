@@ -24,17 +24,26 @@
                MaximumHeightRequest="200"
                Aspect="AspectFill"/>
 
-        <Grid>
-            <Label Margin="10,10,0,0"
+        <Grid ColumnDefinitions="*,*,*">
+            <Label Margin="10,0,0,0" Grid.Column="0"
                Text="$"
                VerticalOptions="End"
                FontSize="30"
                FontAttributes="Bold" />
-            <Label Margin="30,10,0,0"
+            
+            <Label Margin="-100,10,0,0" Grid.Column="1"
                Text="{Binding Precio}"
+               HorizontalOptions="Start"
                VerticalOptions="End"
                FontSize="30"
                FontAttributes="Bold" />
+
+            <Label Grid.Column="2" Margin="0,20,20,0"
+                   HorizontalOptions="End"
+                   Padding="1"
+                   BackgroundColor="SteelBlue"
+                   TextColor="White"
+                   Text="{Binding Promocion}" />
         </Grid>
 
 

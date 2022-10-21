@@ -14,6 +14,7 @@ namespace ESCOMpras.Models
 		public string? Detalles { get; set; } // * constructor
         public DateTime Fecha { get; set; }	// * constructor
 		public int Montototal { get; set; } // * constructor
+        public string Promocion { get; set; }
         public Producto producto { get; set; }	// internetEscompras.GetProducto(idProducto);
 		public string nombreEscuela { get; set; }	// internetEscompras.GetNombreEscuela(idEscuela);
 		public string nombreCliente { get; set; }	// internetEscompras.GetNombreCliente(idCliente);
@@ -21,7 +22,7 @@ namespace ESCOMpras.Models
 
 		public PedidoPendiente() { }
 
-		public PedidoPendiente(int productoIdproducto, int clienteIdcliente, int escuelaIdescuela, int tiendaIdtienda, int idOrden, int cantidad, string detalles, DateTime fecha, int montoTotal, Producto producto)
+		public PedidoPendiente(int productoIdproducto, int clienteIdcliente, int escuelaIdescuela, int tiendaIdtienda, int idOrden, int cantidad, string detalles, DateTime fecha, int montoTotal, Producto producto, string promocion)
 		{
 			this.ProductoIdproducto = productoIdproducto;
 			this.ClienteIdcliente = clienteIdcliente;
@@ -33,6 +34,7 @@ namespace ESCOMpras.Models
 			this.Fecha = fecha;
 			this.Montototal = montoTotal;
 			this.producto = producto;
+			this.Promocion = promocion;
 
 			Completar();
 		}
