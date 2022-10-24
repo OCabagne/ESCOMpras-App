@@ -17,7 +17,7 @@ namespace ESCOMpras.Models
             };
         }
 
-        static async Task<T> GetTAsync<T>(string url, string key, int mins = 1, bool forceRefresh = false)
+        private static async Task<T> GetTAsync<T>(string url, string key, int mins = 1, bool forceRefresh = false)
         {
             var json = string.Empty;
 
@@ -99,6 +99,7 @@ namespace ESCOMpras.Models
                 Console.WriteLine(ex.Message);
             }
         }
+
         public static async Task NuevoProducto(ProductoVM producto)
         {
             try
@@ -132,7 +133,7 @@ namespace ESCOMpras.Models
             GetTAsync<Producto>($"/producto/{idProducto}", "GetProducto", 0);
 
         public static Task<List<Producto>> GetProductosByTienda(int idTienda) =>
-            GetTAsync<List<Producto>>($"/productoEscuela/{idTienda}", "GetProductosByTienda", 5, true);
+            GetTAsync<List<Producto>>($"/productoTienda/{idTienda}", "GetProductosByTienda", 5, true);
 
         public static Task<List<OrdenVM>> GetOrdenes(int idCliente) =>
             GetTAsync<List<OrdenVM>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos", 0);
@@ -179,6 +180,10 @@ namespace ESCOMpras.Models
             }
         }
 
+        public static Task<List<Producto>> GetProductos(int id) =>
+            GetTAsync<List<Producto>>($"/getProductosEscuela/{id}", "GetProductos", 5, true);
+
+        /*
         public static async Task<List<Producto>> GetProductos(int id)
         {
             try
@@ -204,7 +209,7 @@ namespace ESCOMpras.Models
                         }
                         obtenidos.AddRange(productos1); // Añadimos los productos obtenidos a la lista final
 
-                        productos1.Clear();     // Limpiamos la lista de productos obtenida
+                       productos1.Clear();     // Limpiamos la lista de productos obtenida
                     }
                 }
 
@@ -218,5 +223,6 @@ namespace ESCOMpras.Models
                 return null;
             }
         }
+        */
     }
 }
