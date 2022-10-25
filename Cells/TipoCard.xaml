@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test1.Cells.TipoCard"
+             Padding="1">
+    <Frame CornerRadius="10">
+        <StackLayout>
+            <Image Source="{Binding Imagen}"
+                   Aspect="AspectFill"
+                   HeightRequest="130" />
+
+            <Label Margin="0,5,0,0" HorizontalOptions="Center"
+                   Text="{Binding Nombre}"
+                   FontAttributes="Bold"
+                   FontSize="Body"/>
+
+        </StackLayout>
+    </Frame>
+</Grid>

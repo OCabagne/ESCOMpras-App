@@ -126,6 +126,9 @@ namespace ESCOMpras.Models
         public static Task<List<Producto>> GetProductos() =>
             GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
 
+        public static Task<List<Producto>> GetProductosTipo(int id) =>
+            GetTAsync<List<Producto>>($"/productosTipo/{id}", "GetProductos", 5, true);
+
         public static Task<List<Producto>> RefreshProductos() =>
             GetTAsync<List<Producto>>("/productos", "GetProductos", 5, true);
 
@@ -135,6 +138,8 @@ namespace ESCOMpras.Models
         public static Task<List<Producto>> GetProductosByTienda(int idTienda) =>
             GetTAsync<List<Producto>>($"/productoTienda/{idTienda}", "GetProductosByTienda", 5, true);
 
+        public static Task<List<Producto>> SearchProducto(string buscar) =>
+            GetTAsync<List<Producto>>($"/buscarSimilar/{buscar}", "buscarProducto", 1, true);
         public static Task<List<OrdenVM>> GetOrdenes(int idCliente) =>
             GetTAsync<List<OrdenVM>>($"/verOrdenes/%7Bid%7D?idCliente={idCliente}", "GetPedidos", 0);
 
