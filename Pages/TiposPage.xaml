@@ -4,28 +4,31 @@
              x:Class="test1.Pages.TiposPage"
              Shell.BackgroundColor="SteelBlue"
              xmlns:Cells="clr-namespace:test1.Cells">
-    <VerticalStackLayout>
-        <Label Text="Tipo" 
-               VerticalOptions="Center" HorizontalOptions="Center" 
-               Margin="0,30,0,10" FontSize="20" 
-               FontAttributes="Bold"
-               x:Name="nombreTipo"/>
-        <StackLayout Margin="0,10,0,0">
-            <ListView CachingStrategy="RecycleElement"
-                              ItemsSource="{Binding Productos}" 
-                              HasUnevenRows="True" 
-                              ItemTapped="RefreshView_ItemTapped"
-                              SeparatorVisibility="None"
-                              RefreshControlColor="SteelBlue"
-                              x:Name="RefreshView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Cells:ProductCard/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Tipo" 
+                   VerticalOptions="Center" HorizontalOptions="Center" 
+                   Margin="0,30,0,10" FontSize="20" 
+                   FontAttributes="Bold"
+                   x:Name="nombreTipo"/>
+            
+            <StackLayout Margin="0,10,0,0">
+                <ListView CachingStrategy="RecycleElement"
+                          ItemsSource="{Binding Productos}" 
+                          HasUnevenRows="True" 
+                          ItemTapped="RefreshView_ItemTapped"
+                          SeparatorVisibility="None"
+                          IsPullToRefreshEnabled="False"
+                          x:Name="RefreshView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Cells:ProductCard/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

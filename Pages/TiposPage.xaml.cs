@@ -28,6 +28,7 @@ public partial class TiposPage : ContentPage
             {
                 item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
             }
+            BindingContext = this;
         }
         catch { }
     }

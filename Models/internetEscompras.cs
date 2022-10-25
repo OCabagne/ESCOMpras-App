@@ -49,11 +49,6 @@ namespace ESCOMpras.Models
             try
             {
                 var pedidoJson = JsonConvert.SerializeObject(pedido);
-                //var content = new StringContent(pedidoJson);
-                //var message = await client.PostAsync("/nuevaOrden", content);
-
-                //var message = await client.PostAsJsonAsync("/nuevaOrden", pedido);
-
                 var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("/nuevaOrden", content);
 
@@ -188,46 +183,5 @@ namespace ESCOMpras.Models
         public static Task<List<Producto>> GetProductos(int id) =>
             GetTAsync<List<Producto>>($"/getProductosEscuela/{id}", "GetProductos", 5, true);
 
-        /*
-        public static async Task<List<Producto>> GetProductos(int id)
-        {
-            try
-            {
-                List<Producto> obtenidos = new List<Producto>();
-                List<int> idTiendas = new List<int>();
-                string json1 = await client.GetStringAsync($"/tiendaEscuela/{id}"); // Obtiene los Id de las tiendas que ofrecen servicio a la escuela (id)
-                List<Horaservicio> lista = JsonConvert.DeserializeObject<List<Horaservicio>>(json1);// Deserializar para obtener los idTienda
-                foreach (Horaservicio horservicio in lista)
-                {
-                    int idTienda = horservicio.TiendaIdtienda;  // id de una tienda que ofrece servicio la escuela
-                    if (!idTiendas.Contains(idTienda))
-                    {
-                        idTiendas.Add(idTienda);
-                        string json2 = await client.GetStringAsync($"/productoEscuela/{idTienda}"); // Obtiene los productos vendidos por una tienda especifica
-                        List<Producto> productos1 = JsonConvert.DeserializeObject<List<Producto>>(json2);   // Deserializa los productos vendidos por la tienda buscada
-                        foreach (Producto producto in productos1)
-                        {
-                            if (obtenidos.Contains(producto))
-                            {
-                                productos1.Remove(producto);
-                            }
-                        }
-                        obtenidos.AddRange(productos1); // Añadimos los productos obtenidos a la lista final
-
-                       productos1.Clear();     // Limpiamos la lista de productos obtenida
-                    }
-                }
-
-                var json = JsonConvert.SerializeObject(obtenidos);
-
-                return obtenidos;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return null;
-            }
-        }
-        */
     }
 }

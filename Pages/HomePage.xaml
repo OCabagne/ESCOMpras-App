@@ -13,7 +13,8 @@
                 <Label Text="escuela" x:Name="nombreEscuela" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="#05629b"/>
                 <Button Grid.Column="2" Grid.RowSpan="2" HeightRequest="55" WidthRequest="55" Margin="60,0,0,0" 
                         Text="{StaticResource IconCart}" FontFamily="FAS" FontSize="30" BackgroundColor="GhostWhite" TextColor="#05629b"
-                        x:Name="CarritoBtn" Clicked="CarritoBtn_Clicked"/>
+                        x:Name="CarritoBtn" Clicked="CarritoBtn_Clicked"
+                        IsVisible="False"/>
             </Grid>
             
             <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*" Margin="0,10,0,0" x:Name="headerVendedor">
