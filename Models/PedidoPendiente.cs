@@ -14,6 +14,7 @@ namespace ESCOMpras.Models
 		public string? Detalles { get; set; } // * constructor
         public DateTime Fecha { get; set; }	// * constructor
 		public int Montototal { get; set; } // * constructor
+		public string Estado { get; set; }
         public string Promocion { get; set; }
         public Producto producto { get; set; }	// internetEscompras.GetProducto(idProducto);
 		public string nombreEscuela { get; set; }	// internetEscompras.GetNombreEscuela(idEscuela);

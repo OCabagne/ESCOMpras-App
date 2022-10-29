@@ -59,6 +59,7 @@ public partial class PedidosAnteriores : ContentPage
                         Productos.Add(_producto);
 
                         item = new PedidoPendiente(compra.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, compra.Cantidad, compra.Detalles, orden.Fecha, orden.Montototal, _producto, _producto.Promocion);
+                        item.Estado = orden.Estado;
                         PedidosPendientes.Add(item);
                         item = null;
                     }
@@ -96,12 +97,12 @@ public partial class PedidosAnteriores : ContentPage
                         Productos.Add(obj2);
 
                         item = new PedidoPendiente(obj.ProductoIdproducto, orden.ClienteIdcliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2, obj2.Promocion);
+                        item.Estado = orden.Estado;
                         PedidosPendientes.Add(item);
                         item = null;
                     }
                     catch
-                    {
-                    }
+                    {}
                 }
 
                 BindingContext = this;

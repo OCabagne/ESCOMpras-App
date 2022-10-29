@@ -9,5 +9,6 @@ namespace ESCOMpras.Models
         public int ClienteIdcliente { get; set; }
         public int EscuelaIdescuela { get; set; }
         public int TiendaIdtienda { get; set; }
+        public string Estado { get; set; }
     }
 }

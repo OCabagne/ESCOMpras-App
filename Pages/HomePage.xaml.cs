@@ -10,8 +10,8 @@ public partial class HomePage : ContentPage
     private int idTienda;
     private bool tipo; // True -> Cliente; False -> Tienda
 
-	public HomePage()
-	{
+    public HomePage()
+    {
         InitializeComponent();
         headerVendedor.IsVisible = false;
         sinProductos.IsVisible = false;
@@ -57,7 +57,7 @@ public partial class HomePage : ContentPage
 
         if (logged.Equals("False"))
         {
-            if(await SecureStorage.Default.GetAsync("Icon") == null)
+            if (await SecureStorage.Default.GetAsync("Icon") == null)
                 await SecureStorage.Default.SetAsync("Icon", "https://flyinryanhawks.org/wp-content/uploads/2016/08/profile-placeholder.png");
 
             await Navigation.PushAsync(new LogIn());
@@ -65,8 +65,8 @@ public partial class HomePage : ContentPage
             if (await loadData())
                 obtenerProductos(idEscuela);
         }
-        
-        if(logged.Equals("True"))
+
+        if (logged.Equals("True"))
         {
             await loadData();
             obtenerProductos(idEscuela);
@@ -134,13 +134,13 @@ public partial class HomePage : ContentPage
     private async void obtenerProductos()
     {
         Productos = await internetEscompras.GetProductos();    // id para ESCOM = 1
-        
+
         foreach (var item in Productos)
         {
             //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
             item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
         }
-        
+
         BindingContext = this;
     }
 
@@ -150,7 +150,7 @@ public partial class HomePage : ContentPage
             Productos = await internetEscompras.GetProductos(idEscuela);    // Productos en modo Cliente
         else
             Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
-        
+
         if (Productos.Count == 0)
         {
             sinProductos.IsVisible = true;
@@ -229,7 +229,7 @@ public partial class HomePage : ContentPage
         if (producto is null)
             return;
 
-        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true, 
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true,
             new Dictionary<string, object>
             {
                 {"Producto", producto }
@@ -246,4 +246,5 @@ public partial class HomePage : ContentPage
         LogIn();
         obtenerProductos(idEscuela);
     }
+
 }

@@ -70,6 +70,15 @@
                        Margin="0,20,0,0"
                        FontAttributes="Bold" 
                        FontSize="20"/>
+
+                <Label Text="{Binding Estado}" 
+                       Grid.Column="3" Grid.Row="3"
+                       Margin="0,20,0,0"
+                       Padding="2"
+                       HorizontalOptions="Center"
+                       BackgroundColor="SteelBlue"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
             </Grid>
         </StackLayout>
     </Frame>

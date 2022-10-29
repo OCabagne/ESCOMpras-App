@@ -183,5 +183,54 @@ namespace ESCOMpras.Models
         public static Task<List<Producto>> GetProductos(int id) =>
             GetTAsync<List<Producto>>($"/getProductosEscuela/{id}", "GetProductos", 5, true);
 
+        public static async void FinalizarOrden(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/RecibirOrden/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(">: Error");
+        }
+
+        public static async void CancelarOrden(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/CancelarOrden/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(">: Error");
+        }
+
+        public static async void EnviarOrden(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/EnviarOrden/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(">: Error");
+        }
+
+        public static async void AceptarOrden(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/AprobarOrden/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(">: Error");
+        }
+
+        public static async void RechazarOrden(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/RechazarOrden/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine(">: Error");
+        }
     }
 }
