@@ -89,7 +89,7 @@ namespace ESCOMpras.Models
             {
                 var cmd = await client.DeleteAsync($"/borrarOrden/{idOrden}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -232,5 +232,31 @@ namespace ESCOMpras.Models
             if (!response.IsSuccessStatusCode)
                 Console.WriteLine(">: Error");
         }
+
+        public static async Task<bool> ConfirmarClave(int id, string key)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/ConfirmarClave/{id}/{key}", content);
+            if (response.IsSuccessStatusCode)
+                return true;
+            else
+                return false;
+        }
+
+        public static async Task<bool> GenerarClave(int id)
+        {
+            var json = JsonConvert.SerializeObject(id);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/GenerarClave/{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                return false;
+
+            return true;
+        }
+
+        public static Task<string> GetClave(int id) =>
+            GetTAsync<string>($"/GetClave/{id}", "GetClave", 0, true);
     }
 }

@@ -5,136 +5,147 @@
              xmlns:Cells="clr-namespace:ESCOMpras.Cells"
              Shell.BackgroundColor="SteelBlue"
              Title="">
-    <VerticalStackLayout>
-        <StackLayout Margin="0,0,0,0">
-            <!--<Cells:DetailsCard/>-->
-            <VerticalStackLayout>
+    <ScrollView>
+    
+        <VerticalStackLayout>
+            <StackLayout Margin="0,0,0,0">
+                <!--<Cells:DetailsCard/>-->
+                <VerticalStackLayout>
 
-                <Label Margin="10,10,0,0"
-                       Text="{Binding producto.Nombre}"
-                       FontAttributes="Bold"
-                       FontSize="20"/>
+                    <Label Margin="10,10,0,0"
+                           Text="{Binding producto.Nombre}"
+                           FontAttributes="Bold"
+                           FontSize="20"/>
 
-                <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*" Margin="10,5,10,5">
-                    <Label Grid.Column="0" Grid.Row="0"
-                           Text="Vendedor:"
-                           FontSize="Micro"/>
-                    <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Margin="55,0,0,0"
-                           Text="{Binding nombreTienda}"
-                           FontSize="Micro"/>
+                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*" Margin="10,5,10,5">
+                        <Label Grid.Column="0" Grid.Row="0"
+                               Text="Vendedor:"
+                               FontSize="Micro"/>
+                        <Label Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Margin="55,0,0,0"
+                               Text="{Binding nombreTienda}"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="0"
-                           Text="No. Orden: "
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="0"
+                               Text="No. Orden: "
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="0" Margin="55,0,0,0"
-                           Text="{Binding Idorden}"
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="0" Margin="55,0,0,0"
+                               Text="{Binding Idorden}"
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="0" Grid.Row="1"
-                           Text="Escuela: "
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="0" Grid.Row="1"
+                               Text="Escuela: "
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="0" Grid.Row="1" Margin="55,0,0,0"
-                           Text="{Binding nombreEscuela}"
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="0" Grid.Row="1" Margin="55,0,0,0"
+                               Text="{Binding nombreEscuela}"
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="1" 
-                           Text="Fecha: "
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="1" 
+                               Text="Fecha: "
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="1" Margin="35,0,0,0"
-                           Text="{Binding Fecha}"
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="1" Margin="35,0,0,0"
+                               Text="{Binding Fecha}"
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="2"
-                           Text="Cliente: "
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="2"
+                               Text="Cliente: "
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="2" Grid.Row="2" Margin="40,0,0,0"
-                           Text="{Binding nombreCliente}"
-                           VerticalOptions="End"
-                           FontSize="Micro"/>
+                        <Label Grid.Column="2" Grid.Row="2" Margin="40,0,0,0"
+                               Text="{Binding nombreCliente}"
+                               VerticalOptions="End"
+                               FontSize="Micro"/>
 
-                    <Label Grid.Column="0" Grid.Row="2"
-                           Text="Estado: "
-                           Margin="0,5,0,0"/>
+                        <Label Grid.Column="0" Grid.Row="2"
+                               Text="Estado: "
+                               Margin="0,5,0,0"/>
 
-                    <Label Grid.Column="0" Grid.Row="2"
-                           Text="{Binding Estado}"
-                           HorizontalOptions="End"
-                           Margin="0,5,0,0"
-                           Padding="1"
-                           BackgroundColor="SteelBlue"
-                           TextColor="White"/>
-                </Grid>
+                        <Label Grid.Column="0" Grid.Row="2"
+                               Text="{Binding Estado}"
+                               HorizontalOptions="End"
+                               Margin="0,5,0,0"
+                               Padding="1"
+                               BackgroundColor="SteelBlue"
+                               TextColor="White"/>
+                    </Grid>
 
-                <Image Margin="5,25,5,0"
-                       Source="{Binding producto.Imagen}"
-                       MinimumHeightRequest="100"
-                       MaximumHeightRequest="200"
-                       Aspect="AspectFill"/>
+                    <Image Margin="5,25,5,0"
+                           Source="{Binding producto.Imagen}"
+                           MinimumHeightRequest="100"
+                           MaximumHeightRequest="200"
+                           Aspect="AspectFill"/>
 
-                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" Margin="10,20,0,10">
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" Margin="10,20,0,10">
 
-                    <Label Grid.Column="0"
-                           Text="Precio: $" />
+                        <Label Grid.Column="0"
+                               Text="Precio: $" />
 
-                    <Label Grid.Column="0" Margin="55,0,0,0"
-                           Text="{Binding producto.Precio}" />
+                        <Label Grid.Column="0" Margin="55,0,0,0"
+                               Text="{Binding producto.Precio}" />
 
-                    <Label Grid.Column="1"
-                           Text="Cantidad: "/>
+                        <Label Grid.Column="1"
+                               Text="Cantidad: "/>
 
-                    <Label Grid.Column="1" Margin="65,0,0,0"
-                           Text="{Binding Cantidad}"/>
+                        <Label Grid.Column="1" Margin="65,0,0,0"
+                               Text="{Binding Cantidad}"/>
 
-                    <Label Grid.Column="2"
-                           Text="Total: $"/>
+                        <Label Grid.Column="2"
+                               Text="Total: $"/>
 
-                    <Label Grid.Column="2" Margin="50,0,0,0"
-                           Text="{Binding Montototal}"/>
+                        <Label Grid.Column="2" Margin="50,0,0,0"
+                               Text="{Binding Montototal}"/>
 
-                    <Label Grid.Column="1" Grid.Row="1"
-                           x:Name="promocionTexto"
-                           Margin="0,10,0,0"
-                           BackgroundColor="SteelBlue"
-                           TextColor="White"
-                           Text="Promoción: "/>
+                        <Label Grid.Column="1" Grid.Row="1"
+                               x:Name="promocionTexto"
+                               Margin="0,10,0,0"
+                               BackgroundColor="SteelBlue"
+                               TextColor="White"
+                               Text="Promoción: "/>
 
-                    <Label Grid.Column="2" Grid.Row="1"
-                           x:Name="promocionValor"
-                           Margin="0,10,0,0"
-                           HorizontalOptions="Start"
-                           BackgroundColor="SteelBlue"
-                           TextColor="White"
-                           Text="{Binding Promocion}"/>
+                        <Label Grid.Column="2" Grid.Row="1"
+                               x:Name="promocionValor"
+                               Margin="0,10,0,0"
+                               HorizontalOptions="Start"
+                               BackgroundColor="SteelBlue"
+                               TextColor="White"
+                               Text="{Binding Promocion}"/>
 
-                    <Label Grid.Column="0" Grid.Row="2"
-                           Margin="0,10,0,0"
-                           Text="Detalles: "/>
+                        <Label Grid.Column="0" Grid.Row="2"
+                               Margin="0,10,0,0"
+                               Text="Detalles: "/>
 
-                    <Label Grid.Column="1" Grid.Row="2"
-                           Margin="0,10,0,0"
-                           HorizontalOptions="Start"
-                           Text="{Binding Detalles}"/>
-                </Grid>
-            </VerticalStackLayout>
-        </StackLayout>
-        <Grid RowDefinitions="*,*" ColumnDefinitions="*">
-            <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="DarkGreen" Text="Finalizar Orden" x:Name="finalizarOrden" Clicked="finalizarOrden_Clicked" IsVisible="False"/>
-            <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Cancelar Orden" x:Name="CancelarOrden" Clicked="CancelarOrden_Clicked" IsVisible="False"/>
-            <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="SteelBlue" Text="Enviar Orden" x:Name="EnviarOrden" Clicked="EnviarOrden_Clicked" IsVisible="False"/>
-            <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="SteelBlue" Text="Aceptar Orden" x:Name="AceptarOrden" Clicked="AceptarOrden_Clicked" IsVisible="False"/>
-            <Button Grid.Row="1" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Rechazar Orden" x:Name="RechazarOrden" Clicked="RechazarOrden_Clicked" IsVisible="False"/>
-            <Button Grid.Row="1" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Reportar Problema" x:Name="reportarProblema" Clicked="reportarProblema_Clicked"/>
-        </Grid>
-    </VerticalStackLayout>
+                        <Label Grid.Column="1" Grid.Row="2"
+                               Margin="0,10,0,0"
+                               HorizontalOptions="Start"
+                               Text="{Binding Detalles}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </StackLayout>
+            <Grid x:Name="IngresarClave" ColumnDefinitions="*,*,*,*" IsVisible="False">
+                <Entry Grid.Column="2" Placeholder="ABC123"
+                       x:Name="Clave"
+                       HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="Clave: "
+                       HorizontalOptions="End" Margin="0,8,0,0"/>
+            </Grid>
+            <Grid RowDefinitions="*,*" ColumnDefinitions="*">
+                <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="DarkGreen" Text="Finalizar Orden" x:Name="finalizarOrden" Clicked="finalizarOrden_Clicked" IsVisible="False"/>
+                <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Cancelar Orden" x:Name="CancelarOrden" Clicked="CancelarOrden_Clicked" IsVisible="False"/>
+                <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="SteelBlue" Text="Enviar Orden" x:Name="EnviarOrden" Clicked="EnviarOrden_Clicked" IsVisible="False"/>
+                <Button Grid.Row="0" Margin="30,10,30,0" BackgroundColor="SteelBlue" Text="Aceptar Orden" x:Name="AceptarOrden" Clicked="AceptarOrden_Clicked" IsVisible="False"/>
+                <Button Grid.Row="1" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Rechazar Orden" x:Name="RechazarOrden" Clicked="RechazarOrden_Clicked" IsVisible="False"/>
+                <Button Grid.Row="1" Margin="30,10,30,0" BackgroundColor="DarkRed" Text="Reportar Problema" x:Name="reportarProblema" Clicked="reportarProblema_Clicked"/>
+            </Grid>
+        </VerticalStackLayout>
+
+    </ScrollView>
 </ContentPage>

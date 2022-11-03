@@ -4,6 +4,7 @@ namespace ESCOMpras.Pages;
 public partial class PendientesPage : ContentPage
 {
     private PedidoPendiente seleccion { get; set; }
+    string tipo;
     public PendientesPage()
     {
         InitializeComponent();
@@ -33,7 +34,8 @@ public partial class PendientesPage : ContentPage
 
     private async void LoadData()
     {
-        string tipo = await SecureStorage.Default.GetAsync("tipo");
+        // Load buttons for different Estados and by type of user.
+        tipo = await SecureStorage.Default.GetAsync("tipo");
 
         if (tipo.Equals("Tienda"))
         {
@@ -51,6 +53,7 @@ public partial class PendientesPage : ContentPage
 
                 case "ENVIADO":
                     finalizarOrden.IsVisible = true;
+                    IngresarClave.IsVisible = true;
                     break;
 
                 case null:
@@ -100,29 +103,60 @@ public partial class PendientesPage : ContentPage
 
     private async void finalizarOrden_Clicked(object sender, EventArgs e)
     {
-        try
+        if (tipo.Equals("Cliente"))
         {
-            internetEscompras.FinalizarOrden(seleccion.Idorden);
-            await DisplayAlert("", "Orden finalizada con código: ABC-DEF", "Muy bien!");
-            await Navigation.PopToRootAsync();
+            // Generar Clave de Finalización
+            try
+            {
+                if (await internetEscompras.GenerarClave(seleccion.Idorden))
+                {
+                    string clave = await internetEscompras.GetClave(seleccion.Idorden);
+                    await DisplayAlert("", "Tu clave es: " + clave, "Aceptar");
+                    await Navigation.PopToRootAsync();
+                }
+            }
+            catch
+            {
+                await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            }
         }
-        catch
+        else if (tipo.Equals("Tienda"))
         {
-            await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            // Confirmar Clave de Finalización
+            try
+            {
+                if (await internetEscompras.ConfirmarClave(seleccion.Idorden, Clave.Text))
+                {
+                    internetEscompras.FinalizarOrden(seleccion.Idorden);
+                    await DisplayAlert("", "Orden finalizada!", "Muy bien!");
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    await DisplayAlert("", "Clave incorrecta.", "Entendido");
+                }
+            }
+            catch
+            {
+                await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            }
         }
     }
 
     private async void CancelarOrden_Clicked(object sender, EventArgs e)
     {
-        try
+        if (await DisplayAlert("", "¿Estás seguro de cancelar tu pedido?", "Si Autorizo", "No"))
         {
-            internetEscompras.CancelarOrden(seleccion.Idorden);
-            await DisplayAlert("", "Tu orden ha sido cancelada.", "Entendido");
-            await Navigation.PopToRootAsync();
-        }
-        catch
-        {
-            await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            try
+            {
+                internetEscompras.CancelarOrden(seleccion.Idorden);
+                await DisplayAlert("", "Tu orden ha sido cancelada.", "Entendido");
+                await Navigation.PopToRootAsync();
+            }
+            catch
+            {
+                await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            }
         }
     }
 
@@ -156,15 +190,18 @@ public partial class PendientesPage : ContentPage
 
     private async void RechazarOrden_Clicked(object sender, EventArgs e)
     {
-        try
+        if (await DisplayAlert("", "¿Estás seguro de querer rechazar esta orden?", "Si", "No"))
         {
-            internetEscompras.RechazarOrden(seleccion.Idorden);
-            await DisplayAlert("", "Orden Rechazada", "Entendido");
-            await Navigation.PopToRootAsync();
-        }
-        catch
-        {
-            await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            try
+            {
+                internetEscompras.RechazarOrden(seleccion.Idorden);
+                await DisplayAlert("", "Orden Rechazada", "Entendido");
+                await Navigation.PopToRootAsync();
+            }
+            catch
+            {
+                await DisplayAlert("", "Ha ocurrido un error.", "Entendido");
+            }
         }
     }
 }
