@@ -5,10 +5,11 @@ namespace ESCOMpras.Pages;
 public partial class RegistrarNuevoUsuario : ContentPage
 {
     private IList<Escuela> escuelas;
+    private List<Tipo> tiposTienda;
     public RegistrarNuevoUsuario()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     public RegistrarNuevoUsuario(Cliente _cliente)
     {
@@ -25,7 +26,26 @@ public partial class RegistrarNuevoUsuario : ContentPage
         BindingContext = _vendedor;
         versionVendedor.IsVisible = true;
         versionCliente.IsVisible = false;
+        loadTipos();
     }
+
+    private async void loadTipos()
+    {
+        try
+        {
+            tiposTienda = await internetEscompras.GetTiposProducto();
+            List<string> tipos = new List<string>();
+            foreach (var tipo in tiposTienda)
+                tipos.Add(tipo.Nombre);
+
+            selectTipo.ItemsSource = tipos;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "No pudimos cargar los tipos de tienda.", "Ok");
+        }
+    }
+
     private async void obtenerEscuelas()
     {
         escuelas = new List<Escuela>();
@@ -42,11 +62,33 @@ public partial class RegistrarNuevoUsuario : ContentPage
 
     private async void RegistrarCliente_Clicked(object sender, EventArgs e)
     {
-        if(selectEscuela.SelectedItem != null && Nombre.Text != null && Apellido.Text != null &&
-            Correo.Text != null && Password.Text != null && ConfirmarPassword.Text != null && ConfirmarPassword.Text.Equals(Password.Text)
-            && aceptoTerminos.IsChecked == true)
+        if (selectEscuela.SelectedItem != null && Nombre.Text != null && Apellido.Text != null &&
+            Correo.Text != null && Password.Text != null && ConfirmarPassword.Text != null && aceptoTerminos.IsChecked == true)
         {
-            await DisplayAlert("Bienvenido!", "Campos completos", "Excelentuqui!");
+            if (ConfirmarPassword.Text.Equals(Password.Text))
+            {
+                Cliente cliente = new Cliente
+                {
+                    Nombre = Nombre.Text,
+                    Apellidos = Apellido.Text,
+                    Correo = Correo.Text,
+                    Calificacion = 5,
+                    Activo = true,
+                    EscuelaIdescuela = escuelas[selectEscuela.SelectedIndex].Idescuela
+                };
+                try
+                {
+                    await internetEscompras.SignUp(cliente);
+                    await DisplayAlert("Bienvenido!", "Campos completos", "Excelente!");
+                    await Navigation.PopToRootAsync();
+                }
+                catch
+                {
+                    await DisplayAlert("Error", "Ha ocurrido un error. Volver a intentar.", "Ok");
+                }
+            }
+            else
+                await DisplayAlert("", "Las contraseñas no coinciden.", "Entendido");
         }
         else
         {
@@ -57,11 +99,31 @@ public partial class RegistrarNuevoUsuario : ContentPage
     private async void RegistrarVendedor_Clicked(object sender, EventArgs e)
     {
         if (selectTipo.SelectedItem != null && NombreVendedor.Text != null &&
-            CorreoVendedor.Text != null && PasswordVendedor.Text != null && 
-            ConfirmarPasswordVendedor.Text != null && ConfirmarPasswordVendedor.Text.Equals(PasswordVendedor.Text) 
-            && aceptoTerminosVendedor.IsChecked == true)
+            CorreoVendedor.Text != null && PasswordVendedor.Text != null &&
+            ConfirmarPasswordVendedor.Text != null && aceptoTerminosVendedor.IsChecked == true)
         {
-            await DisplayAlert("Bienvenido!", "Campos completos", "Comencemos!");
+            if (ConfirmarPasswordVendedor.Text.Equals(PasswordVendedor.Text))
+            {
+                Tiendum tienda = new Tiendum
+                {
+                    Nombre = NombreVendedor.Text,
+                    Correo = CorreoVendedor.Text,
+                    Password = PasswordVendedor.Text,
+                    TipoIdtipo = tiposTienda[selectTipo.SelectedIndex].Idtipo
+                };
+                try
+                {
+                    await internetEscompras.SignUp(tienda);
+                    await DisplayAlert("Bienvenido!", "Campos completos", "Comencemos!");
+                    await Navigation.PopToRootAsync();
+                }
+                catch
+                {
+                    await DisplayAlert("Error", "Ha ocurrido un error. Volver a intentar.", "Ok");
+                }
+            }
+            else
+                await DisplayAlert("", "Las contraseñas no coinciden.", "Entendido");
         }
         else
         {

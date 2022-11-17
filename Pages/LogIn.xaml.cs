@@ -13,9 +13,6 @@ public partial class LogIn : ContentPage
     {
         try
         {
-            //Correo.Text = "OCabagne@outlook.com";
-            //Password.Text = "1Contraseña";
-
             string correo = Correo.Text;
             string password = Password.Text;
 
@@ -33,7 +30,6 @@ public partial class LogIn : ContentPage
                     await SecureStorage.Default.SetAsync("tipo", "Cliente");
 
                     await Navigation.PopAsync();
-                    //await Navigation.PushModalAsync(new HomePage());
                 }
             }
             catch
@@ -49,7 +45,6 @@ public partial class LogIn : ContentPage
                     await SecureStorage.Default.SetAsync("tipo", "Tienda");
 
                     await Navigation.PopAsync();
-                    //await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
                 }
             }
         }
