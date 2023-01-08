@@ -7,7 +7,7 @@ namespace ESCOMpras.Models
 {
     internal class internetEscompras
     {
-        static string BaseUrl = "https://escompras-api.herokuapp.com";
+        static string BaseUrl = "https://escomprasservice.azurewebsites.net/";
         static HttpClient client;
         static internetEscompras()
         {
@@ -262,30 +262,40 @@ namespace ESCOMpras.Models
         public static Task<List<Tipo>> GetTiposProducto() =>
             GetTAsync<List<Tipo>>("/verTipos", "GetTiposProducto", 0);
 
-        public static async Task SignUp(Cliente cliente)
+        public static async Task<int> SignUp(ClienteHelper cliente)
         {
             try
             {
                 var pedidoJson = JsonConvert.SerializeObject(cliente);
                 var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("/", content);
+                var response = await client.PostAsync("/SignUpCliente", content);
+
+                var message = await response.Content.ReadAsStringAsync();
+                int id = Int32.Parse(message);
+                return id;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return 0;
             }
         }
-        public static async Task SignUp(Tiendum tienda)
+        public static async Task<int> SignUp(TiendumHelper tienda)
         {
             try
             {
                 var pedidoJson = JsonConvert.SerializeObject(tienda);
                 var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("/", content);
+                var response = await client.PostAsync("/SignUpVendedor", content);
+
+                var message = await response.Content.ReadAsStringAsync();
+                int id = Int32.Parse(message);
+                return id;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return 0;
             }
         }
     }

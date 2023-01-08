@@ -26,7 +26,10 @@ public partial class TiposPage : ContentPage
             Productos = await internetEscompras.GetProductosTipo(tipo.Idtipo);
             foreach (var item in Productos)
             {
-                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                if (item.Imagen == null)
+                {
+                    item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                }
             }
             BindingContext = this;
         }

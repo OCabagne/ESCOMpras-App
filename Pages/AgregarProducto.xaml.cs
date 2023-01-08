@@ -8,6 +8,8 @@ public partial class AgregarProducto : ContentPage
     public AgregarProducto()
     {
         InitializeComponent();
+        editarProducto.IsVisible = false;
+        guardarProducto.IsVisible = true;
     }
 
     public AgregarProducto(Producto _producto)
@@ -39,6 +41,7 @@ public partial class AgregarProducto : ContentPage
                 Descripcion = descripcionProducto.Text,
                 Nombre = nombreProducto.Text,
                 Precio = Int32.Parse(precioProducto.Text),
+                Promocion = promocion.Text,
                 TiendaIdtienda = Int32.Parse(await SecureStorage.Default.GetAsync("idTienda"))
             };
 

@@ -67,10 +67,11 @@ public partial class RegistrarNuevoUsuario : ContentPage
         {
             if (ConfirmarPassword.Text.Equals(Password.Text))
             {
-                Cliente cliente = new Cliente
+                ClienteHelper cliente = new ClienteHelper
                 {
                     Nombre = Nombre.Text,
                     Apellidos = Apellido.Text,
+                    Password = Password.Text,
                     Correo = Correo.Text,
                     Calificacion = 5,
                     Activo = true,
@@ -78,9 +79,15 @@ public partial class RegistrarNuevoUsuario : ContentPage
                 };
                 try
                 {
-                    await internetEscompras.SignUp(cliente);
-                    await DisplayAlert("Bienvenido!", "Campos completos", "Excelente!");
-                    await Navigation.PopToRootAsync();
+                    if (await internetEscompras.SignUp(cliente) > 0)
+                    {
+                        await DisplayAlert("Bienvenido!", "Campos completos", "Excelente!");
+                        await Navigation.PopToRootAsync();
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Logfile cannot be read-only");
+                    }
                 }
                 catch
                 {
@@ -99,14 +106,15 @@ public partial class RegistrarNuevoUsuario : ContentPage
     private async void RegistrarVendedor_Clicked(object sender, EventArgs e)
     {
         if (selectTipo.SelectedItem != null && NombreVendedor.Text != null &&
-            CorreoVendedor.Text != null && PasswordVendedor.Text != null &&
+            CorreoVendedor.Text != null && PasswordVendedor.Text != null && Ubicacion.Text != null &&
             ConfirmarPasswordVendedor.Text != null && aceptoTerminosVendedor.IsChecked == true)
         {
             if (ConfirmarPasswordVendedor.Text.Equals(PasswordVendedor.Text))
             {
-                Tiendum tienda = new Tiendum
+                TiendumHelper tienda = new TiendumHelper
                 {
                     Nombre = NombreVendedor.Text,
+                    Ubicacion = Ubicacion.Text,
                     Correo = CorreoVendedor.Text,
                     Password = PasswordVendedor.Text,
                     TipoIdtipo = tiposTienda[selectTipo.SelectedIndex].Idtipo

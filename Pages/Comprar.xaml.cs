@@ -43,7 +43,21 @@ public partial class Comprar : ContentPage
             EscuelaIdescuela = idEscuela,
             TiendaIdtienda = PedidoVM.idTienda
         };
-        
+
+
+        switch (PedidoVM.Horario)
+        {
+            case "16:30":
+                orden.HoraentregaIdhoraservicio = 1;
+                break;
+            case "18:00":
+                orden.HoraentregaIdhoraservicio = 2;
+                break;
+            case "18:30":
+                orden.HoraentregaIdhoraservicio = 3;
+                break;
+        }
+
         //int idOrden = await internetEscompras.NuevaOrden(orden);
         int idOrden = await internetEscompras.NuevaOrden(orden);
 

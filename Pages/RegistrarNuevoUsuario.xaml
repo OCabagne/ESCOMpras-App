@@ -11,7 +11,7 @@
                     <Image Source="{Binding Imagen}" Grid.Row="0" Grid.ColumnSpan="3" MaximumHeightRequest="150" Aspect="AspectFill"/>
                 </Grid>
 
-                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*" Margin="30,10,0,20">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*" Margin="30,10,0,20">
 
                     <Label Grid.Column="0" Grid.Row="0" Margin="0,10,30,0"
                        HorizontalOptions="End"
@@ -43,11 +43,25 @@
 
                     <Label Grid.Column="0" Grid.Row="2" Margin="0,10,30,0"
                        HorizontalOptions="End"
-                       Text="Correo: "
+                       Text="Ubicación: "
                        FontSize="Body"
                        FontAttributes="Bold"/>
 
                     <Entry Grid.Column="1" Grid.Row="2" HorizontalOptions="Start"
+                       x:Name="Ubicacion" 
+                       Placeholder="Av.1 Calle 2, No. 3"
+                       FontSize="Body"
+                       FontAttributes="Italic"
+                       ClearButtonVisibility="WhileEditing" 
+                       Keyboard="Plain"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                       HorizontalOptions="End"
+                       Text="Correo: "
+                       FontSize="Body"
+                       FontAttributes="Bold"/>
+
+                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
                        x:Name="CorreoVendedor" 
                        Placeholder="Correo@ejemplo.com"
                        FontSize="Small"
@@ -55,13 +69,13 @@
                        ClearButtonVisibility="WhileEditing" 
                        Keyboard="Email"/>
 
-                    <Label Grid.Column="0" Grid.Row="3" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
                        HorizontalOptions="End"
                        Text="Contraseña: "
                        FontSize="Body"
                        FontAttributes="Bold"/>
 
-                    <Entry Grid.Column="1" Grid.Row="3" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
                        x:Name="PasswordVendedor"
                        Placeholder="Contraseña"
                        FontSize="Small"
@@ -70,13 +84,13 @@
                        Keyboard="Plain"
                        IsPassword="True"/>
 
-                    <Label Grid.Column="0" Grid.Row="4" Margin="0,10,30,0"
+                    <Label Grid.Column="0" Grid.Row="5" Margin="0,10,30,0"
                        HorizontalOptions="End"
                        Text="Confirmar Contraseña: "
                        FontSize="Small"
                        FontAttributes="Bold"/>
 
-                    <Entry Grid.Column="1" Grid.Row="4" HorizontalOptions="Start"
+                    <Entry Grid.Column="1" Grid.Row="5" HorizontalOptions="Start"
                        x:Name="ConfirmarPasswordVendedor" 
                        Placeholder="Confirmar Contraseña"
                        FontSize="Small"
@@ -85,19 +99,19 @@
                        Keyboard="Plain"
                        IsPassword="True"/>
 
-                    <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+                    <Button Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"
                             Margin="60,20,60,0"
                             Text="Registrar mi Tienda"
                             x:Name="RegistrarVendedor"
                             Clicked="RegistrarVendedor_Clicked"
                             BackgroundColor="SteelBlue"/>
 
-                    <CheckBox Grid.Column="0" Grid.Row="6" Margin="0,10,50,0"
+                    <CheckBox Grid.Column="0" Grid.Row="7" Margin="0,10,50,0"
                               HorizontalOptions="End"
                               x:Name="aceptoTerminosVendedor"
                               Color="SteelBlue"/>
 
-                    <Label Grid.Column="1" Grid.Row="6" Margin="-50,20,0,0"
+                    <Label Grid.Column="1" Grid.Row="7" Margin="-50,20,0,0"
                            HorizontalOptions="Start"
                            Text="Acepto los términos y condiciones."
                            FontSize="Micro"/>

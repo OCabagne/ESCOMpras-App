@@ -43,7 +43,10 @@ namespace ESCOMpras.Models
 		private async void Completar()
 		{
 			var producto = await internetEscompras.GetProducto(ProductoIdproducto);
-			producto.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+			if (producto.Imagen == null) 
+			{
+				producto.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+			}
 			this.producto = producto;
             this.nombreEscuela = await internetEscompras.GetNombreEscuela(EscuelaIdescuela);
 			this.nombreCliente = await internetEscompras.GetNombreCliente(ClienteIdcliente);

@@ -1,4 +1,5 @@
 using ESCOMpras.Models;
+using System.Web;
 
 namespace test1.Pages;
 
@@ -17,19 +18,19 @@ public partial class SearchPage : ContentPage
         Tipos = new List<Tipo>();
         Tipos.Add(new Tipo
         {
-            Idtipo = 1,
+            Idtipo = 3,
             Nombre = "Electrónica",
             Imagen = "https://upload.wikimedia.org/wikipedia/commons/9/96/Protoboard_circuito_multivibradores.jpg"
         });
         Tipos.Add(new Tipo
         {
-            Idtipo = 2,
+            Idtipo = 1,
             Nombre = "Alimento",
             Imagen = "https://www.unotv.com/uploads/2022/08/lunch-saludable-102132.jpg"
         });
         Tipos.Add(new Tipo
         {
-            Idtipo = 3,
+            Idtipo = 2,
             Nombre = "Papelería",
             Imagen = "https://economia.org/anexo/Papeleria.jpg"
         });
@@ -67,7 +68,10 @@ public partial class SearchPage : ContentPage
             foreach (var item in Productos)
             {
                 //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
-                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                if (item.Imagen == null)
+                {
+                    item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                }
             }
 
             BindingContext = this;
@@ -106,7 +110,14 @@ public partial class SearchPage : ContentPage
                     tiposProductos.IsVisible = false;
                     foreach (var item in Productos)
                     {
-                        item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        if (item.Imagen == null)
+                        {
+                            item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        }
+                        else
+                        {
+                            item.Imagen = HttpUtility.UrlDecode(item.Imagen);
+                        }
                     }
                     searchResults.ItemsSource = Productos;
                 }

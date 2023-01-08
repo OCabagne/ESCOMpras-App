@@ -1,4 +1,7 @@
 using ESCOMpras.Models;
+using static Android.Content.ClipData;
+using System.Web;
+
 namespace ESCOMpras.Pages;
 
 public partial class PendientesPage : ContentPage
@@ -28,6 +31,14 @@ public partial class PendientesPage : ContentPage
         }
         seleccion = publicacion;
 
+        if(seleccion.producto.Imagen == null)
+        {
+            seleccion.producto.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+        }
+        else
+        {
+            seleccion.producto.Imagen = HttpUtility.UrlDecode(seleccion.producto.Imagen);
+        }
         LoadData();
         this.BindingContext = seleccion;
     }

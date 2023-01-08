@@ -1,5 +1,6 @@
 using ESCOMpras.Models;
 using ESCOMpras.Pages;
+using System.Web;
 
 namespace test1.Pages;
 
@@ -135,23 +136,29 @@ public partial class HomePage : ContentPage
     {
         Productos = await internetEscompras.GetProductos();    // id para ESCOM = 1
 
+        
         foreach (var item in Productos)
         {
+            if(item.Imagen == null)
+            {
+                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+            }
             //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
-            item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+            //item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
         }
-
+        
         BindingContext = this;
     }
 
     private async void obtenerProductos(int escuelaId)
     {
+        List<Producto> _Productos = new List<Producto>();
         if (tipo)
-            Productos = await internetEscompras.GetProductos(idEscuela);    // Productos en modo Cliente
+            _Productos = await internetEscompras.GetProductos();    // Productos en modo Cliente
         else
-            Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
+            _Productos = await internetEscompras.GetProductosByTienda(idTienda); // Productos en modo Tienda
 
-        if (Productos.Count == 0)
+        if (_Productos.Count == 0)
         {
             sinProductos.IsVisible = true;
             RecargarBtn.IsVisible = true;
@@ -163,11 +170,22 @@ public partial class HomePage : ContentPage
             RecargarBtn.IsVisible = false;
             conProductos.IsVisible = true;
 
-            foreach (var item in Productos)
+            foreach (var item in _Productos)
             {
+                if (item.Imagen == null)
+                {
+                    item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                }
+                else
+                {
+                    item.Imagen = HttpUtility.UrlDecode(item.Imagen);
+                }
                 //item.Imagen = "https://www.memecreator.org/static/images/memes/4845128.jpg";
-                item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                //item.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
             }
+
+
+            Productos = _Productos;
 
             BindingContext = this;
         }

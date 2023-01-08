@@ -1,5 +1,7 @@
 using ESCOMpras.Models;
 using ESCOMpras.Pages;
+using System.Web;
+
 namespace test1.Pages;
 
 public partial class PedidosAnteriores : ContentPage
@@ -45,6 +47,16 @@ public partial class PedidosAnteriores : ContentPage
                         //obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
                         //Productos.Add(obj2);
 
+                        Producto producto = await internetEscompras.GetProducto(compra.ProductoIdproducto);
+                        if (producto.Imagen == null)
+                        {
+                            producto.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        }
+                        else
+                        {
+                            producto.Imagen = HttpUtility.UrlDecode(producto.Imagen);
+                        }
+
                         Producto _producto = new Producto
                         {
                             Idproducto = compra.ProductoIdproducto,
@@ -54,8 +66,9 @@ public partial class PedidosAnteriores : ContentPage
                             Promocion = compra.promocion,
                             Unidad = compra.unidad,
                             TiendaIdtienda = orden.TiendaIdtienda,
-                            Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg"
+                            Imagen = producto.Imagen
                         };
+
                         Productos.Add(_producto);
 
                         item = new PedidoPendiente(compra.ProductoIdproducto, Id, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, compra.Cantidad, compra.Detalles, orden.Fecha, orden.Montototal, _producto, _producto.Promocion);
@@ -93,7 +106,10 @@ public partial class PedidosAnteriores : ContentPage
                         //Compras.Add(obj);
 
                         Producto obj2 = await internetEscompras.GetProducto(obj.ProductoIdproducto);
-                        obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        if (obj2.Imagen == null)
+                        {
+                            obj2.Imagen = "https://www.arraymedical.com/wp-content/uploads/2018/12/product-image-placeholder.jpg";
+                        }
                         Productos.Add(obj2);
 
                         item = new PedidoPendiente(obj.ProductoIdproducto, orden.ClienteIdcliente, orden.EscuelaIdescuela, orden.TiendaIdtienda, orden.Idorden, obj.Cantidad, obj.Detalles, orden.Fecha, orden.Montototal, obj2, obj2.Promocion);
